@@ -4,11 +4,7 @@
 		"annotations": [],
 		"type": "AzureSqlDW",
 		"typeProperties": {
-			"server": "gatescharter.sql.azuresynapse.net",
-			"database": "GatesDedicatedSql",
-			"encrypt": "mandatory",
-			"trustServerCertificate": false,
-			"authenticationType": "SystemAssignedManagedIdentity"
+			"connectionString": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=gatescharter.sql.azuresynapse.net;Initial Catalog=GatesDedicatedSql"
 		},
 		"connectVia": {
 			"referenceName": "AutoResolveIntegrationRuntime",
