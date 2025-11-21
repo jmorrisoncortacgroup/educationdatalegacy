@@ -1,0 +1,20 @@
+{
+	"name": "transformPostSecondary",
+	"properties": {
+		"folder": {
+			"name": "Tables"
+		},
+		"content": {
+			"query": "Drop TABLE transform.PostSecondary\n\nCREATE TABLE transform.PostSecondary (\n    CohortYearTTL varchar(255),\n    DistrictType varchar(255),\n    DistrictTTL varchar(255),\n    SchoolTTL varchar(255),\n    DemographicType varchar(255),\n    DemographicGroup varchar(255),\n    DemographicValue varchar(255),\n    PSEnrollLevel varchar(255),\n    Pct varchar(255),\n    RedactedPct varchar(255),\n    cohortType varchar(255),\n    [School Code] varchar(255),\n    [School Name] varchar(255),\n    DistrictCode varchar(255),\n    DistrictName varchar(255)\n);\n\nINSERT INTO transform.PostSecondary (\n    CohortYearTTL,\n    DistrictType,\n    DistrictTTL,\n    SchoolTTL,\n    DemographicType,\n    DemographicGroup,\n    DemographicValue,\n    PSEnrollLevel,\n    Pct,\n    RedactedPct,\n    cohortType,\n    [School Code],\n    [School Name],\n    DistrictCode,\n    DistrictName\n)\nselect CONCAT('2020-', [CohortYearTTL]) AS [CohortYearTTL]\n      ,[DistrictType]\n      ,[DistrictTTL]\n      ,[SchoolTTL]\n      ,[DemographicType]\n      ,[DemographicGroup]\n      ,[DemographicValue]\n      ,[PSEnrollLevel]\n      ,[Pct]\n      ,[RedactedPct]\n      ,[cohortType]\n\t  ,[School Code]\n\t  ,[School Name]\n\t  ,[Local District Code] as [DistrictCode]\n\t  ,[Local District] as [DistrictName]\nFrom [staging].[CharterSchoolDirectory] a\nRight Join \n(\n SELECT [CohortYearTTL]\n      ,[DistrictType]\n      ,[DistrictTTL]\n      ,[SchoolTTL]\n      ,[DemographicType]\n      ,[DemographicGroup]\n      ,[DemographicValue]\n      ,[PSEnrollLevel]\n      ,[Pct]\n      ,[RedactedPct]\n      ,[cohortType] \n       ,CASE \n            WHEN SchoolTTL LIKE '%Atlas%' THEN 'Summit Atlas' \n            WHEN SchoolTTL LIKE '%Sierra%' THEN 'Summit Sierra'\n            WHEN SchoolTTL LIKE '%Summit Public School: Ol%' THEN 'Summit Olympus'\n            ELSE NULL\n       END AS SchoolName\n\tFROM [staging].[PostSecondary]\n)b\non a.[School Name] = b.[SchoolName]\n\nselect *\nfrom transform.[PostSecondary]\nwhere DistrictCode is not null",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "master",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

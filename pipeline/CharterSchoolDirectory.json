@@ -1,0 +1,44 @@
+{
+	"name": "CharterSchoolDirectory",
+	"properties": {
+		"activities": [
+			{
+				"name": "CharterSchoolDirectory",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "CharterSchoolDirectory",
+						"type": "DataFlowReference"
+					},
+					"staging": {
+						"linkedService": {
+							"referenceName": "gatescharter-WorkspaceDefaultStorage",
+							"type": "LinkedServiceReference"
+						},
+						"folderPath": "gatescharter/staging/WASchoolDirectory"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			}
+		],
+		"folder": {
+			"name": "CharterSchoolDirectory"
+		},
+		"annotations": [],
+		"lastPublishTime": "2025-05-29T21:14:59Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

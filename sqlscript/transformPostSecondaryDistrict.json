@@ -1,0 +1,20 @@
+{
+	"name": "transformPostSecondaryDistrict",
+	"properties": {
+		"folder": {
+			"name": "Tables"
+		},
+		"content": {
+			"query": "-- District level query for Post secondary file\n-- * case statement needs to be updated each time there is a new data ingestion. \n\n/*\nIF EXISTS (\n    SELECT 1\n    FROM sys.tables\n    WHERE name = 'PostSecondaryDistrict' AND schema_id = SCHEMA_ID('transform')\n)\nBEGIN\n    EXEC('DROP TABLE transform.PostSecondaryDistrict')\nEND\n*/\n\n\n\nselect concat(cast(cast([CohortYearTTL] as int)-1 as Nvarchar), '-', right([CohortYearTTL],2)) AS [Cohort Year]\n\t  ,'District' as [OrganizationLevel]\n\t  ,[School Code]\n\t  ,coalesce([School Name],[SchoolName]) as [SchoolName]\n\t  ,[Local District Code] as [DistrictCode]\n\t  ,coalesce([Local District], [DistrictName]) as [DistrictName]\n      ,[StudentGroupType] \n      ,[StudentGroupCategory]\n      ,[StudentGroup]\n      ,[PSEnrollLevel] as [PS Enroll Level]\n      ,[Pct]\n      ,[RedactedPct] as [Redacted Pct]\n      ,[cohortType] as [Cohort Type]\n\n--Into transform.PostSecondaryDistrict\nFrom [cleanse].[PostSecondary] a\nleft join [staging].[CharterSchoolDirectory] b on a.[Districtname] = b.[Local District]\nInner join [dim].[StudentGroup] c on a .[DemographicValue] = c.[StudentGroupKey]\nwhere [DistrictName] is not null\n\n\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "master",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

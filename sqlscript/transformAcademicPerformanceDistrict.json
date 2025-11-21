@@ -1,0 +1,20 @@
+{
+	"name": "transformAcademicPerformanceDistrict",
+	"properties": {
+		"folder": {
+			"name": "Tables"
+		},
+		"content": {
+			"query": "-- query for transform.AcademicPerformanceDistrict\n-- subquery is assessed in order to add leading zero prior to the join\n\nIF EXISTS (\n    SELECT 1\n    FROM sys.tables\n    WHERE name = 'AcademicPerformanceDistrict' AND schema_id = SCHEMA_ID('transform')\n)\nBEGIN\n    EXEC('DROP TABLE transform.AcademicPerformanceDistrict')\nEND\n\n\nSELECT [SchoolYear]\n      ,[OrganizationLevel]\n\t  ,COALESCE(b.[School Name], a.[SchoolName]) AS [SchoolName]\n\t  ,a.[DistrictCode]\n\t  ,COALESCE([Local District], a.[DistrictName]) AS [DistrictName]\n\t  ,CASE\n\t\t\tWHEN [CharterDistrict?] IS NULL THEN 'No'\n\t\t\tELSE [CharterDistrict?]\n\t\tEND AS [CharterDistrict?]\n\t  ,a.[County]\n      ,a.[ESDName]\n      ,[ESDOrganizationID]\n      ,[DistrictOrganizationId]\n      ,[SchoolOrganizationid]\n      ,[CurrentSchoolType]\n      ,[StudentGroupType]\n      ,[StudentGroup]\n      ,[GradeLevel]\n      ,[TestAdministration]\n      ,[TestSubject]\n      ,[Suppression]\n      ,CAST([Count of Students Expected to Test] AS INT) AS [Count of Students Expected to Test District]\n      ,CAST([CountMetStandard] AS INT) AS [CountMetStandard District]\n      ,CAST([CountofStudentsExpectedtoTest(including previously passed)] AS INT) AS [CountofStudentsExpectedtoTest(including previously passed) District]\n      ,CAST(CAST(REPLACE(CASE WHEN ISNUMERIC(SUBSTRING([PercentMetStandard], 1, 1)) = 1 THEN [PercentMetStandard]\n\t\t\tELSE NULL \n\t\tEND, '%','') AS FLOAT) / 100 AS FLOAT) AS [PercentMetStandard District]\n\t  ,CAST([CountMetStandard] AS FLOAT) / CAST([CountofStudentsExpectedtoTest(including previously passed)] AS FLOAT) AS [PercentMet District]\n\t  ,[DataAsOf]\nINTO transform.AcademicPerformanceDistrict\nFROM (\n    SELECT [SchoolYear]\n          ,[OrganizationLevel]\n          ,[SchoolName]\n          ,CASE WHEN LEN([DistrictCode]) < 5 \n            THEN '0' + [DistrictCode]\n            ELSE [DistrictCode] \n            END AS [DistrictCode]\n          ,[DistrictName]\n          ,[County]\n          ,[ESDName]\n          ,[ESDOrganizationID]\n          ,[DistrictOrganizationId]\n          ,[SchoolOrganizationid]\n          ,[CurrentSchoolType]\n          ,[StudentGroupType]\n          ,[StudentGroup]\n          ,[GradeLevel]\n          ,[TestAdministration]\n          ,[TestSubject]\n          ,[Suppression]\n          ,[Count of Students Expected to Test]\n          ,[CountMetStandard]\n          ,[CountofStudentsExpectedtoTest(including previously passed)]\n          ,[PercentMetStandard]\n          ,[DataAsOf]\n    FROM [staging].[AcademicPerformance]\n) a\nLeft JOIN [staging].[CharterSchoolDirectory] b ON a.[DistrictCode] = b.[Local District Code]\nLEFT JOIN [transform].[MasterDistrictDirectory] c ON a.[DistrictCode] = c.[DistrictCode]\nWHERE [OrganizationLevel] = 'District' \n\n\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "master",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

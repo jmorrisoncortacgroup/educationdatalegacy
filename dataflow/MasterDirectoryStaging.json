@@ -1,0 +1,217 @@
+{
+	"name": "MasterDirectoryStaging",
+	"properties": {
+		"description": "Includes: Master School, Master District and manual Charter files",
+		"folder": {
+			"name": "MasterSchoolDir"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "MasterSchoolDirectorySink",
+						"type": "DatasetReference"
+					},
+					"name": "WASchoolDirectory"
+				},
+				{
+					"dataset": {
+						"referenceName": "CharterSchoolDirectory",
+						"type": "DatasetReference"
+					},
+					"name": "Charter"
+				},
+				{
+					"dataset": {
+						"referenceName": "MasterDistrictDirectory",
+						"type": "DatasetReference"
+					},
+					"name": "MasterDistrictDir"
+				},
+				{
+					"dataset": {
+						"referenceName": "WASchoolsDirectory",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"linkedService": {
+						"referenceName": "AzureSynapseAnalytics1",
+						"type": "LinkedServiceReference"
+					},
+					"name": "sink1"
+				},
+				{
+					"linkedService": {
+						"referenceName": "AzureSynapseAnalytics1",
+						"type": "LinkedServiceReference"
+					},
+					"name": "sink2"
+				},
+				{
+					"linkedService": {
+						"referenceName": "AzureSynapseAnalytics1",
+						"type": "LinkedServiceReference"
+					},
+					"name": "sink3"
+				},
+				{
+					"linkedService": {
+						"referenceName": "AzureSynapseAnalytics1",
+						"type": "LinkedServiceReference"
+					},
+					"name": "sink4"
+				}
+			],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          {School Code} as short,",
+				"          {School Name} as string,",
+				"          {District Code} as integer,",
+				"          {District Name} as string,",
+				"          Region as string,",
+				"          {Lowest Grade} as string,",
+				"          {Highest Grade} as string,",
+				"          {Grades Served at Scale} as string,",
+				"          {Grades Served (E,M,H)} as string,",
+				"          Authorizer as string,",
+				"          {Date Authorized} as string,",
+				"          {Date Opened} as string,",
+				"          {Authorized Seats} as string,",
+				"          Status as string,",
+				"          {Organizational level} as string,",
+				"          {ESD Code} as string,",
+				"          {ESD Name} as string,",
+				"          City as string,",
+				"          State as string,",
+				"          ZipCode as string,",
+				"          {Org Category List} as string,",
+				"          {AYP Code} as string,",
+				"          {Grade Category} as string,",
+				"          Address as string,",
+				"          {Address 2} as string,",
+				"          {Charter School?} as boolean,",
+				"          Latitude as double,",
+				"          Longitude as double,",
+				"          County as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> WASchoolDirectory",
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> Charter",
+				"source(output(",
+				"          Column_1 as string,",
+				"          Column_2 as string,",
+				"          Column_3 as string,",
+				"          Column_4 as string,",
+				"          Column_5 as string,",
+				"          Column_6 as string,",
+				"          Column_7 as string,",
+				"          Column_8 as string,",
+				"          Column_9 as string,",
+				"          Column_10 as string,",
+				"          Column_11 as string,",
+				"          Column_12 as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> MasterDistrictDir",
+				"source(output(",
+				"          ESDCode as string,",
+				"          ESDName as string,",
+				"          LEACode as string,",
+				"          LEAName as string,",
+				"          SchoolCode as string,",
+				"          SchoolName as string,",
+				"          LowestGrade as string,",
+				"          HighestGrade as string,",
+				"          AddressLine1 as string,",
+				"          AddressLine2 as string,",
+				"          City as string,",
+				"          State as string,",
+				"          ZipCode as string,",
+				"          PrincipalName as string,",
+				"          Email as string,",
+				"          Phone as string,",
+				"          OrgCategoryList as string,",
+				"          AYPCode as string,",
+				"          GradeCategory as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"WASchoolDirectory sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'table',",
+				"     store: 'synapseanalytics',",
+				"     schemaName: 'staging',",
+				"     tableName: 'MasterSchoolDirectoryGeo',",
+				"     insertable: true,",
+				"     updateable: false,",
+				"     deletable: false,",
+				"     upsertable: false,",
+				"     recreate: true,",
+				"     allowCopyCommand: true,",
+				"     staged: true,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sink1",
+				"Charter sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'table',",
+				"     store: 'synapseanalytics',",
+				"     schemaName: 'staging',",
+				"     tableName: 'CharterSchoolDirectory',",
+				"     insertable: true,",
+				"     updateable: false,",
+				"     deletable: false,",
+				"     upsertable: false,",
+				"     recreate: true,",
+				"     allowCopyCommand: true,",
+				"     staged: true,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sink2",
+				"MasterDistrictDir sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'table',",
+				"     store: 'synapseanalytics',",
+				"     schemaName: 'staging',",
+				"     tableName: 'MasterDistrictDirectory',",
+				"     insertable: true,",
+				"     updateable: false,",
+				"     deletable: false,",
+				"     upsertable: false,",
+				"     recreate: true,",
+				"     allowCopyCommand: true,",
+				"     staged: true,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sink3",
+				"source1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'table',",
+				"     store: 'synapseanalytics',",
+				"     schemaName: 'staging',",
+				"     tableName: 'MasterSchoolDirectory',",
+				"     insertable: true,",
+				"     updateable: false,",
+				"     deletable: false,",
+				"     upsertable: false,",
+				"     recreate: true,",
+				"     allowCopyCommand: true,",
+				"     staged: true,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sink4"
+			]
+		}
+	}
+}

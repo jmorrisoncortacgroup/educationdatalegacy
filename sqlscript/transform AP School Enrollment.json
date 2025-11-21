@@ -1,0 +1,17 @@
+{
+	"name": "transform AP School Enrollment",
+	"properties": {
+		"content": {
+			"query": "SET ANSI_NULLS ON\nGO\nSET QUOTED_IDENTIFIER ON\nGO\n\nALTER PROC [transform].[sp_AcademicPerformanceSchoolEnrollment] AS\nbegin\n\nIF EXISTS (\n    SELECT 1\n    FROM sys.tables\n    WHERE name = 'AcademicPerformanceSchoolEnrollment' AND schema_id = SCHEMA_ID('transform')\n)\nBEGIN\n    EXEC('DROP TABLE transform.AcademicPerformanceSchoolEnrollment')\nEND;\n\nSELECT  a.[SchoolYear]\n      ,a.[OrganizationLevel]\n      ,a.[SchoolCode]\n      ,a.[SchoolName]\n      ,a.[DistrictCode]\n      ,a.[DistrictName]\n      ,a.[Charter School]\n      ,a.[County]\n      ,a.[ESDName]\n      ,a.[ESDOrganizationID]\n      ,a.[DistrictOrganizationId]\n      ,a.[SchoolOrganizationid]\n      ,a.[CurrentSchoolType]\n      ,a.[StudentGroupType]\n      ,a.[StudentGroupCategory]\n      ,a.[StudentGroup]\n      ,a.[GradeLevel]\n      ,a.[TestAdministration]\n      ,a.[TestSubject]\n      ,a.[Suppression]\n      ,a.[Count of Students Expected to Test School]\n      ,a.[CountMetStandard School]\n      ,a.[CountofStudentsExpectedtoTest(including previously passed) School]\n      ,coalesce([PercentMetSchool],[PercentMetStandard School]) as [PercentMetSchool]\n      ,a.[PercentMetStandard School]\n      ,[Enrollment School]  AS Enrollment\n      ,[DataAsOf]\nInto [transform].[AcademicPerformanceSchoolEnrollment]\nFROM [transform].[AcademicPerformanceSchool] a\nJoin [transform].[EnrollmentSchool] e on a.SchoolCode  = e.Schoolcode and a.schoolyear= e.SchoolYear and \n                                        a.DistrictCode = e.DistrictCode and a.StudentGroup = e.StudentGroup  and a.GradeLevel = e.GradeLevel \nWHERE a.StudentGroup in ('FRL','SpEd','All Students') and a.GradeLevel like 'All%' \n\nEND\n\n\n\nGO\n\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "GatesDedicatedSql",
+				"poolName": "GatesDedicatedSql"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

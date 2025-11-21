@@ -1,0 +1,209 @@
+{
+	"name": "stagingEnrollment2025",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "gatescharter-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Enrollment"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "Report_Card_Enrollment_2024-25_School_Year_-_Preliminary_20250207.csv",
+				"folderPath": "staging/Enrollment",
+				"fileSystem": "gatescharter"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "SchoolYear",
+				"type": "String"
+			},
+			{
+				"name": "OrganizationLevel",
+				"type": "String"
+			},
+			{
+				"name": "County",
+				"type": "String"
+			},
+			{
+				"name": "ESDName",
+				"type": "String"
+			},
+			{
+				"name": "ESDOrganizationID",
+				"type": "String"
+			},
+			{
+				"name": "DistrictCode",
+				"type": "String"
+			},
+			{
+				"name": "DistrictName",
+				"type": "String"
+			},
+			{
+				"name": "DistrictOrganizationId",
+				"type": "String"
+			},
+			{
+				"name": "SchoolCode",
+				"type": "String"
+			},
+			{
+				"name": "SchoolName",
+				"type": "String"
+			},
+			{
+				"name": "SchoolOrganizationid",
+				"type": "String"
+			},
+			{
+				"name": "CurrentSchoolType",
+				"type": "String"
+			},
+			{
+				"name": "Gradelevel",
+				"type": "String"
+			},
+			{
+				"name": "All Students",
+				"type": "String"
+			},
+			{
+				"name": "Female",
+				"type": "String"
+			},
+			{
+				"name": "Male",
+				"type": "String"
+			},
+			{
+				"name": "Gender X",
+				"type": "String"
+			},
+			{
+				"name": "American Indian/ Alaskan Native",
+				"type": "String"
+			},
+			{
+				"name": "Asian",
+				"type": "String"
+			},
+			{
+				"name": "Black/ African American",
+				"type": "String"
+			},
+			{
+				"name": "Hispanic/ Latino of any race(s)",
+				"type": "String"
+			},
+			{
+				"name": "Native Hawaiian/ Other Pacific Islander",
+				"type": "String"
+			},
+			{
+				"name": "Two or More Races",
+				"type": "String"
+			},
+			{
+				"name": "White",
+				"type": "String"
+			},
+			{
+				"name": "English Language Learners",
+				"type": "String"
+			},
+			{
+				"name": "Highly Capable",
+				"type": "String"
+			},
+			{
+				"name": "Homeless",
+				"type": "String"
+			},
+			{
+				"name": "Low-Income",
+				"type": "String"
+			},
+			{
+				"name": "Migrant",
+				"type": "String"
+			},
+			{
+				"name": "Military Parent",
+				"type": "String"
+			},
+			{
+				"name": "Mobile",
+				"type": "String"
+			},
+			{
+				"name": "Section 504",
+				"type": "String"
+			},
+			{
+				"name": "Students with Disabilities",
+				"type": "String"
+			},
+			{
+				"name": "Non-English Language Learners",
+				"type": "String"
+			},
+			{
+				"name": "Non-Highly Capable",
+				"type": "String"
+			},
+			{
+				"name": "Non-Homeless",
+				"type": "String"
+			},
+			{
+				"name": "Non-Low Income",
+				"type": "String"
+			},
+			{
+				"name": "Non Migrant",
+				"type": "String"
+			},
+			{
+				"name": "Non Military Parent",
+				"type": "String"
+			},
+			{
+				"name": "Non Mobile",
+				"type": "String"
+			},
+			{
+				"name": "Non Section 504",
+				"type": "String"
+			},
+			{
+				"name": "Students without Disabilities",
+				"type": "String"
+			},
+			{
+				"name": "DataAsOf",
+				"type": "String"
+			},
+			{
+				"name": "FosterCare",
+				"type": "String"
+			},
+			{
+				"name": "Non-FosterCare",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

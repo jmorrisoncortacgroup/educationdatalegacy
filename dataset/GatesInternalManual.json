@@ -1,0 +1,26 @@
+{
+	"name": "GatesInternalManual",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "gatescharter-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Gates Internal Manual Data"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "Gates Internal Manual",
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "Gates Internal Manual Data Collection.xlsx",
+				"folderPath": "staging/Gates Internal Manual data",
+				"fileSystem": "gatescharter"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": []
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

@@ -1,0 +1,113 @@
+{
+	"name": "SpatialFile",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "gatescharter-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SpatialFile"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "wa-schooldistricts-feb2018-1.csv",
+				"folderPath": "staging/SpecialFile",
+				"fileSystem": "gatescharter"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "OBJECTID,N,10,0",
+				"type": "String"
+			},
+			{
+				"name": "NAME,C,100",
+				"type": "String"
+			},
+			{
+				"name": "UNSD,C,5",
+				"type": "String"
+			},
+			{
+				"name": "SDLEA,C,5",
+				"type": "String"
+			},
+			{
+				"name": "LSAD,C,2",
+				"type": "String"
+			},
+			{
+				"name": "County,C,15",
+				"type": "String"
+			},
+			{
+				"name": "ESD,N,19,11",
+				"type": "String"
+			},
+			{
+				"name": "Region,N,19,11",
+				"type": "String"
+			},
+			{
+				"name": "OrgId,N,19,11",
+				"type": "String"
+			},
+			{
+				"name": "CCDDD,N,19,11",
+				"type": "String"
+			},
+			{
+				"name": "CC,N,19,11",
+				"type": "String"
+			},
+			{
+				"name": "DDD,N,19,11",
+				"type": "String"
+			},
+			{
+				"name": "Comments,C,250",
+				"type": "String"
+			},
+			{
+				"name": "Labels,C,50",
+				"type": "String"
+			},
+			{
+				"name": "GradeRange,C,25",
+				"type": "String"
+			},
+			{
+				"name": "LowGrade,C,8",
+				"type": "String"
+			},
+			{
+				"name": "HighGrade,C,5",
+				"type": "String"
+			},
+			{
+				"name": "WEBSITE,C,125",
+				"type": "String"
+			},
+			{
+				"name": "CODE,C,8",
+				"type": "String"
+			},
+			{
+				"name": "Shape_Leng,N,19,11",
+				"type": "String"
+			},
+			{
+				"name": "Shape_Area,N,19,11",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

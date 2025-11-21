@@ -1,0 +1,105 @@
+{
+	"name": "WASchoolsDirectory",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "gatescharter-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "MasterSchoolDirectory"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "Washington_School_Directory_20230207.csv",
+				"folderPath": "staging/WASchoolDirectory",
+				"fileSystem": "gatescharter"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\"",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "ESDCode",
+				"type": "String"
+			},
+			{
+				"name": "ESDName",
+				"type": "String"
+			},
+			{
+				"name": "LEACode",
+				"type": "String"
+			},
+			{
+				"name": "LEAName",
+				"type": "String"
+			},
+			{
+				"name": "SchoolCode",
+				"type": "String"
+			},
+			{
+				"name": "SchoolName",
+				"type": "String"
+			},
+			{
+				"name": "LowestGrade",
+				"type": "String"
+			},
+			{
+				"name": "HighestGrade",
+				"type": "String"
+			},
+			{
+				"name": "AddressLine1",
+				"type": "String"
+			},
+			{
+				"name": "AddressLine2",
+				"type": "String"
+			},
+			{
+				"name": "City",
+				"type": "String"
+			},
+			{
+				"name": "State",
+				"type": "String"
+			},
+			{
+				"name": "ZipCode",
+				"type": "String"
+			},
+			{
+				"name": "PrincipalName",
+				"type": "String"
+			},
+			{
+				"name": "Email",
+				"type": "String"
+			},
+			{
+				"name": "Phone",
+				"type": "String"
+			},
+			{
+				"name": "OrgCategoryList",
+				"type": "String"
+			},
+			{
+				"name": "AYPCode",
+				"type": "String"
+			},
+			{
+				"name": "GradeCategory",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

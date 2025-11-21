@@ -1,0 +1,253 @@
+{
+	"name": "ImprovementFramework2017_2019",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "gatescharter-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Improvement Framework"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "Washington_School_Improvement_Framework__WSIF__Stacked_2017_-_2019_Runs.csv",
+				"folderPath": "staging/Improvement Framework",
+				"fileSystem": "gatescharter"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "ESD Organization Id",
+				"type": "String"
+			},
+			{
+				"name": "ESD Name",
+				"type": "String"
+			},
+			{
+				"name": "District Organization Id",
+				"type": "String"
+			},
+			{
+				"name": "District Code",
+				"type": "String"
+			},
+			{
+				"name": "District Name",
+				"type": "String"
+			},
+			{
+				"name": "School Code",
+				"type": "String"
+			},
+			{
+				"name": "School Name",
+				"type": "String"
+			},
+			{
+				"name": "School Organization Id",
+				"type": "String"
+			},
+			{
+				"name": "School Type",
+				"type": "String"
+			},
+			{
+				"name": "Student Group",
+				"type": "String"
+			},
+			{
+				"name": "Proficiency ELA Numerator",
+				"type": "String"
+			},
+			{
+				"name": "Proficiency ELA Denominator",
+				"type": "String"
+			},
+			{
+				"name": "Proficiency ELA Rate",
+				"type": "String"
+			},
+			{
+				"name": "Proficiency ELA Decile",
+				"type": "String"
+			},
+			{
+				"name": "Proficiency Math Numerator",
+				"type": "String"
+			},
+			{
+				"name": "Proficiency Math Denominator",
+				"type": "String"
+			},
+			{
+				"name": "Proficiency Math Rate",
+				"type": "String"
+			},
+			{
+				"name": "Proficiency Math Decile",
+				"type": "String"
+			},
+			{
+				"name": "Proficiency Combined Decile",
+				"type": "String"
+			},
+			{
+				"name": "Growth ELA NumberofStudents",
+				"type": "String"
+			},
+			{
+				"name": "Growth ELA Median SGP",
+				"type": "String"
+			},
+			{
+				"name": "Growth ELA Decile",
+				"type": "String"
+			},
+			{
+				"name": "Growth Math NumberofStudents",
+				"type": "String"
+			},
+			{
+				"name": "Growth Math Median SGP",
+				"type": "String"
+			},
+			{
+				"name": "Growth Math Decile",
+				"type": "String"
+			},
+			{
+				"name": "Growth Combined Decile",
+				"type": "String"
+			},
+			{
+				"name": "Grad FourYear Numerator",
+				"type": "String"
+			},
+			{
+				"name": "Grad FourYear Denominator",
+				"type": "String"
+			},
+			{
+				"name": "Grad FourYear Rate",
+				"type": "String"
+			},
+			{
+				"name": "Grad FourYear Decile",
+				"type": "String"
+			},
+			{
+				"name": "Grad Extended TotalIncrease",
+				"type": "String"
+			},
+			{
+				"name": "Grad Extended DecileIncrease",
+				"type": "String"
+			},
+			{
+				"name": "Grad Combined Decile",
+				"type": "String"
+			},
+			{
+				"name": "EL Progress Numerator",
+				"type": "String"
+			},
+			{
+				"name": "EL Progress Denominator",
+				"type": "String"
+			},
+			{
+				"name": "EL Progress Rate",
+				"type": "String"
+			},
+			{
+				"name": "EL Progress Decile",
+				"type": "String"
+			},
+			{
+				"name": "RegularAttendance Numerator",
+				"type": "String"
+			},
+			{
+				"name": "RegularAttendance Denominator",
+				"type": "String"
+			},
+			{
+				"name": "RegularAttendance Rate",
+				"type": "String"
+			},
+			{
+				"name": "RegularAttendance Decile",
+				"type": "String"
+			},
+			{
+				"name": "NinthGradeOnTrack Numerator",
+				"type": "String"
+			},
+			{
+				"name": "NinthGradeOnTrack Denominator",
+				"type": "String"
+			},
+			{
+				"name": "NinthGradeOnTrack Rate",
+				"type": "String"
+			},
+			{
+				"name": "NinthGradeOnTrack Decile",
+				"type": "String"
+			},
+			{
+				"name": "DualCredit Numerator",
+				"type": "String"
+			},
+			{
+				"name": "DualCredit Denominator",
+				"type": "String"
+			},
+			{
+				"name": "DualCredit Rate",
+				"type": "String"
+			},
+			{
+				"name": "DualCredit Decile",
+				"type": "String"
+			},
+			{
+				"name": "SQSS Combined Decile",
+				"type": "String"
+			},
+			{
+				"name": "Final School Score",
+				"type": "String"
+			},
+			{
+				"name": "Support Tier",
+				"type": "String"
+			},
+			{
+				"name": "ELA MetESSA Participation",
+				"type": "String"
+			},
+			{
+				"name": "Math MetESSA Participation",
+				"type": "String"
+			},
+			{
+				"name": "WSIF Year",
+				"type": "String"
+			},
+			{
+				"name": "organizationid",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

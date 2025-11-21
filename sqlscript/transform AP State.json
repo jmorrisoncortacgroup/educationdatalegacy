@@ -1,0 +1,17 @@
+{
+	"name": "transform AP State",
+	"properties": {
+		"content": {
+			"query": "SET ANSI_NULLS ON\nGO\nSET QUOTED_IDENTIFIER ON\nGO\n\nALTER PROC [transform].[sp_AcademicPerformanceState] AS \nbegin\n\nIF EXISTS (\n    SELECT 1\n    FROM sys.tables\n    WHERE name = 'AcademicPerformanceState' AND schema_id = SCHEMA_ID('transform')\n)\nBEGIN\n    EXEC('DROP TABLE transform.AcademicPerformanceState')\nEnd\n\n\nSELECT  [SchoolYear]\n      ,[OrganizationLevel]\n      ,d.[StudentGroupType]\n\t  ,[StudentGroupCategory]\n      ,d.[StudentGroup]\n      ,e.[GradeLevel]\n      ,[TestAdministration]\n      ,[TestSubject]\n      ,[Suppression]\n      ,Cast([Count of Students Expected to Test] as int) as [Count of Students Expected to Test State]\n      ,cast([CountMetStandard]as int) as [CountMetStandard State]\n      ,cast( [CountofStudentsExpectedtoTest(including previously passed)] as int) as [CountofStudentsExpectedtoTest(including previously passed) State]\n      ,cast(cast(replace(case when isNumeric(substring([PercentMetStandard],1, 1)) = 1 then [PercentMetStandard]\n\t\t\tElse null \n\t\tend, '%','') as float)/100 as float) as [PercentMetStandard State]\n\t  ,cast([CountMetStandard] as float)/cast([CountofStudentsExpectedtoTest(including previously passed)] as float) as [PercentMet State]\n\t  ,[DataAsOf]\nInto transform.AcademicPerformanceState\nFROM [staging].[AcademicPerformance] a\nLeft Join [dim].[StudentGroup] d on a.[StudentGroup] = d.[StudentGroupKey]\nLeft Join [dim].[GradeLevel] e on a.GradeLevel = e.GradeLevelKey\nwhere [OrganizationLevel] = 'State' and a.[StudentGroup] NOT LIKE 'Non%' \n\nEND\nGO\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "GatesDedicatedSql",
+				"poolName": "GatesDedicatedSql"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

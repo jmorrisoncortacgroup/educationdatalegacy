@@ -1,0 +1,20 @@
+{
+	"name": "transformSGPState",
+	"properties": {
+		"folder": {
+			"name": "Tables"
+		},
+		"content": {
+			"query": "IF EXISTS (\n    SELECT 1\n    FROM sys.tables\n    WHERE name = 'SGPState' AND schema_id = SCHEMA_ID('transform')\n)\nBEGIN\n    EXEC('DROP TABLE transform.SGPState')\nEND \n\nSELECT [SchoolYear]\n      ,[OrganizationLevel]\n      ,[County]\n      ,[ESDName]\n      ,[ESDOrganizationID]\n      ,coalesce([Local District Code], [DistrictCode]) as [DistrictCode]\n      ,coalesce([Local District], [DistrictName]) as [DistrictName]\n      ,[DistrictOrganizationId]\n      ,[SchoolCode]\n      ,coalesce([School Name], [SchoolName]) as [SchoolName]\n      ,[SchoolOrganizationid]\n      ,[CurrentSchoolType]\n\t  ,[StudentGroupCategory]\n      ,c.[StudentGroupType]\n      ,c.[StudentGroup]\n      ,d.[GradeLevel]\n      ,[Subject]\n      ,[Suppression]\n      ,[MedianSGP]\n      ,[DataAsOf]\nInto [transform].[SGPState]\nFROM [staging].[SGP] a\nLEFT JOIN [staging].[CharterSchoolDirectory] b ON a.[SchoolCode] = b.[School Code]\nLeft JOIN [dim].[StudentGroup] c ON a.[StudentGroup] = c.[StudentGroupKey]\nLEFT JOIN [dim].[GradeLevel] d on a.[GradeLevel] = d.[GradeLevelKey]\nwhere a.[StudentGroup] not like 'Non%' and a.[OrganizationLevel] = 'State'",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "master",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

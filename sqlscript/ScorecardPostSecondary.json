@@ -1,0 +1,20 @@
+{
+	"name": "ScorecardPostSecondary",
+	"properties": {
+		"folder": {
+			"name": "Tables"
+		},
+		"content": {
+			"query": "Drop TABLE [scorecard].[PostSecondary];\nGO\n\n\nselect \tdistinct a.[Cohort Year],\n    a.[School Code],\n    a.[School Name],\n    b.[District Code],\n    b.[District Name],\n    a.[Student Group Type],\n    a.[Student Group Category],\n    a.[Student Group],\n    a.[PS Enroll Level],\n    a.[Pct] as [Pct School],\n    a.[Redacted Pct],\n    a.[Cohort Type],\n\tb.[Pct] as [Pct District]\n\n--Into [scorecard].[PostSecondary]\n\nfrom [transform].[PostSecondarySchool] a\nInner join [transform].[PostSecondaryDistrict] b on a.[District Code] = b.[District Code] and a.[Cohort Year] = b.[Cohort Year] and a.[Student Group] = b.[Student Group] and a.[PS Enroll Level] = b.[PS Enroll Level] and a.[Cohort Type] = b.[Cohort Type] \n\t\tand a.[Redacted Pct] = b.[Redacted Pct]\n\n\nselect top 100 *\nfrom [scorecard].[PostSecondary]\n\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "master",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

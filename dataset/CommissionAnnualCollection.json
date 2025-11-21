@@ -1,0 +1,26 @@
+{
+	"name": "CommissionAnnualCollection",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "gatescharter-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "WA Commission Data"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "Annual Collection",
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "WA Charter Commission Data Collection.xlsx",
+				"folderPath": "staging/WA Charter Commission Data",
+				"fileSystem": "gatescharter"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": []
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

@@ -1,0 +1,26 @@
+{
+	"name": "stagingMap",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "gatescharter-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Map"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "MapProjectedGrowth",
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "MAPMetProjectGrowth_2024-25.xlsx",
+				"folderPath": "staging/Map",
+				"fileSystem": "gatescharter"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": []
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

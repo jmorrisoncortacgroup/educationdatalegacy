@@ -1,0 +1,304 @@
+{
+	"name": "F195Staging",
+	"properties": {
+		"folder": {
+			"name": "F-195"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "stagingF2019",
+						"type": "DatasetReference"
+					},
+					"name": "F19"
+				},
+				{
+					"dataset": {
+						"referenceName": "stagingF2020",
+						"type": "DatasetReference"
+					},
+					"name": "F20"
+				},
+				{
+					"dataset": {
+						"referenceName": "stagingF2021",
+						"type": "DatasetReference"
+					},
+					"name": "F21"
+				},
+				{
+					"dataset": {
+						"referenceName": "stagingF2022",
+						"type": "DatasetReference"
+					},
+					"name": "F22"
+				},
+				{
+					"dataset": {
+						"referenceName": "stagingF2023",
+						"type": "DatasetReference"
+					},
+					"name": "F23"
+				},
+				{
+					"dataset": {
+						"referenceName": "stagingF2024",
+						"type": "DatasetReference"
+					},
+					"name": "F24"
+				}
+			],
+			"sinks": [
+				{
+					"linkedService": {
+						"referenceName": "AzureSynapseAnalytics1",
+						"type": "LinkedServiceReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "select1"
+				},
+				{
+					"name": "derivedColumn1"
+				},
+				{
+					"name": "derivedColumn2"
+				},
+				{
+					"name": "derivedColumn3"
+				},
+				{
+					"name": "derivedColumn4"
+				},
+				{
+					"name": "derivedColumn5"
+				},
+				{
+					"name": "select2"
+				},
+				{
+					"name": "select3"
+				},
+				{
+					"name": "select4"
+				},
+				{
+					"name": "select5"
+				},
+				{
+					"name": "union1"
+				},
+				{
+					"name": "union2"
+				},
+				{
+					"name": "union3"
+				},
+				{
+					"name": "union4"
+				},
+				{
+					"name": "unpivot1"
+				},
+				{
+					"name": "union5"
+				},
+				{
+					"name": "select6"
+				},
+				{
+					"name": "derivedColumn6"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          CCDDD as string,",
+				"          Fund as short,",
+				"          Item as string,",
+				"          {2018-19 Bud} as double,",
+				"          {2019-20 Proj} as double,",
+				"          {2020-21 Proj} as double,",
+				"          {2021-22 Proj} as double",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> F19",
+				"source(output(",
+				"          CCDDD as string,",
+				"          Fund as string,",
+				"          Item as string,",
+				"          {2019-2020 Current} as double,",
+				"          {2020-2021 Forecast} as double,",
+				"          {2021-2022 Forecast} as double,",
+				"          {2022-2023 Forecast} as double",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> F20",
+				"source(output(",
+				"          CCDDD as string,",
+				"          Fund as string,",
+				"          Item as string,",
+				"          {2020-2021 Current} as double,",
+				"          {2021-2022 Forecast} as double,",
+				"          {2022-2023 Forecast} as double,",
+				"          {2023-2024 Forecast} as double",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> F21",
+				"source(output(",
+				"          CCDDD as string,",
+				"          Fund as string,",
+				"          Item as string,",
+				"          {2021-2022 Forecast} as double,",
+				"          {2022-2023 Forecast} as double,",
+				"          {2023-2024 Forecast} as double,",
+				"          {2024-2025 Forecast} as double",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> F22",
+				"source(output(",
+				"          CCDDD as string,",
+				"          FUND as string,",
+				"          ITEM as string,",
+				"          {22-23 CURRENT} as double,",
+				"          {23-24 FORECAST} as double,",
+				"          {24-25 FORECAST} as double,",
+				"          {25-26 FORECAST} as double",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> F23",
+				"source(output(",
+				"          {School Name} as string,",
+				"          CCDDD as string,",
+				"          Item as string,",
+				"          {2023-24} as double,",
+				"          {2024-25} as double,",
+				"          {2025-26} as double,",
+				"          {2026-27} as double",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> F24",
+				"derivedColumn1 select(mapColumn(",
+				"          CCDDD = {District Code},",
+				"          Item,",
+				"          {School Year},",
+				"          {2018-19} = {2018-19 Bud},",
+				"          {2019-20} = {2019-20 Proj},",
+				"          {2020-21} = {2020-21 Proj},",
+				"          {2021-22} = {2021-22 Proj}",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"F19 derive({District Code} = case(length(CCDDD) <5, '0' + CCDDD, CCDDD),",
+				"          {School Year} = '2018-19') ~> derivedColumn1",
+				"F20 derive({District Code} = case(length(CCDDD) <5, '0' + CCDDD, CCDDD),",
+				"          {School Year} = '2019-20') ~> derivedColumn2",
+				"F21 derive({District Code} = case(length(CCDDD) <5, '0' + CCDDD, CCDDD),",
+				"          {School Year} = '2020-21') ~> derivedColumn3",
+				"F22 derive({District Code} = case(length(CCDDD) <5, '0' + CCDDD, CCDDD),",
+				"          {School Year} = '2021-22') ~> derivedColumn4",
+				"F23 derive({District Code} = case(length(CCDDD) <5, '0' + CCDDD, CCDDD),",
+				"          {School Year} = '2022-23') ~> derivedColumn5",
+				"derivedColumn2 select(mapColumn(",
+				"          CCDDD = {District Code},",
+				"          Item,",
+				"          {School Year},",
+				"          {2019-20} = {2019-2020 Current},",
+				"          {2020-21} = {2020-2021 Forecast},",
+				"          {2021-22} = {2021-2022 Forecast},",
+				"          {2022-23} = {2022-2023 Forecast}",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select2",
+				"derivedColumn3 select(mapColumn(",
+				"          CCDDD = {District Code},",
+				"          Item,",
+				"          {School Year},",
+				"          {2020-21} = {2020-2021 Current},",
+				"          {2021-22} = {2021-2022 Forecast},",
+				"          {2022-23} = {2022-2023 Forecast},",
+				"          {2023-24} = {2023-2024 Forecast}",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select3",
+				"derivedColumn4 select(mapColumn(",
+				"          CCDDD = {District Code},",
+				"          Item,",
+				"          {School Year},",
+				"          {2021-22} = {2021-2022 Forecast},",
+				"          {2022-23} = {2022-2023 Forecast},",
+				"          {2023-24} = {2023-2024 Forecast},",
+				"          {2024-25} = {2024-2025 Forecast}",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select4",
+				"derivedColumn5 select(mapColumn(",
+				"          CCDDD = {District Code},",
+				"          Item = ITEM,",
+				"          {School Year},",
+				"          {2022-23} = {22-23 CURRENT},",
+				"          {2023-24} = {23-24 FORECAST},",
+				"          {2024-25} = {24-25 FORECAST},",
+				"          {2025-26} = {25-26 FORECAST}",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select5",
+				"select1, select2 union(byName: true)~> union1",
+				"union1, select3 union(byName: true)~> union2",
+				"union2, select4 union(byName: true)~> union3",
+				"union3, select5 union(byName: true)~> union4",
+				"union5 unpivot(output(",
+				"          {Budget Year} as string,",
+				"          Budget as double",
+				"     ),",
+				"     ungroupBy(CCDDD,",
+				"          Item,",
+				"          {School Year}),",
+				"     lateral: true,",
+				"     ignoreNullPivots: false) ~> unpivot1",
+				"union4, select6 union(byName: true)~> union5",
+				"derivedColumn6 select(mapColumn(",
+				"          {School Year},",
+				"          CCDDD,",
+				"          Item,",
+				"          {2023-24},",
+				"          {2024-25},",
+				"          {2025-26},",
+				"          {2026-27}",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select6",
+				"F24 derive({School Year} = '2023-24') ~> derivedColumn6",
+				"unpivot1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'table',",
+				"     store: 'synapseanalytics',",
+				"     schemaName: 'staging',",
+				"     tableName: 'F195',",
+				"     insertable: true,",
+				"     updateable: false,",
+				"     deletable: false,",
+				"     upsertable: false,",
+				"     truncate: true,",
+				"     allowCopyCommand: true,",
+				"     staged: true,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     partitionBy('hash', 1),",
+				"     preCommands: [],",
+				"     postCommands: []) ~> sink1"
+			]
+		}
+	}
+}

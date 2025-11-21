@@ -1,0 +1,57 @@
+{
+	"name": "MapQuintile",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "gatescharter-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Map"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "MAP Sector and School Metrics Quintiles 2024-25.csv",
+				"folderPath": "staging/Map",
+				"fileSystem": "gatescharter"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "TermName",
+				"type": "String"
+			},
+			{
+				"name": "Course",
+				"type": "String"
+			},
+			{
+				"name": "AchievementQuintile",
+				"type": "String"
+			},
+			{
+				"name": "Avg_TestRITScore",
+				"type": "String"
+			},
+			{
+				"name": "StudentCountByQuintile",
+				"type": "String"
+			},
+			{
+				"name": "StudentCountByCourse",
+				"type": "String"
+			},
+			{
+				"name": "SchoolName",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

@@ -1,0 +1,238 @@
+{
+	"name": "stagingPersonnel2017",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "gatescharter-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Personnel"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "2016-2017S275FinalForPublic.csv",
+				"folderPath": "staging/Personnel",
+				"fileSystem": "gatescharter"
+			},
+			"columnDelimiter": ",",
+			"rowDelimiter": "\n",
+			"escapeChar": "\"",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "SchoolYear",
+				"type": "String"
+			},
+			{
+				"name": "area",
+				"type": "String"
+			},
+			{
+				"name": "cou",
+				"type": "String"
+			},
+			{
+				"name": "dis",
+				"type": "String"
+			},
+			{
+				"name": "codist",
+				"type": "String"
+			},
+			{
+				"name": "LastName",
+				"type": "String"
+			},
+			{
+				"name": "FirstName",
+				"type": "String"
+			},
+			{
+				"name": "MiddleName",
+				"type": "String"
+			},
+			{
+				"name": "cert",
+				"type": "String"
+			},
+			{
+				"name": "sex",
+				"type": "String"
+			},
+			{
+				"name": "hispanic",
+				"type": "String"
+			},
+			{
+				"name": "race",
+				"type": "String"
+			},
+			{
+				"name": "hdeg",
+				"type": "String"
+			},
+			{
+				"name": "hyear",
+				"type": "String"
+			},
+			{
+				"name": "acred",
+				"type": "String"
+			},
+			{
+				"name": "icred",
+				"type": "String"
+			},
+			{
+				"name": "bcred",
+				"type": "String"
+			},
+			{
+				"name": "vcred",
+				"type": "String"
+			},
+			{
+				"name": "exp",
+				"type": "String"
+			},
+			{
+				"name": "camix1",
+				"type": "String"
+			},
+			{
+				"name": "ftehrs",
+				"type": "String"
+			},
+			{
+				"name": "ftedays",
+				"type": "String"
+			},
+			{
+				"name": "certfte",
+				"type": "String"
+			},
+			{
+				"name": "clasfte",
+				"type": "String"
+			},
+			{
+				"name": "certbase",
+				"type": "String"
+			},
+			{
+				"name": "clasbase",
+				"type": "String"
+			},
+			{
+				"name": "othersal",
+				"type": "String"
+			},
+			{
+				"name": "tfinsal",
+				"type": "String"
+			},
+			{
+				"name": "cins",
+				"type": "String"
+			},
+			{
+				"name": "cman",
+				"type": "String"
+			},
+			{
+				"name": "cbrtn",
+				"type": "String"
+			},
+			{
+				"name": "clasflag",
+				"type": "String"
+			},
+			{
+				"name": "certflag",
+				"type": "String"
+			},
+			{
+				"name": "ceridate",
+				"type": "String"
+			},
+			{
+				"name": "camix1S",
+				"type": "String"
+			},
+			{
+				"name": "NBcertexpdate",
+				"type": "String"
+			},
+			{
+				"name": "recno",
+				"type": "String"
+			},
+			{
+				"name": "parea",
+				"type": "String"
+			},
+			{
+				"name": "prog",
+				"type": "String"
+			},
+			{
+				"name": "act",
+				"type": "String"
+			},
+			{
+				"name": "darea",
+				"type": "String"
+			},
+			{
+				"name": "droot",
+				"type": "String"
+			},
+			{
+				"name": "dsufx",
+				"type": "String"
+			},
+			{
+				"name": "grade",
+				"type": "String"
+			},
+			{
+				"name": "bldgn",
+				"type": "String"
+			},
+			{
+				"name": "asspct",
+				"type": "String"
+			},
+			{
+				"name": "assfte",
+				"type": "String"
+			},
+			{
+				"name": "asssal",
+				"type": "String"
+			},
+			{
+				"name": "asshpy",
+				"type": "String"
+			},
+			{
+				"name": "major",
+				"type": "String"
+			},
+			{
+				"name": "crasdate",
+				"type": "String"
+			},
+			{
+				"name": "yr",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

@@ -1,0 +1,20 @@
+{
+	"name": "transformMasterDistrictDirectory",
+	"properties": {
+		"folder": {
+			"name": "Tables"
+		},
+		"content": {
+			"query": "-- Master District Directory query\n/*\nIF EXISTS (\n    SELECT 1\n    FROM sys.tables\n    WHERE name = 'MasterDistrictDirectory' AND schema_id = SCHEMA_ID('transform')\n)\n\nBEGIN\n    EXEC('DROP TABLE transform.MasterDistrictDirectory')\nEND\n*/\n\n\n--drop table [transform].[MasterDistrictDirectory]\n\nSELECT [ESDCode]\n      ,[ESDName]\n      ,coalesce([Local District Code],[DistrictCode]) as [DistrictCode]\n      ,coalesce([Local District],[DistrictName]) as [DistrictName]\n\t  , CASE\n\t\t\tWHEN [Local District] IS NULL THEN 'No'\n\t\t\tELSE 'Yes'\n\t\tEND AS [CharterDistrict?]\n      ,coalesce([Address], [AddressLine1]) as [Address]\n      ,coalesce([Address 2],[AddressLine2]) as [Address 2]\n      ,[City]\n      ,[State]\n      ,[Zipcode]\n      ,[AdministratorName]\n      ,[Phone]\n      ,[Email]\n--Into [transform].[MasterDistrictDirectory]\n  FROM [staging].[MasterDistrictDirectory] a\n  left join [staging].[CharterSchoolDirectory] b on a.[DistrictCode] = b.[Local District Code]\n  WHERE [ESDName] NOT LIKE '%Charter%';\n\n  select top 1000 *\n  from [transform].[MasterDistrictDirectory]",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "master",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

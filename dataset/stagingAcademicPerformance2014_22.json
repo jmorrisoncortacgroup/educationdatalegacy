@@ -1,0 +1,146 @@
+{
+	"name": "stagingAcademicPerformance2014_22",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "gatescharter-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Academic Performance"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "Report_Card_Spring_Assessment_Data_from_2014-15_to_2021-22.csv",
+				"folderPath": "staging/Academic Performance",
+				"fileSystem": "gatescharter"
+			},
+			"columnDelimiter": ",",
+			"rowDelimiter": "\n",
+			"escapeChar": "\"",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "SchoolYear",
+				"type": "String"
+			},
+			{
+				"name": "OrganizationLevel",
+				"type": "String"
+			},
+			{
+				"name": "County",
+				"type": "String"
+			},
+			{
+				"name": "ESDName",
+				"type": "String"
+			},
+			{
+				"name": "ESDOrganizationID",
+				"type": "String"
+			},
+			{
+				"name": "DistrictCode",
+				"type": "String"
+			},
+			{
+				"name": "DistrictName",
+				"type": "String"
+			},
+			{
+				"name": "DistrictOrganizationId",
+				"type": "String"
+			},
+			{
+				"name": "SchoolCode",
+				"type": "String"
+			},
+			{
+				"name": "SchoolName",
+				"type": "String"
+			},
+			{
+				"name": "SchoolOrganizationid",
+				"type": "String"
+			},
+			{
+				"name": "CurrentSchoolType",
+				"type": "String"
+			},
+			{
+				"name": "StudentGroupType",
+				"type": "String"
+			},
+			{
+				"name": "StudentGroup",
+				"type": "String"
+			},
+			{
+				"name": "GradeLevel",
+				"type": "String"
+			},
+			{
+				"name": "TestAdministration",
+				"type": "String"
+			},
+			{
+				"name": "TestSubject",
+				"type": "String"
+			},
+			{
+				"name": "Suppression",
+				"type": "String"
+			},
+			{
+				"name": "Count of Students Expected to Test",
+				"type": "String"
+			},
+			{
+				"name": "CountMetStandard",
+				"type": "String"
+			},
+			{
+				"name": "CountofStudentsExpectedtoTest(including previously passed)",
+				"type": "String"
+			},
+			{
+				"name": "PercentMetStandard",
+				"type": "String"
+			},
+			{
+				"name": "PercentLevel1",
+				"type": "String"
+			},
+			{
+				"name": "PercentLevel2",
+				"type": "String"
+			},
+			{
+				"name": "PercentLevel3",
+				"type": "String"
+			},
+			{
+				"name": "PercentLevel4",
+				"type": "String"
+			},
+			{
+				"name": "PercentMetTestedOnly",
+				"type": "String"
+			},
+			{
+				"name": "Percent No Score",
+				"type": "String"
+			},
+			{
+				"name": "DataAsOf",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

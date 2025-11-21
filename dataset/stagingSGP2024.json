@@ -1,0 +1,133 @@
+{
+	"name": "stagingSGP2024",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "gatescharter-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SGP"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "Report_Card_Growth_for_2023-24_20240911.csv",
+				"folderPath": "staging/SGP",
+				"fileSystem": "gatescharter"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "SchoolYear",
+				"type": "String"
+			},
+			{
+				"name": "OrganizationLevel",
+				"type": "String"
+			},
+			{
+				"name": "County",
+				"type": "String"
+			},
+			{
+				"name": "ESDName",
+				"type": "String"
+			},
+			{
+				"name": "ESDOrganizationID",
+				"type": "String"
+			},
+			{
+				"name": "DistrictCode",
+				"type": "String"
+			},
+			{
+				"name": "DistrictName",
+				"type": "String"
+			},
+			{
+				"name": "DistrictOrganizationId",
+				"type": "String"
+			},
+			{
+				"name": "SchoolCode",
+				"type": "String"
+			},
+			{
+				"name": "SchoolName",
+				"type": "String"
+			},
+			{
+				"name": "SchoolOrganizationid",
+				"type": "String"
+			},
+			{
+				"name": "CurrentSchoolType",
+				"type": "String"
+			},
+			{
+				"name": "StudentGroupType",
+				"type": "String"
+			},
+			{
+				"name": "StudentGroup",
+				"type": "String"
+			},
+			{
+				"name": "GradeLevel",
+				"type": "String"
+			},
+			{
+				"name": "Subject",
+				"type": "String"
+			},
+			{
+				"name": "DATReason",
+				"type": "String"
+			},
+			{
+				"name": "MedianSGP",
+				"type": "String"
+			},
+			{
+				"name": "StudentCount",
+				"type": "String"
+			},
+			{
+				"name": "NumberLowGrowth",
+				"type": "String"
+			},
+			{
+				"name": "NumberTypicalGrowth",
+				"type": "String"
+			},
+			{
+				"name": "NumberHighGrowth",
+				"type": "String"
+			},
+			{
+				"name": "PercentLowGrowth",
+				"type": "String"
+			},
+			{
+				"name": "PercentTypicalGrowth",
+				"type": "String"
+			},
+			{
+				"name": "PercentHighGrowth",
+				"type": "String"
+			},
+			{
+				"name": "DataAsOf",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

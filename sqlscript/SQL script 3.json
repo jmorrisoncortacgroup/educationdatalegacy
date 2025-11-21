@@ -1,0 +1,17 @@
+{
+	"name": "SQL script 3",
+	"properties": {
+		"content": {
+			"query": "SELECT *\n FROM [staging].[AcademicPerformance]\n WHERE studentgroup = 'All Students' AND SchoolName = 'Innovation High School' AND gradelevel LIKE 'All%' AND SchoolYear = '2024-25' AND TestAdministration = 'SBAC'",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "GatesDedicatedSql",
+				"poolName": "GatesDedicatedSql"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

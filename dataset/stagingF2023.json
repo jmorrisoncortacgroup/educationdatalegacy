@@ -1,0 +1,58 @@
+{
+	"name": "stagingF2023",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "gatescharter-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "F-195"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "F195F 2022-2023 All Districts.csv",
+				"folderPath": "staging/F-195",
+				"fileSystem": "gatescharter"
+			},
+			"columnDelimiter": ",",
+			"rowDelimiter": "\n",
+			"escapeChar": "\"",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "CCDDD",
+				"type": "String"
+			},
+			{
+				"name": "FUND",
+				"type": "String"
+			},
+			{
+				"name": "ITEM",
+				"type": "String"
+			},
+			{
+				"name": "22-23 CURRENT",
+				"type": "String"
+			},
+			{
+				"name": "23-24 FORECAST",
+				"type": "String"
+			},
+			{
+				"name": "24-25 FORECAST",
+				"type": "String"
+			},
+			{
+				"name": "25-26 FORECAST",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

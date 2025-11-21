@@ -1,0 +1,57 @@
+{
+	"name": "stagingF2024",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "gatescharter-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "F-195"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "F195F_2023-2024 All Districts.csv",
+				"folderPath": "staging/F-195",
+				"fileSystem": "gatescharter"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "School Name",
+				"type": "String"
+			},
+			{
+				"name": "Grade",
+				"type": "String"
+			},
+			{
+				"name": "Enrollment Target",
+				"type": "String"
+			},
+			{
+				"name": "School Year",
+				"type": "String"
+			},
+			{
+				"name": "Date Range",
+				"type": "String"
+			},
+			{
+				"name": "Enrollment",
+				"type": "String"
+			},
+			{
+				"name": "Reporting Year",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

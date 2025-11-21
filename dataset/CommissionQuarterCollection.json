@@ -1,0 +1,59 @@
+{
+	"name": "CommissionQuarterCollection",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "gatescharter-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "WA Commission Data"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "Quarterly Collection",
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "WA Charter Commission Data Collection.xlsx",
+				"folderPath": "staging/WA Charter Commission Data",
+				"fileSystem": "gatescharter"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "School Code",
+				"type": "String"
+			},
+			{
+				"name": "School Name",
+				"type": "String"
+			},
+			{
+				"name": "School Year",
+				"type": "String"
+			},
+			{
+				"name": "Quarter",
+				"type": "String"
+			},
+			{
+				"name": "% of Compliance Tasks",
+				"type": "String"
+			},
+			{
+				"name": "% of Compliance Tasks Late",
+				"type": "String"
+			},
+			{
+				"name": "Financial - Unrestricted Days Cash 1b",
+				"type": "String"
+			},
+			{
+				"name": "Financial - Debt to Asset Ratio 2b.",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

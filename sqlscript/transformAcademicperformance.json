@@ -1,0 +1,20 @@
+{
+	"name": "transformAcademicperformance",
+	"properties": {
+		"folder": {
+			"name": "Tables"
+		},
+		"content": {
+			"query": "/****** Script for SelectTopNRows command from SSMS  ******/\nSELECT [SchoolYear]\n      ,[OrganizationLevel]\n      ,[County]\n      ,[ESDName]\n      ,[ESDOrganizationID]\n      ,[DistrictOrganizationId]\n      ,[SchoolCode]\n      ,[SchoolOrganizationid]\n      ,[CurrentSchoolType]\n      ,[StudentGroupType]\n      ,[StudentGroup]\n      ,[GradeLevel]\n      ,[TestAdministration]\n      ,[TestSubject]\n      ,[Suppression]\n      ,[Count of Students Expected to Test]\n      ,[CountMetStandard]\n      ,[CountofStudentsExpectedtoTest(including previously passed)]\n      ,[PercentMetStandard]\n      ,[DataAsOf]\n\t  ,coalesce([School Name], [SchoolName]) as [SchoolName]\n\t  ,coalesce([Local District Code], case when len([DistrictCode])<5 \n\t\tthen '0' + [DistrictCode]\n\t\telse [DistrictCode] \n\t\tend) as [DistrictCode],\n\t\tcoalesce([Local District], [DistrictName]) as [DistrictName]\ninto transform.AcademicPerformance\n  FROM [staging].[AcademicPerformance] a\n  left join [staging].[CharterSchoolDirectory] b \n  on a.[SchoolCode] = b.[School Code]\n\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "master",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

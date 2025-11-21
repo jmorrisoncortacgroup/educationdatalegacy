@@ -1,0 +1,20 @@
+{
+	"name": "dimStudentGroup",
+	"properties": {
+		"folder": {
+			"name": "Tables"
+		},
+		"content": {
+			"query": "/*\nIF EXISTS (\n    SELECT 1\n    FROM sys.tables\n    WHERE name = 'StudentGroup' AND schema_id = SCHEMA_ID('dim')\n)\nBEGIN\n    EXEC('DROP TABLE dim.StudentGroup')\nEND\n*/\n\nSELECT [StudentGroup] as [StudentGroupKey], \n\t\tCASE \n\t\t\t WHEN [StudentGroup] IN ('All', 'All Students') THEN 'All Students'\n\t\t\t WHEN [StudentGroup] IN ('WHITE', 'White') THEN 'White'\n\t\t\t WHEN [StudentGroup] IN ('S504', 'Section 504') THEN '504'\n\t\t\t WHEN [StudentGroup] IN ('Asian', 'ASIAN') THEN 'Asian'\n\t\t\t WHEN [StudentGroup] IN ('FRL','FRPL', 'Low-Income') THEN 'FRL'\n\t\t\t WHEN LEFT([StudentGroup],3) IN ('Eng', 'TBI') THEN 'ELL'\n\t\t\t WHEN LEFT([StudentGroup],5) = 'Stude' OR LEFT([StudentGroup],3) = 'SWD' THEN 'SpEd'\n\t\t\t WHEN LEFT([StudentGroup],3) IN ('2OR', 'Two') THEN 'TwoorMoreRaces'\n\t\t\t WHEN LEFT([StudentGroup],3) IN ('Ame', 'AME') THEN 'American Indian/ Alaskan Native'\n\t\t\t WHEN LEFT([StudentGroup],3) IN ('Bla', 'BLA') THEN 'Black/ African American'\n\t\t\t WHEN LEFT([StudentGroup],3) IN ('His', 'HIS') THEN 'Hispanic/ Latino of any race(s)'\n\t\t\t WHEN LEFT([StudentGroup],3) IN ('Nat', 'NAT') THEN 'Native Hawaiian/ Other Pacific Islander'\n\t\t\t ELSE [StudentGroup]\n\t\t\tEND AS [StudentGroup],\n       CASE \n\t\t\tWHEN [StudentGroup] IN ('All', 'All Students') THEN 'All Students'\n\t\t\tWHEN [StudentGroup] IN ('Female', 'Male','Gender X') THEN 'Gender'\n\t\t\tWHEN [StudentGroup] IN ('WHITE', 'White') THEN 'White'\n\t\t\tWHEN [StudentGroup] IN ('Asian', 'ASIAN') THEN 'Asian'\n\t\t\tWHEN [StudentGroup] IN ('FRL','FRPL', 'Low-Income') THEN 'Low-Income'\n\t\t\tWHEN LEFT([StudentGroup], 3) IN ('2OR', 'Two') THEN 'TwoorMoreRaces'\n\t\t\tWHEN LEFT([StudentGroup],3) IN ('Ame', 'AME') THEN 'American Indian/ Alaskan Native'\n\t\t\tWHEN LEFT([StudentGroup],3) IN ('Bla', 'BLA') THEN 'Black/ African American'\n\t\t\tWHEN LEFT([StudentGroup],3) IN ('His', 'HIS') THEN 'Hispanic/ Latino of any race(s)'\n\t\t\tWHEN LEFT([StudentGroup],3) IN ('Nat', 'NAT') THEN 'Native Hawaiian/ Other Pacific Islander'\n\t\t\tWHEN LEFT([StudentGroup], 3) IN ('SWD', 'SpEd') THEN 'Student With Disabilities'\n\t\t\tElSE [StudentGroup]\n\t\t\tEND AS [StudentGroupCategory],\n\t     CASE\n\t\t\tWHEN [StudentGroup] IN ('Female', 'Male', 'Gender X') THEN 'Gender'\n\t\t\tWHEN [StudentGroup] IN ('All', 'All Students') THEN 'All Students'\n\t\t\tWHEN LEFT([StudentGroup], 3) IN ('2OR', 'Two','Ame', 'Nat','His', 'Bla','Whi','WHI','Asi','ASI') THEN 'Race'\n\t\t\tWHEN LEFT([StudentGroup], 3) IN ('Eng', 'Hig','Low', 'Sec','FRL','FRP','Lea') THEN 'Student Programs'\n\t\t\tWHEN [StudentGroup] IN ('Foster Care', 'Homeless', 'Mobile', 'Migrant') THEN 'Student Demographics'\n\t\t\tWHEN LEFT([StudentGroup], 3) IN ('Mil', 'Stu') THEN 'Student Demographics'\n\t\t\tELSE [StudentGroup]\n\t\t\tEND AS [StudentGroupType]\n\n--INTO dim.StudentGroup \nFROM (\n  SELECT [StudentGroup]\n  FROM [staging].[AcademicPerformance]\n  UNION\n  SELECT [StudentGroup]\n  FROM [staging].[Graduation]\n  UNION \n  SELECT [StudentGroup]\n  FROM [staging].[SGP]\n  Union\n  select [StudentGroup]\n  from [transform].[Enrollment]\n  union \n  select [DemographicValue] as [StudentGroup]\n  from [staging].[PostSecondary]\n) AS src\nWHERE [StudentGroup] NOT LIKE 'Non%' and [StudentGroup] NOT LIKE 'Not%' and [StudentGroup] NOT LIKE '>%' and [StudentGroup] NOT LIKE '<%' and [StudentGroup] NOT LIKE 'Bilingual%' and [StudentGroup] NOT LIKE 'Other%'\nGROUP BY [StudentGroup] --, [StudentGroupType], [StudentGroupCategory]\n\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "master",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

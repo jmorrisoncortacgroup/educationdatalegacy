@@ -1,0 +1,169 @@
+{
+	"name": "Report_Card_Assessment_Data_2025_School_Year_NEW_FoundationalGradeLevelKnowledge_Level_2and3and4",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "gatescharter-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Academic Performance"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "Report_Card_Assessment_Data_2024-25_School_Year_NEW_Level2and3and4-FoundationalGradeLevelKnowledgeAndAbove.csv",
+				"folderPath": "staging/Academic Performance",
+				"fileSystem": "gatescharter"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "SchoolYear",
+				"type": "String"
+			},
+			{
+				"name": "OrganizationLevel",
+				"type": "String"
+			},
+			{
+				"name": "County",
+				"type": "String"
+			},
+			{
+				"name": "ESDName",
+				"type": "String"
+			},
+			{
+				"name": "ESDOrganizationID",
+				"type": "String"
+			},
+			{
+				"name": "DistrictCode",
+				"type": "String"
+			},
+			{
+				"name": "DistrictName",
+				"type": "String"
+			},
+			{
+				"name": "DistrictOrganizationId",
+				"type": "String"
+			},
+			{
+				"name": "SchoolCode",
+				"type": "String"
+			},
+			{
+				"name": "SchoolName",
+				"type": "String"
+			},
+			{
+				"name": "SchoolOrganizationid",
+				"type": "String"
+			},
+			{
+				"name": "CurrentSchoolType",
+				"type": "String"
+			},
+			{
+				"name": "StudentGroupType",
+				"type": "String"
+			},
+			{
+				"name": "StudentGroup",
+				"type": "String"
+			},
+			{
+				"name": "GradeLevel",
+				"type": "String"
+			},
+			{
+				"name": "Test Administration (group)",
+				"type": "String"
+			},
+			{
+				"name": "TestAdministration",
+				"type": "String"
+			},
+			{
+				"name": "TestSubject",
+				"type": "String"
+			},
+			{
+				"name": "DAT",
+				"type": "String"
+			},
+			{
+				"name": "Count of Students Expected to Test",
+				"type": "String"
+			},
+			{
+				"name": "Count of Students Expected to Test (including previously passed)",
+				"type": "String"
+			},
+			{
+				"name": "CountMetStandard",
+				"type": "String"
+			},
+			{
+				"name": "Count Consistent Grade Level Knowledge And Above",
+				"type": "String"
+			},
+			{
+				"name": "Count Foundational Grade-Level Knowledge And Above",
+				"type": "String"
+			},
+			{
+				"name": "Percent Consistent Grade Level Knowledge And Above",
+				"type": "String"
+			},
+			{
+				"name": "PercentLevel1",
+				"type": "String"
+			},
+			{
+				"name": "PercentLevel2",
+				"type": "String"
+			},
+			{
+				"name": "PercentLevel3",
+				"type": "String"
+			},
+			{
+				"name": "PercentLevel4",
+				"type": "String"
+			},
+			{
+				"name": "Percent Consistent Tested Only",
+				"type": "String"
+			},
+			{
+				"name": "Percent No Score",
+				"type": "String"
+			},
+			{
+				"name": "Percent Participation",
+				"type": "String"
+			},
+			{
+				"name": "Percent Taking Alternative Assessment",
+				"type": "String"
+			},
+			{
+				"name": "Percent Foundational Grade-Level Knowledge And Above",
+				"type": "String"
+			},
+			{
+				"name": "DataAsOf",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

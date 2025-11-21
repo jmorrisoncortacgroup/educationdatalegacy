@@ -1,0 +1,17 @@
+{
+	"name": "transform AP District",
+	"properties": {
+		"content": {
+			"query": "SET ANSI_NULLS ON\nGO\nSET QUOTED_IDENTIFIER ON\nGO\n\nALTER PROC [transform].[sp_AcademicPerformanceDistrict] AS\nbegin\nIF EXISTS (\n    SELECT 1\n    FROM sys.tables\n    WHERE name = 'AcademicPerformanceDistrict' AND schema_id = SCHEMA_ID('transform')\n)\nBEGIN\n    EXEC('DROP TABLE transform.AcademicPerformanceDistrict')\nEND\n\n\nSELECT [SchoolYear]\n      ,[OrganizationLevel]\n\t  ,a.[DistrictCode]\n\t  ,COALESCE([Home District], a.[DistrictName]) AS [DistrictName]\n\t  ,CASE\n\t\t\tWHEN [Charter District] IS NULL THEN 'No'\n\t\t\tELSE [Charter District]\n\t\tEND AS [Charter District]\n\t  ,a.[County]\n      ,a.[ESDName]\n      ,[ESDOrganizationID]\n      ,[DistrictOrganizationId]\n      ,[SchoolOrganizationid]\n      ,[CurrentSchoolType]\n      ,d.[StudentGroupType]\n\t  ,[StudentGroupCategory]\n      ,d.[StudentGroup]\n      ,e.[GradeLevel]\n      ,[TestAdministration]\n      ,[TestSubject]\n      ,[Suppression]\n      ,CAST([Count of Students Expected to Test] AS INT) AS [Count of Students Expected to Test District]\n      ,CAST([CountMetStandard] AS INT) AS [CountMetStandard District]\n      ,CAST([CountofStudentsExpectedtoTest(including previously passed)] AS INT) AS [CountofStudentsExpectedtoTest(including previously passed) District]\n      ,CAST(CAST(REPLACE(CASE WHEN ISNUMERIC(SUBSTRING([PercentMetStandard], 1, 1)) = 1 THEN [PercentMetStandard]\n\t\t\tELSE NULL \n\t\tEND, '%','') AS FLOAT) / 100 AS FLOAT) AS [PercentMetStandard District]\n\t  ,CAST([CountMetStandard] AS FLOAT) / CAST([CountofStudentsExpectedtoTest(including previously passed)] AS FLOAT) AS [PercentMet District]\n\t  ,[DataAsOf]\nINTO transform.AcademicPerformanceDistrict \nFROM (\n    SELECT [SchoolYear]\n          ,[OrganizationLevel]\n          ,CASE WHEN LEN([DistrictCode]) < 5 \n            THEN '0' + [DistrictCode]\n            ELSE [DistrictCode] \n            END AS [DistrictCode]\n          ,[DistrictName]\n          ,[County]\n          ,[ESDName]\n          ,[ESDOrganizationID]\n          ,[DistrictOrganizationId]\n          ,[SchoolOrganizationid]\n          ,[CurrentSchoolType]\n          ,[StudentGroupType]\n          ,[StudentGroup]\n          ,[GradeLevel]\n          ,[TestAdministration]\n          ,[TestSubject]\n          ,[Suppression]\n          ,[Count of Students Expected to Test]\n          ,[CountMetStandard]\n          ,[CountofStudentsExpectedtoTest(including previously passed)]\n          ,[PercentMetStandard]\n          ,[DataAsOf]\n    FROM [staging].[AcademicPerformance]\n) a\nLeft JOIN [staging].[CharterSchoolDirectory] b ON a.[DistrictCode] = b.[Home District Code]\n \nLEFT Join [dim].[StudentGroup] d on a.[StudentGroup] = d.[StudentGroupKey]\nLeft Join [dim].[GradeLevel] e on a.GradeLevel = e.GradeLevelKey\nWHERE [OrganizationLevel] = 'District' and a.[StudentGroup] NOT LIKE 'Non%' \nEND\n\n\nGO\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "GatesDedicatedSql",
+				"poolName": "GatesDedicatedSql"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

@@ -1,0 +1,47 @@
+{
+	"name": "SchoolInvestments",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "gatescharter-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Gates Internal Manual Data"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "Gates School Investments",
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "Gates Internal Manual Data Collection.xlsx",
+				"folderPath": "staging/Gates Internal Manual data",
+				"fileSystem": "gatescharter"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "Invest#",
+				"type": "String"
+			},
+			{
+				"name": "Investment Name",
+				"type": "String"
+			},
+			{
+				"name": "Partner",
+				"type": "String"
+			},
+			{
+				"name": "School Name",
+				"type": "String"
+			},
+			{
+				"name": "School Code",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

@@ -1,0 +1,20 @@
+{
+	"name": "transformPersonnel",
+	"properties": {
+		"folder": {
+			"name": "Tables"
+		},
+		"content": {
+			"query": "/****** Script for SelectTopNRows command from SSMS  ******/\n--drop Table transform.Personnel;\n\n\nSELECT [SchoolYear]\n      ,coalesce ([Local District Code],[codist] )as [District Code]\n\t  ,coalesce ([Local District], [LEAName]) as [District Name\n\t  ,coalesce([School Name], [SchoolName]\n\t  ,[bldgn] as [School Code]\n      ,[cert] as [Certification]\n      ,[hispanic]\n\t  ,[droot]\n      ,[hyear]\n      ,[exp]\n\t  ,[grade]\n\t  ,[FirstName]\n      ,[MiddleName]\n\t  ,[LastName]\n\t  ,CASE \n\t\t\tWHEN LEFT(Race, 1) = 'W' THEN 'White'\n\t\t\tWHEN LEFT(Race, 1) = 'I' THEN 'AmericanIndianAlaskanNative'\n\t\t\tWHEN LEFT(Race, 1) = 'A' THEN 'Asian'\n\t\t\tWHEN LEFT(Race, 1) = 'B' THEN 'Black'\n\t\t\tWHEN LEFT(Race, 1) = 'P' THEN 'NativeHawaiianOtherPacificIslander'\n\t\t\tWHEN Race IS NULL THEN 'Not Specified'\n\t\t\tELSE '2orMoreRaces'\n\t\tEND as [Race]\n\t  ,CASE \n\t\tWHEN hispanic = 'Y' THEN 'Hispanic/Latino of any race(s)'\n\t\t\tELSE \n\t\t\t\tCASE \n\t\t\t\t\t\tWHEN LEFT(Race, 1) = 'W' THEN 'White'\n\t\t\t\t\t\tWHEN LEFT(Race, 1) = 'I' THEN 'AmericanIndianAlaskanNative'\n\t\t\t\t\t\tWHEN LEFT(Race, 1) = 'A' THEN 'Asian'\n\t\t\t\t\t\tWHEN LEFT(Race, 1) = 'B' THEN 'Black'\n\t\t\t\t\t\tWHEN LEFT(Race, 1) = 'P' THEN 'NativeHawaiianOtherPacificIslander'\n\t\t\t\t\t\tWHEN Race IS NULL THEN 'Not Specified'\n\t\t\t\t\t\tELSE '2orMoreRaces'\n\t\t\t\t\tEnd\n\t\t\tEND AS [Race_Ethnicity]\n\t   ,CASE \n\t\t\tWHEN droot IN (31, 32, 33, 34, 630, 99) THEN 'Yes' \n\t\t\tELSE 'No' \n\t\tEND as [Teacher Duty Codes]\n\t\t,CASE\n\t\t\tWHEN droot IN (11,12,13,21,23,24) THEN 'Yes'\n\t\t\tELSE 'No'\n\t\tEND as [Leader Duty Codes]\n\t\t,CASE \n\t\t\tWHEN LEFT(Race, 1) = 'W' THEN 'Non-PoC'\n\t\t\tWHEN Race IS NULL THEN 'Not Specified'\n\t\t\tELSE 'PoC'\n\t\tEND as [RaceCategory]\nInto transform.Personnel\n\n  FROM [staging].[Personnel] a\n  left join [staging].[CharterSchoolDirectory] b on a.[bldgn] = b.[School Code]\n  left join [staging].[MasterSchoolDirectroy] c on a.[bldgn] = c.[SchoolCode]\n  where droot IN (31, 32, 33, 34, 630, 99, 11, 12, 13, 21, 22, 23, 24) ",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "master",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

@@ -1,0 +1,20 @@
+{
+	"name": "dimGradeLevel",
+	"properties": {
+		"folder": {
+			"name": "Tables"
+		},
+		"content": {
+			"query": "CREATE TABLE dim.GradeLevel (\n    GradeLevelKey nvarchar(100),\n    GradeLevel nvarchar(100));\n\nInsert Into dim.GradeLevel (GradeLevelKey, GradeLevel)\n\nselect [GradeLevel] as [GradeLevelKey],\n\t CASE\n\t\tWhen [GradeLevel] In ('1st Grade', '01') THEN '1st'\n\t\tWhen [GradeLevel] In ('2nd Grade', '02') THEN '2nd'\n\t\tWhen [GradeLevel] In ('3rd Grade', '03') THEN '3rd'\n\t\tWhen [GradeLevel] In ('4th Grade', '04') THEN '4th'\n\t\tWhen [GradeLevel] In ('5th Grade', '05') THEN '5th'\n\t\tWhen [GradeLevel] In ('6th Grade', '06') THEN '6th'\n\t\tWhen [GradeLevel] In ('7th Grade', '07') THEN '7th'\n\t\tWhen [GradeLevel] In ('8th Grade', '08') THEN '8th'\n\t\tWhen [GradeLevel] In ('9th Grade', '09') THEN '9th'\n\t\tWhen [GradeLevel] In ('10th Grade', '10') THEN '10th'\n\t\tWhen [GradeLevel] In ('11th Grade', '11') THEN '11th'\n\t\tWhen [GradeLevel] In ('12th Grade', '12') THEN '12th'\n\t\twhen [GradeLevel] in ('AllGrades', 'All Grades') THEN 'All Grades'\n\t\twhen [GradeLevel] in ('Kindergarten', 'Half-day Kindergarten', 'KG') THEN 'K'\n\t\twhen [GradeLevel] in ('Preschool', 'Pre-Kindergarten') THEN 'PK'\n\t\tElse [GradeLevel] \n\t\tEnd as [GradeLevel]\nfrom\n(\nSelect [GradeLevel]\nfrom [staging].[AcademicPerformance] \nUnion\nselect [GradeLevel]\nfrom [staging].[Enrollment]\nUnion\nselect [GradeLevel]\nfrom [staging].[SGP]\n) as srk\nGroup by [GradeLevel]\n\n\nselect *\nfrom dim.Gradelevel",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "master",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

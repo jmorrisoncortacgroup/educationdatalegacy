@@ -1,0 +1,26 @@
+{
+	"name": "StagingP223TBIP2023",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "gatescharter-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "P-223"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "TBIP",
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "P223_2023.xlsx",
+				"folderPath": "staging/P-223",
+				"fileSystem": "gatescharter"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": []
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

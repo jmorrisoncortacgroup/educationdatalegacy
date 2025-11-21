@@ -1,0 +1,89 @@
+{
+	"name": "StagingEnrollment",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "gatescharter-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "FactTable"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "Enrollment.csv",
+				"folderPath": "Staging",
+				"fileSystem": "gatescharter"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "School Year",
+				"type": "String"
+			},
+			{
+				"name": "Organization Level",
+				"type": "String"
+			},
+			{
+				"name": "ESD Name",
+				"type": "String"
+			},
+			{
+				"name": "ESD Organization ID",
+				"type": "String"
+			},
+			{
+				"name": "District Code",
+				"type": "String"
+			},
+			{
+				"name": "District Name",
+				"type": "String"
+			},
+			{
+				"name": "District Organization ID",
+				"type": "String"
+			},
+			{
+				"name": "School Code",
+				"type": "String"
+			},
+			{
+				"name": "School Name",
+				"type": "String"
+			},
+			{
+				"name": "School Organization ID",
+				"type": "String"
+			},
+			{
+				"name": "Current School Type",
+				"type": "String"
+			},
+			{
+				"name": "Grade Level",
+				"type": "String"
+			},
+			{
+				"name": "Enrollment - Total Students",
+				"type": "String"
+			},
+			{
+				"name": "Student Group ",
+				"type": "String"
+			},
+			{
+				"name": "Enrollment",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

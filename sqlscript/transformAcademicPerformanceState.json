@@ -1,0 +1,20 @@
+{
+	"name": "transformAcademicPerformanceState",
+	"properties": {
+		"folder": {
+			"name": "Tables"
+		},
+		"content": {
+			"query": "--Drop table transform.AcademicPerformanceState\n\n\nSELECT  [SchoolYear]\n      ,[OrganizationLevel]\n      ,[StudentGroupType]\n      ,[StudentGroup]\n      ,[GradeLevel]\n      ,[TestAdministration]\n      ,[TestSubject]\n      ,[Suppression]\n      ,Cast([Count of Students Expected to Test] as int) as [Count of Students Expected to Test State]\n      ,cast([CountMetStandard]as int) as [CountMetStandard State]\n      ,cast( [CountofStudentsExpectedtoTest(including previously passed)] as int) as [CountofStudentsExpectedtoTest(including previously passed) State]\n      ,cast(cast(replace(case when isNumeric(substring([PercentMetStandard],1, 1)) = 1 then [PercentMetStandard]\n\t\t\tElse null \n\t\tend, '%','') as float)/100 as float) as [PercentMetStandard State]\n\t  ,cast([CountMetStandard] as float)/cast([CountofStudentsExpectedtoTest(including previously passed)] as float) as [PercentMet State]\n\t  ,[DataAsOf]\ninto transform.AcademicPerformanceState\nFROM [staging].[AcademicPerformance] \nwhere [OrganizationLevel] = 'State'\n\n\nselect top 100 *\nfrom transform.AcademicPerformanceState",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "master",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

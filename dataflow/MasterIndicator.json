@@ -1,0 +1,71 @@
+{
+	"name": "MasterIndicator",
+	"properties": {
+		"folder": {
+			"name": "Master Indicator"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "MasterIndicator",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"linkedService": {
+						"referenceName": "AzureSynapseAnalytics1",
+						"type": "LinkedServiceReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          {Gates Metric ID} as string,",
+				"          {Logic Model Component} as string,",
+				"          {Theory of Change Component} as string,",
+				"          {Metric Component} as string,",
+				"          {Metric Category} as string,",
+				"          {Metric Code} as string,",
+				"          {Metric Name} as string,",
+				"          {2024 KPI Target} as string,",
+				"          {Target Sign} as string,",
+				"          {Conditional Format Target} as string,",
+				"          {Data Type} as string,",
+				"          {Data Symbol} as string,",
+				"          {Data Decimals} as string,",
+				"          Frequency as string,",
+				"          {Metric Type} as string,",
+				"          {Possible to visualize now?} as string,",
+				"          {Data Source} as string,",
+				"          {Intake Process} as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'table',",
+				"     store: 'synapseanalytics',",
+				"     schemaName: 'staging',",
+				"     tableName: 'MasterIndicator',",
+				"     insertable: true,",
+				"     updateable: false,",
+				"     deletable: false,",
+				"     upsertable: false,",
+				"     truncate: true,",
+				"     allowCopyCommand: true,",
+				"     staged: true,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sink1"
+			]
+		}
+	}
+}

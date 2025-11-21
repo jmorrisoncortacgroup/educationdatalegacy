@@ -1,0 +1,65 @@
+{
+	"name": "stagingDataSource",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "gatescharter-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Dimensions"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "Data Source Dimension.csv",
+				"folderPath": "Raw/Mapping",
+				"fileSystem": "gatescharter"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Data Source Key",
+				"type": "String"
+			},
+			{
+				"name": "Data Source Name",
+				"type": "String"
+			},
+			{
+				"name": "Data Source Location",
+				"type": "String"
+			},
+			{
+				"name": "Data Source Format",
+				"type": "String"
+			},
+			{
+				"name": "Last Update Date ",
+				"type": "String"
+			},
+			{
+				"name": "Frequency ",
+				"type": "String"
+			},
+			{
+				"name": "First Publish Month",
+				"type": "String"
+			},
+			{
+				"name": "Second Publish Month",
+				"type": "String"
+			},
+			{
+				"name": "Count of School Years Available",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

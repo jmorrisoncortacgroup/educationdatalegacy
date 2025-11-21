@@ -1,0 +1,73 @@
+{
+	"name": "SpatialFileStaging",
+	"properties": {
+		"folder": {
+			"name": "SpatialFile"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "SpatialFile",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"linkedService": {
+						"referenceName": "AzureSynapseAnalytics1",
+						"type": "LinkedServiceReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          {OBJECTID,N,10,0} as string,",
+				"          {NAME,C,100} as string,",
+				"          {UNSD,C,5} as string,",
+				"          {SDLEA,C,5} as string,",
+				"          {LSAD,C,2} as string,",
+				"          {County,C,15} as string,",
+				"          {ESD,N,19,11} as string,",
+				"          {Region,N,19,11} as string,",
+				"          {OrgId,N,19,11} as string,",
+				"          {CCDDD,N,19,11} as string,",
+				"          {CC,N,19,11} as string,",
+				"          {DDD,N,19,11} as string,",
+				"          {Comments,C,250} as string,",
+				"          {Labels,C,50} as string,",
+				"          {GradeRange,C,25} as string,",
+				"          {LowGrade,C,8} as string,",
+				"          {HighGrade,C,5} as string,",
+				"          {WEBSITE,C,125} as string,",
+				"          {CODE,C,8} as string,",
+				"          {Shape_Leng,N,19,11} as string,",
+				"          {Shape_Area,N,19,11} as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'table',",
+				"     store: 'synapseanalytics',",
+				"     schemaName: 'staging',",
+				"     tableName: 'SpatialFile',",
+				"     insertable: true,",
+				"     updateable: false,",
+				"     deletable: false,",
+				"     upsertable: false,",
+				"     allowCopyCommand: true,",
+				"     staged: true,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sink1"
+			]
+		}
+	}
+}

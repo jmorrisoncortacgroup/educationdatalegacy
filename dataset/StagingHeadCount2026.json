@@ -1,0 +1,79 @@
+{
+	"name": "StagingHeadCount2026",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "gatescharter-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "P-223"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "Table 1",
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "2025-26_HeadCount.xlsx",
+				"folderPath": "staging/P-223",
+				"fileSystem": "gatescharter"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "School Name",
+				"type": "String"
+			},
+			{
+				"name": "Column1",
+				"type": "String"
+			},
+			{
+				"name": "SEPTEMBER",
+				"type": "String"
+			},
+			{
+				"name": "OCTOBER",
+				"type": "String"
+			},
+			{
+				"name": "NOVEMBER",
+				"type": "String"
+			},
+			{
+				"name": "DECEMBER",
+				"type": "String"
+			},
+			{
+				"name": "JANUARY",
+				"type": "String"
+			},
+			{
+				"name": "FEBRUARY",
+				"type": "String"
+			},
+			{
+				"name": "MARCH",
+				"type": "String"
+			},
+			{
+				"name": "APRIL",
+				"type": "String"
+			},
+			{
+				"name": "MAY",
+				"type": "String"
+			},
+			{
+				"name": "JUNE",
+				"type": "String"
+			},
+			{
+				"name": "AVERAGE",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

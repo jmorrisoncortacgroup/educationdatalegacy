@@ -1,0 +1,20 @@
+{
+	"name": "transformMasterSchoolDirectory",
+	"properties": {
+		"folder": {
+			"name": "Tables"
+		},
+		"content": {
+			"query": "\n\nIF EXISTS (\n    SELECT 1\n    FROM sys.tables\n    WHERE name = 'MasterSchoolDirectory' AND schema_id = SCHEMA_ID('transform')\n)\n\nBEGIN\n    EXEC('DROP TABLE transform.MasterSchoolDirectory')\nEND\n\n\nSELECT a.[SchoolCode]\n      ,coalesce(b.[School Name],a.[SchoolName]) as [SchoolName]\n      ,coalesce([Local District Code], \n\t\t\tCASE WHEN len([LEACode]) < 5 THEN '0' + [LEACode] \n\t\t\t\tELSE [LEACode] \n\t\t\tEnd) as [District Code]\n      ,coalesce([Local District], [LEAName]) as [District Name]\n      ,coalesce(b.[Lowest Grade], a.[LowestGrade]) as [Lowest Grade]\n      ,coalesce(b.[Highest Grade], a.[HighestGrade]) as [Highest Grade]\n\t  ,c.[Grades Served at Scale]\n      ,c. [Grades Served (E,M,H)]\n      ,c. [Authorizer]\n      ,c.[Date Authorized]\n\t  ,c.[Date Opened]\n      ,c.[Authorized Seats]\n\t  ,c.[Status]\n      ,[ESDCode]\n      ,[ESDName]\n      ,a.[City]\n      ,a.[State]\n      ,a.[ZipCode]\n      ,[OrgCategoryList]\n      ,[AYPCode]\n      ,[GradeCategory]\n      ,coalesce(b.[Address],a.[AddressLine1]) as [Address]\n      ,coalesce(b.[Address 2],a.[AddressLine2]) as [Address 2]\n      ,CASE\n\t\t\tWHEN [Local District] IS NULL THEN 'No'\n\t\t\tELSE 'Yes'\n\t\tEND AS [CharterSchool?]\n      ,[Latitude]\n      ,[Longitude]\n      ,[County]\nInto [transform].[MasterSchoolDirectory]\nFROM [staging].[MasterSchoolDirectory] a\nleft  join [staging].[MasterSchoolDirectoryGeo] b on a.[SchoolCode] = b.[School Code]\nleft join [staging].[CharterSchoolDirectory] c on a.[SchoolCode] = c.[School Code]\n\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "master",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

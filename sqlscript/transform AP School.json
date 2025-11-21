@@ -1,0 +1,17 @@
+{
+	"name": "transform AP School",
+	"properties": {
+		"content": {
+			"query": "\nSET ANSI_NULLS ON\nGO\nSET QUOTED_IDENTIFIER ON\nGO\n\nALTER PROC [transform].[sp_AcademicPerformanceSchool] AS \nbegin\nIF EXISTS (\n    SELECT 1\n    FROM sys.tables\n    WHERE name = 'AcademicPerformanceSchool' AND schema_id = SCHEMA_ID('transform')\n)\nBEGIN\n    EXEC('DROP TABLE transform.AcademicPerformanceSchool')\nEND\n\nSELECT [SchoolYear]\n      ,[OrganizationLevel]\n    ,a.[SchoolCode]\n    ,coalesce(b.[School Name],a.[SchoolName]) AS [SchoolName]\n      ,coalesce([Home District Code], case when len(a.[DistrictCode])<5 \n    then '0' + a.[DistrictCode]\n    else a.[DistrictCode] \n    end) as [DistrictCode]\n      ,coalesce([Home District],[DistrictName]) as [DistrictName]\n    ,case\n      when [Charter School] is null then 'No'\n      else [Charter School]\n      end as [Charter School]\n    ,a.[County]\n      ,a.[ESDName]\n      ,[ESDOrganizationID]\n      ,[DistrictOrganizationId]\n      ,[SchoolOrganizationid]\n      ,[CurrentSchoolType]\n      ,d.[StudentGroupType]\n    ,[StudentGroupCategory]\n      ,d.[StudentGroup]\n      ,e.[GradeLevel]\n      ,[TestAdministration]\n      ,[TestSubject]\n      ,[Suppression]\n      ,Cast([Count of Students Expected to Test] as int) as [Count of Students Expected to Test School]\n      ,cast([CountMetStandard]as int) as[CountMetStandard School]\n      ,cast( [CountofStudentsExpectedtoTest(including previously passed)] as int) as [CountofStudentsExpectedtoTest(including previously passed) School]\n      ,cast(cast(replace(case when isNumeric(substring([PercentMetStandard],1, 1)) = 1 then [PercentMetStandard]\n      Else null \n    end, '%','') as float)/100 as float) as [PercentMetStandard School]\n    ,cast([CountMetStandard] as float)/cast([CountofStudentsExpectedtoTest(including previously passed)] as float) as [PercentMetSchool]\n    ,[DataAsOf]\nInto transform.AcademicPerformanceSchool\nFROM [staging].[AcademicPerformance] a\nleft join [staging].[CharterSchoolDirectory] b on a.[SchoolCode] = b.[School Code]\n--left join [transform].[MasterSchoolDirectory] c on a.[SchoolCode] = c.[SchoolCode]\nLeft Join [dim].[StudentGroup] d on a.[StudentGroup] = d.[StudentGroupKey]\nLeft Join [dim].[GradeLevel] e on a.GradeLevel = e.GradeLevelKey\nwhere [OrganizationLevel] = 'School' and a.[StudentGroup] NOT LIKE 'Non%'\n  AND NOT (a.[SchoolCode] = '5339' AND a.[GradeLevel] IN ('06', '07', '08', '6','7','8'))\n\nEND\nGO\n\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "GatesDedicatedSql",
+				"poolName": "GatesDedicatedSql"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

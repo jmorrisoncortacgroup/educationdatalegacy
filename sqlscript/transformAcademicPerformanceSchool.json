@@ -1,0 +1,20 @@
+{
+	"name": "transformAcademicPerformanceSchool",
+	"properties": {
+		"folder": {
+			"name": "Tables"
+		},
+		"content": {
+			"query": "IF EXISTS (\n    SELECT 1\n    FROM sys.tables\n    WHERE name = 'AcademicPerformanceSchool' AND schema_id = SCHEMA_ID('transform')\n)\nBEGIN\n    EXEC('DROP TABLE transform.AcademicPerformanceSchool')\nEND\n\nSELECT [SchoolYear]\n      ,[OrganizationLevel]\n\t  ,a.[SchoolCode]\n\t  ,coalesce(b.[School Name],[SchoolName]) AS [SchoolName]\n      ,coalesce([Local District Code], case when len(a.[DistrictCode])<5 \n\t\tthen '0' + a.[DistrictCode]\n\t\telse a.[DistrictCode] \n\t\tend) as [DistrictCode]\n      ,coalesce([Local District],[DistrictName]) as [DistrictName]\n\t  ,case\n\t\t\twhen [Charter School?] is null then 'No'\n\t\t\telse [Charter School?]\n\t\t\tend as [Charter School?]\n\t  ,a.[County]\n      ,[ESDName]\n      ,[ESDOrganizationID]\n      ,[DistrictOrganizationId]\n      ,[SchoolOrganizationid]\n      ,[CurrentSchoolType]\n      ,[StudentGroupType]\n      ,[StudentGroup]\n      ,[GradeLevel]\n      ,[TestAdministration]\n      ,[TestSubject]\n      ,[Suppression]\n      ,Cast([Count of Students Expected to Test] as int) as [Count of Students Expected to Test School]\n      ,cast([CountMetStandard]as int) as[CountMetStandard District]\n      ,cast( [CountofStudentsExpectedtoTest(including previously passed)] as int) as [CountofStudentsExpectedtoTest(including previously passed) School]\n      ,cast(cast(replace(case when isNumeric(substring([PercentMetStandard],1, 1)) = 1 then [PercentMetStandard]\n\t\t\tElse null \n\t\tend, '%','') as float)/100 as float) as [PercentMetStandard School]\n\t  ,cast([CountMetStandard] as float)/cast([CountofStudentsExpectedtoTest(including previously passed)] as float) as [PercentMetSchool]\n\t  ,[DataAsOf]\nInto transform.AcademicPerformanceSchool\nFROM [staging].[AcademicPerformance] a\n  left join [staging].[CharterSchoolDirectory] b on a.[SchoolCode] = b.[School Code]\n  left join [transform].[MasterSchoolDirectory] c on a.[SchoolCode] = c.[School Code]\nwhere [OrganizationLevel] = 'School'",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "master",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

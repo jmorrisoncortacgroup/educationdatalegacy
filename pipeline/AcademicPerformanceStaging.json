@@ -1,0 +1,44 @@
+{
+	"name": "AcademicPerformanceStaging",
+	"properties": {
+		"activities": [
+			{
+				"name": "AP Staging",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "AcademicPerformanceStaging",
+						"type": "DataFlowReference"
+					},
+					"staging": {
+						"linkedService": {
+							"referenceName": "gatescharter-WorkspaceDefaultStorage",
+							"type": "LinkedServiceReference"
+						},
+						"folderPath": "gatescharter/staging/Academic Performance"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			}
+		],
+		"folder": {
+			"name": "Academic Performance"
+		},
+		"annotations": [],
+		"lastPublishTime": "2025-10-14T19:38:55Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

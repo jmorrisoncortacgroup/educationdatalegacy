@@ -1,0 +1,85 @@
+{
+	"name": "CharterSchoolDirectory",
+	"properties": {
+		"folder": {
+			"name": "MasterSchoolDir"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "CharterSchoolDirectory",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"linkedService": {
+						"referenceName": "AzureSynapseAnalytics1",
+						"type": "LinkedServiceReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          {School Code} as string,",
+				"          {School Name} as string,",
+				"          {Short School Name} as string,",
+				"          {School Network Name} as string,",
+				"          {Home District Code} as string,",
+				"          {Home District Single Word} as string,",
+				"          {Home District} as string,",
+				"          {School Leader Name} as string,",
+				"          {Phone Number} as string,",
+				"          Address as string,",
+				"          {Address 2} as string,",
+				"          Region as string,",
+				"          ESWA as string,",
+				"          CSP as string,",
+				"          {Lower Grade} as string,",
+				"          {Higher Grade} as string,",
+				"          {Grades Authorized} as string,",
+				"          {Grades Currently Served} as string,",
+				"          {Grade Category} as string,",
+				"          {Grades Served (E,M,H)} as string,",
+				"          Authorizer as string,",
+				"          {Date Authorized} as string,",
+				"          {Date Opened} as string,",
+				"          {Authorized Seats} as string,",
+				"          Status as string,",
+				"          Mission as string,",
+				"          {Network Name} as string,",
+				"          {Charter School CCDDD Code} as string,",
+				"          {Like Schools} as string,",
+				"          Notes as string,",
+				"          {Charter School} as string,",
+				"          {Charter District} as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'table',",
+				"     store: 'synapseanalytics',",
+				"     schemaName: 'staging',",
+				"     tableName: 'CharterSchoolDirectory',",
+				"     insertable: true,",
+				"     updateable: false,",
+				"     deletable: false,",
+				"     upsertable: false,",
+				"     truncate: true,",
+				"     allowCopyCommand: true,",
+				"     staged: true,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sink1"
+			]
+		}
+	}
+}

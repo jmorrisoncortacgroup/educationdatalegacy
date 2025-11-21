@@ -1,0 +1,155 @@
+{
+	"name": "CharterSchoolDirectory",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "gatescharter-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "MasterSchoolDirectory"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "Sheet1",
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "Charter School Directory.xlsx",
+				"folderPath": "staging/WASchoolDirectory",
+				"fileSystem": "gatescharter"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "School Code",
+				"type": "String"
+			},
+			{
+				"name": "School Name",
+				"type": "String"
+			},
+			{
+				"name": "Short School Name",
+				"type": "String"
+			},
+			{
+				"name": "School Network Name",
+				"type": "String"
+			},
+			{
+				"name": "Home District Code",
+				"type": "String"
+			},
+			{
+				"name": "Home District Single Word",
+				"type": "String"
+			},
+			{
+				"name": "Home District",
+				"type": "String"
+			},
+			{
+				"name": "School Leader Name",
+				"type": "String"
+			},
+			{
+				"name": "Phone Number",
+				"type": "String"
+			},
+			{
+				"name": "Address",
+				"type": "String"
+			},
+			{
+				"name": "Address 2",
+				"type": "String"
+			},
+			{
+				"name": "Region",
+				"type": "String"
+			},
+			{
+				"name": "ESWA",
+				"type": "String"
+			},
+			{
+				"name": "CSP",
+				"type": "String"
+			},
+			{
+				"name": "Lower Grade",
+				"type": "String"
+			},
+			{
+				"name": "Higher Grade",
+				"type": "String"
+			},
+			{
+				"name": "Grades Authorized",
+				"type": "String"
+			},
+			{
+				"name": "Grades Currently Served",
+				"type": "String"
+			},
+			{
+				"name": "Grade Category",
+				"type": "String"
+			},
+			{
+				"name": "Grades Served (E,M,H)",
+				"type": "String"
+			},
+			{
+				"name": "Authorizer",
+				"type": "String"
+			},
+			{
+				"name": "Date Authorized",
+				"type": "String"
+			},
+			{
+				"name": "Date Opened",
+				"type": "String"
+			},
+			{
+				"name": "Authorized Seats",
+				"type": "String"
+			},
+			{
+				"name": "Status",
+				"type": "String"
+			},
+			{
+				"name": "Mission",
+				"type": "String"
+			},
+			{
+				"name": "Network Name",
+				"type": "String"
+			},
+			{
+				"name": "Charter School CCDDD Code",
+				"type": "String"
+			},
+			{
+				"name": "Like Schools",
+				"type": "String"
+			},
+			{
+				"name": "Notes",
+				"type": "String"
+			},
+			{
+				"name": "Charter School",
+				"type": "String"
+			},
+			{
+				"name": "Charter District",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

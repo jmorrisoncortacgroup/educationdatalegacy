@@ -1,0 +1,44 @@
+{
+	"name": "P223Staging",
+	"properties": {
+		"activities": [
+			{
+				"name": "P223Staging",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "P223Staging",
+						"type": "DataFlowReference"
+					},
+					"staging": {
+						"linkedService": {
+							"referenceName": "gatescharter-WorkspaceDefaultStorage",
+							"type": "LinkedServiceReference"
+						},
+						"folderPath": "gatescharter/staging/P-223"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			}
+		],
+		"folder": {
+			"name": "P-223"
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-10-07T19:32:11Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

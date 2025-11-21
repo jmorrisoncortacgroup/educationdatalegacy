@@ -1,0 +1,20 @@
+{
+	"name": "scorecardvwPostSecondary",
+	"properties": {
+		"folder": {
+			"name": "Views"
+		},
+		"content": {
+			"query": "\n\n--Drop VIEW scorecard.vwPostSecondary;\n\n\nCREATE VIEW scorecard.vwPostSecondary AS\n\nSELECT DISTINCT\n    a.[Cohort Year],\n    a.[School Code],\n    a.[School Name],\n    b.[District Code],\n    b.[District Name],\n    a.[Student Group Type],\n    a.[Student Group Category],\n    a.[Student Group],\n    a.[PS Enroll Level],\n    a.[Pct] AS [Pct School],\n    a.[Redacted Pct],\n    a.[Cohort Type],\n    b.[Pct] AS [Pct District]\nFROM\n    [transform].[PostSecondarySchool] a\n    INNER JOIN [transform].[PostSecondaryDistrict] b\n        ON a.[District Code] = b.[District Code]\n        AND a.[Cohort Year] = b.[Cohort Year]\n        AND a.[Student Group] = b.[Student Group]\n        AND a.[PS Enroll Level] = b.[PS Enroll Level]\n        AND a.[Cohort Type] = b.[Cohort Type]\n        AND a.[Redacted Pct] = b.[Redacted Pct]\n        AND a.[District Name] = b.[District Name];\n\n\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "master",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

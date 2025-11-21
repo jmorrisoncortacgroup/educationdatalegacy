@@ -1,0 +1,20 @@
+{
+	"name": "DimSchoolYear",
+	"properties": {
+		"folder": {
+			"name": "Tables"
+		},
+		"content": {
+			"query": "SELECT DISTINCT CONVERT(NVARCHAR(255), SchoolYear) as [SchoolYear]\nINTO [transform].[DimSchoolYear]\nFROM (\n    SELECT [SchoolYear] FROM [staging].[Enrollment]\n    UNION\n    SELECT [SchoolYear] FROM [staging].[Graduation]\n) AS [DimSchoolYear];\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "GatesDedicatedSql",
+				"poolName": "GatesDedicatedSql"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

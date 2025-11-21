@@ -1,0 +1,20 @@
+{
+	"name": "transformEnrollmentDistrict",
+	"properties": {
+		"folder": {
+			"name": "Tables"
+		},
+		"content": {
+			"query": "-- query for District level enrollment\n-- subquery is assessed in order to add leading zero prior to the join\n\n/*\nIF EXISTS (\n    SELECT 1\n    FROM sys.tables\n    WHERE name = 'EnrollmentDistrict' AND schema_id = SCHEMA_ID('transform')\n)\nBEGIN\n    EXEC('DROP TABLE transform.EnrollmentDistrict')\nEND\n\n*/\n\nSELECT [SchoolYear]\n      ,[OrganizationLevel]\n      ,[County]\n      ,[ESDName]\n      ,[ESDOrganizationID]\n\t  ,COALESCE([Local District Code], [DistrictCode]) as [DistrictCode]\n\t  ,COALESCE(c.[Local District], [DistrictName]) AS [DistrictName]\n      ,[DistrictOrganizationId]\n\t  ,b.[GradeLevel] \n      ,d.[StudentGroup]\n      ,[StudentGroupCategory]\n      ,[StudentGroupType]\n      ,[Enrollment]\n--Into transform.EnrollmentDistrict\nFROM (\n    SELECT [SchoolYear]\n      ,[OrganizationLevel]\n      ,[County]\n      ,[ESDName]\n      ,[ESDOrganizationID]\n      ,CASE WHEN LEN([DistrictCode]) < 5 \n            THEN '0' + [DistrictCode]\n            ELSE [DistrictCode]\n        END as [DistrictCode]\n      ,[DistrictName]\n      ,[DistrictOrganizationId]\n      ,[SchoolCode]\n      ,[SchoolName]\n      ,[SchoolOrganizationid]\n      ,[CurrentSchoolType]\n      ,[GradeLevel]\n      ,[All Students]\n      ,[Female]\n      ,[Male]\n      ,[Gender X]\n      ,[American Indian/ Alaskan Native]\n      ,[Asian]\n      ,[Black/ African American]\n      ,[Hispanic/ Latino of any race(s)]\n      ,[Native Hawaiian/ Other Pacific Islander]\n      ,[Two or More Races]\n      ,[White]\n      ,[English Language Learners]\n      ,[Highly Capable]\n      ,[Homeless]\n      ,[Low-Income]\n      ,[Migrant]\n      ,[Military Parent]\n      ,[Mobile]\n      ,[Section 504]\n      ,[Students with Disabilities]\n\t  ,[Foster Care]\n\t  ,[DataAsOf]\n    FROM [staging].[Enrollment]\n) AS a\nUNPIVOT (\n    [Enrollment] FOR [StudentGroup] IN (\n        [All Students]\n        ,[Female]\n        ,[Male]\n        ,[Gender X]\n        ,[American Indian/ Alaskan Native]\n        ,[Asian]\n        ,[Black/ African American]\n        ,[Hispanic/ Latino of any race(s)]\n        ,[Native Hawaiian/ Other Pacific Islander]\n        ,[Two or More Races]\n        ,[White]\n        ,[English Language Learners]\n        ,[Highly Capable]\n        ,[Homeless]\n        ,[Low-Income]\n        ,[Migrant]\n        ,[Military Parent]\n        ,[Mobile]\n        ,[Section 504]\n        ,[Students with Disabilities]\n\t    ,[Foster Care]\n    )\n) AS unpvt\nLEFT JOIN dim.GradeLevel b ON unpvt.GradeLevel = b.GradeLevelKey\nLEFT JOIN staging.CharterSchoolDirectory c ON unpvt.DistrictCode = c.[Local District Code]\nLEFT JOIN [dim].[StudentGroup] d ON unpvt.StudentGroup = d.StudentGroupKey\nWHERE d.StudentGroup NOT LIKE 'Non%' AND [OrganizationLevel] = 'District'\n\n\n\n\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "master",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

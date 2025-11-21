@@ -1,0 +1,77 @@
+{
+	"name": "Annual Collection",
+	"properties": {
+		"folder": {
+			"name": "WA Commisssion Data"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "CommissionAnnualCollection",
+						"type": "DatasetReference"
+					},
+					"name": "CommissionAnnualCommission"
+				}
+			],
+			"sinks": [
+				{
+					"linkedService": {
+						"referenceName": "AzureSynapseAnalytics1",
+						"type": "LinkedServiceReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "unpivot1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          {School Code} as string,",
+				"          {School Name} as string,",
+				"          {School Year} as string,",
+				"          {Academic - All Students Framework Score 1a.1} as string,",
+				"          {Academic - Proficiency Score (ELA) 2a.1} as string,",
+				"          {Academic - Proficiency Score (Math) 2a.1} as string,",
+				"          {Academic - Proficiency Score (Science) 2a.1} as string,",
+				"          {Academic - School-Specific Goals 3a.} as string,",
+				"          {Organizational - School-Specific Goals 6a.} as string,",
+				"          {Financial - Unrestricted Days Cash 1b.} as string,",
+				"          {SAO's audit Findings} as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> CommissionAnnualCommission",
+				"CommissionAnnualCommission unpivot(output(",
+				"          Category as string,",
+				"          Score as string",
+				"     ),",
+				"     ungroupBy({School Code},",
+				"          {School Name},",
+				"          {School Year}),",
+				"     lateral: true,",
+				"     ignoreNullPivots: false) ~> unpivot1",
+				"unpivot1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'table',",
+				"     store: 'synapseanalytics',",
+				"     schemaName: 'staging',",
+				"     tableName: 'CommissionAnnual',",
+				"     insertable: true,",
+				"     updateable: false,",
+				"     deletable: false,",
+				"     upsertable: false,",
+				"     truncate: true,",
+				"     allowCopyCommand: true,",
+				"     staged: true,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sink1"
+			]
+		}
+	}
+}

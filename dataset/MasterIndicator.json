@@ -1,0 +1,99 @@
+{
+	"name": "MasterIndicator",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "gatescharter-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Master Indicator"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "Indicator Master",
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "Indicator Master_V2.1.4.xlsx",
+				"folderPath": "staging/Master Indicator",
+				"fileSystem": "gatescharter"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "Gates Metric ID",
+				"type": "String"
+			},
+			{
+				"name": "Logic Model Component",
+				"type": "String"
+			},
+			{
+				"name": "Theory of Change Component",
+				"type": "String"
+			},
+			{
+				"name": "Metric Component",
+				"type": "String"
+			},
+			{
+				"name": "Metric Category",
+				"type": "String"
+			},
+			{
+				"name": "Metric Code",
+				"type": "String"
+			},
+			{
+				"name": "Metric Name",
+				"type": "String"
+			},
+			{
+				"name": "2024 KPI Target",
+				"type": "String"
+			},
+			{
+				"name": "Target Sign",
+				"type": "String"
+			},
+			{
+				"name": "Conditional Format Target",
+				"type": "String"
+			},
+			{
+				"name": "Data Type",
+				"type": "String"
+			},
+			{
+				"name": "Data Symbol",
+				"type": "String"
+			},
+			{
+				"name": "Data Decimals",
+				"type": "String"
+			},
+			{
+				"name": "Frequency",
+				"type": "String"
+			},
+			{
+				"name": "Metric Type",
+				"type": "String"
+			},
+			{
+				"name": "Possible to visualize now?",
+				"type": "String"
+			},
+			{
+				"name": "Data Source",
+				"type": "String"
+			},
+			{
+				"name": "Intake Process",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

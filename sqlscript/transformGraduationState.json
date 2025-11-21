@@ -1,0 +1,20 @@
+{
+	"name": "transformGraduationState",
+	"properties": {
+		"folder": {
+			"name": "Tables"
+		},
+		"content": {
+			"query": "--DROP TABLE [transform].[GraduationState]\n\n\nSELECT \n    [SchoolYear],\n    [OrganizationLevel],\n    COALESCE([Local District Code], [DistrictCode]) AS [DistrictCode],\n    COALESCE([Local District], [DistrictName]) AS [DistrictName],\n    [SchoolCode],\n    COALESCE([School Name], [SchoolName]) AS [SchoolName],\n    [SchoolOrganizationId],\n    a.[StudentGroup],\n    c.[StudentGroupCategory],\n    c.[StudentGroupType],\n    [Cohort],\n    [BegginingGrade9] AS [BeginningGrade9],\n    [TransferredIn],\n    [TransferOut],\n    [Final Cohort] AS [FinalCohort],\n    [Graduate],\n    [Continuing],\n    [Dropout],\n    [GraduationRate],\n    [DataAsOf]\n--Into [transform].[GraduationState]\nFROM [staging].[Graduation] a\nLEFT JOIN [staging].[CharterSchoolDirectory] b ON a.[SchoolCode] = b.[School Code]\nLEFT JOIN [dim].[StudentGroup] c ON a.[StudentGroup] = c.[StudentGroupKey]\nWHERE Cohort IN ('Four Year', 'Five Year') AND [OrganizationLevel] = 'State'",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "master",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

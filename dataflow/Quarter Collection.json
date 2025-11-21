@@ -1,0 +1,75 @@
+{
+	"name": "Quarter Collection",
+	"properties": {
+		"folder": {
+			"name": "WA Commisssion Data"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "CommissionQuarterCollection",
+						"type": "DatasetReference"
+					},
+					"name": "CommissionQuarterCollection"
+				}
+			],
+			"sinks": [
+				{
+					"linkedService": {
+						"referenceName": "AzureSynapseAnalytics1",
+						"type": "LinkedServiceReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "unpivot1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          {School Code} as string,",
+				"          {School Name} as string,",
+				"          {School Year} as string,",
+				"          Quarter as string,",
+				"          {% of Compliance Tasks} as double,",
+				"          {% of Compliance Tasks Late} as double,",
+				"          {Financial - Unrestricted Days Cash 1b} as double,",
+				"          {Financial - Debt to Asset Ratio 2b} as double",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> CommissionQuarterCollection",
+				"CommissionQuarterCollection unpivot(output(",
+				"          Category as string,",
+				"          Score as double",
+				"     ),",
+				"     ungroupBy({School Code},",
+				"          {School Name},",
+				"          {School Year},",
+				"          Quarter),",
+				"     lateral: false,",
+				"     ignoreNullPivots: false) ~> unpivot1",
+				"unpivot1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'table',",
+				"     store: 'synapseanalytics',",
+				"     schemaName: 'staging',",
+				"     tableName: 'CommissionQuarter',",
+				"     insertable: true,",
+				"     updateable: false,",
+				"     deletable: false,",
+				"     upsertable: false,",
+				"     truncate: true,",
+				"     allowCopyCommand: true,",
+				"     staged: true,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sink1"
+			]
+		}
+	}
+}

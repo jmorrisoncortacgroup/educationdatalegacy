@@ -1,0 +1,20 @@
+{
+	"name": "cleansePostSecondary",
+	"properties": {
+		"folder": {
+			"name": "Tables"
+		},
+		"content": {
+			"query": "-- cleanse query for Post secondary file\n-- * case statement needs to be updated each time there is a new data ingestion. \n\n/*\nIF EXISTS (\n    SELECT 1\n    FROM sys.tables\n    WHERE name = 'PostSecondary' AND schema_id = SCHEMA_ID('cleanse')\n)\nBEGIN\n    EXEC('DROP TABLE cleanse.PostSecondary')\nEND\n*/\n\n \n SELECT *\n\t  ,CASE \n            WHEN DistrictTTL LIKE 'Tacoma%' and [SchoolTTL] like 'District Wide' THEN 'Tacoma School District' \n\t\t\tWHEN DistrictTTL LIKE 'Seattle%' and [SchoolTTL] like 'District Wide' THEN 'Seattle Public Schools' \n\t\t\tElse null\n\t\t\tEnd as DistrictName\n\t  ,Case\n            WHEN SchoolTTL LIKE '%Atlas%' THEN 'Summit Atlas' \n            WHEN SchoolTTL LIKE '%Sierra%' THEN 'Summit Sierra'\n            WHEN SchoolTTL LIKE '%Summit Public School: Ol%' THEN 'Summit Olympus'\n            ELSE NULL\n       END AS SchoolName\n--Into [cleanse].[PostSecondary]\nFROM [staging].[PostSecondary]\n\nselect *\nfrom [cleanse].[PostSecondary]\n\n\n\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "master",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

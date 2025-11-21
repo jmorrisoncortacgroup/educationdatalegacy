@@ -1,0 +1,26 @@
+{
+	"name": "Philanthropy23_24",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "gatescharter-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Philanthropy"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "School Grant 23-24",
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "School Grant Summary.xlsx",
+				"folderPath": "staging/Philanthropy",
+				"fileSystem": "gatescharter"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": []
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

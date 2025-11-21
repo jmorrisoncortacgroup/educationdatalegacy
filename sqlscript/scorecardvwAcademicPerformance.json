@@ -1,0 +1,20 @@
+{
+	"name": "scorecardvwAcademicPerformance",
+	"properties": {
+		"folder": {
+			"name": "Views"
+		},
+		"content": {
+			"query": "--Drop View scorecard.vwAcademicPerformance;\n--Go\n\nCREATE View scorecard.vwAcademicPerformance \nas \n\nwith cte_school as (\nSELECT  SchoolYear,\n    OrganizationLevel,\n    County,\n    ESDName,\n    ESDOrganizationID,\n    DistrictOrganizationId,\n    SchoolCode,\n    SchoolOrganizationid,\n    CurrentSchoolType,\n    StudentGroupType,\n    StudentGroup,\n    GradeLevel,\n    TestAdministration,\n    TestSubject,\n    Suppression,\n    Cast([Count of Students Expected to Test] as int) as [Count of Students Expected to Test],\n    cast([CountMetStandard]as int) as[CountMetStandard],\n    cast( [CountofStudentsExpectedtoTest(including previously passed)] as int) as [CountofStudentsExpectedtoTest(including previously passed)],\n    cast(replace(case when isNumeric(substring([PercentMetStandard],1, 1)) = 1 then [PercentMetStandard]\n\t\t\tElse null \n\t\tend, '%','') as float)/100 as [PercentMetStandard School],\n    DataAsOf,\n    SchoolName,\n    DistrictCode,\n    DistrictName,\n\tcast([CountMetStandard] as float)/cast([CountofStudentsExpectedtoTest(including previously passed)] as float) as [PercentMetSchool]\nFROM transform.AcademicPerformance \nWHERE OrganizationLevel = 'School'\n\n),\ncte_District as (\nSELECT  [SchoolYear]\n      ,[GradeLevel]\n      ,[TestAdministration]\n      ,[TestSubject]\n\t  ,[StudentGroup]\n\t  ,[DistrictCode]\n      ,[DistrictName]\n      ,Cast([Count of Students Expected to Test] as int) as [Count of Students Expected to Test District]\n      ,cast([CountMetStandard]as int) as[CountMetStandard District]\n      ,cast( [CountofStudentsExpectedtoTest(including previously passed)] as int) as [CountofStudentsExpectedtoTest(including previously passed) District]\n      ,cast(replace(case when isNumeric(substring([PercentMetStandard],1, 1)) = 1 then [PercentMetStandard]\n\t\t\tElse null \n\t\tend, '%','') as float)/100 as [PercentMetStandard District]\n\t  ,cast([CountMetStandard] as float)/cast([CountofStudentsExpectedtoTest(including previously passed)] as float) as [PercentMetDistrict]\nFROM transform.AcademicPerformance \nWHERE OrganizationLevel = 'District' \n)\n\n\nSELECT a.[SchoolYear]\n      ,[OrganizationLevel]\n      ,[SchoolCode]\n\t  ,[SchoolName]\n      ,b.[DistrictCode]\n      ,b.[DistrictName]\n\t  , case\n\t\t\twhen [Charter School?] is null then 'No'\n\t\t\telse [Charter School?]\n\t\t\tend as [Charter School?]\n      ,[StudentGroupType]\n      ,a.[StudentGroup]\n      ,a.[GradeLevel]\n      ,a.[TestAdministration]\n      ,a.[TestSubject]\n      ,[Suppression]\n      ,[Count of Students Expected to Test]\n      ,[CountMetStandard]\n      ,[CountofStudentsExpectedtoTest(including previously passed)]\n      ,[PercentMetStandard School]\n\t  ,[PercentMetSchool]\n\t  ,[Count of Students Expected to Test District]\n      ,[CountMetStandard District]\n      ,[CountofStudentsExpectedtoTest(including previously passed) District]\n      ,[PercentMetStandard District]\n\t  ,[PercentMetDistrict]\n      ,[DataAsOf]\nFROM cte_school a\nJOIN cte_District b ON a.DistrictCode = b.DistrictCode AND a.SchoolYear = b.SchoolYear \n\tand a.StudentGroup = b.StudentGroup and a.GradeLevel= b.GradeLevel and a.TestAdministration = b.TestAdministration\n\tand a.TestSubject = b.TestSubject\n left join  [transform].[MasterSchoolDirectory] c on a.[SchoolCode] = c.[School Code];\n\n ",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "master",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

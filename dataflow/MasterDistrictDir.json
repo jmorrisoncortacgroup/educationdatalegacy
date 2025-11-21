@@ -1,0 +1,218 @@
+{
+	"name": "MasterDistrictDir",
+	"properties": {
+		"folder": {
+			"name": "MasterDistrictDir"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "MasterDistrictDirectory",
+						"type": "DatasetReference"
+					},
+					"name": "WashingtonDistrictDir"
+				},
+				{
+					"dataset": {
+						"referenceName": "DatasetStateLevel",
+						"type": "DatasetReference"
+					},
+					"name": "StateLevelDummy"
+				},
+				{
+					"dataset": {
+						"referenceName": "CharterSchoolDirectory",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "MasterSchoolDirectorySink",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "select1",
+					"description": "Remove columns: Principal Name, phone and email"
+				},
+				{
+					"name": "Filter",
+					"description": "filter where [ESD Name] is not charter. "
+				},
+				{
+					"name": "derivedColumn1",
+					"description": "Add organizational level"
+				},
+				{
+					"name": "union1"
+				},
+				{
+					"name": "select2",
+					"description": "Columns for sink"
+				},
+				{
+					"name": "select3"
+				},
+				{
+					"name": "join1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          ESDCode as string,",
+				"          ESDName as string,",
+				"          DistrictCode as string,",
+				"          DistrictName as string,",
+				"          AddressLine1 as string,",
+				"          AddressLine2 as string,",
+				"          City as string,",
+				"          State as string,",
+				"          Zipcode as string,",
+				"          AdministratorName as string,",
+				"          Phone as string,",
+				"          Email as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> WashingtonDistrictDir",
+				"source(output(",
+				"          {ESD Code} as string,",
+				"          {ESD Name} as string,",
+				"          {District Code} as string,",
+				"          {District Name} as string,",
+				"          Address as string,",
+				"          {Address 2} as string,",
+				"          City as string,",
+				"          State as string,",
+				"          {Zip code} as string,",
+				"          {Organization level} as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> StateLevelDummy",
+				"source(output(",
+				"          {School Code} as string,",
+				"          {School Name} as string,",
+				"          {Local District Code} as string,",
+				"          {Local District} as string,",
+				"          {School Leader Name} as string,",
+				"          {Phone Number} as string,",
+				"          Address as string,",
+				"          {Address 2} as string,",
+				"          Region as string,",
+				"          CSP as string,",
+				"          {Lowest Grade} as string,",
+				"          {Highest Grade} as short,",
+				"          {Grades Served at Scale} as string,",
+				"          {Grades Served (E,M,H)} as string,",
+				"          Authorizer as string,",
+				"          {Date Authorized} as short,",
+				"          {Date Opened} as short,",
+				"          {Authorized Seats} as short,",
+				"          Status as string,",
+				"          {Organizational level} as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"WashingtonDistrictDir select(mapColumn(",
+				"          {ESD Code} = ESDCode,",
+				"          {ESD Name} = ESDName,",
+				"          {District Code} = DistrictCode,",
+				"          {District Name} = DistrictName,",
+				"          Address = AddressLine1,",
+				"          {Address 2} = AddressLine2,",
+				"          City,",
+				"          State,",
+				"          {Zip code} = Zipcode",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"select1 filter(not(instr({ESD Name}, 'Charter')>0)) ~> Filter",
+				"join1 derive({Organization Level} = case(isNull({Organization level}), 'District', {Organization level}),",
+				"          {Charter District?} = case(isNull({Local District}), 'No', \"Yes\"),",
+				"          {Charter District List} = case(isNull({Local District}),'',{District Name})) ~> derivedColumn1",
+				"Filter, StateLevelDummy union(byName: true)~> union1",
+				"derivedColumn1 select(mapColumn(",
+				"          {ESD Code},",
+				"          {ESD Name},",
+				"          {District Code},",
+				"          {District Name},",
+				"          Address,",
+				"          {Address 2},",
+				"          City,",
+				"          State,",
+				"          {Zip code},",
+				"          {Organization Level} = derivedColumn1@{Organization Level},",
+				"          {Charter District?},",
+				"          {Charter District List}",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select2",
+				"source1 select(mapColumn(",
+				"          {Local District Code},",
+				"          {Local District}",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select3",
+				"union1, select3 join({District Code} == {Local District Code},",
+				"     joinType:'left',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> join1",
+				"select2 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          Column_1 as string,",
+				"          Column_2 as string,",
+				"          Column_3 as string,",
+				"          Column_4 as string,",
+				"          Column_5 as string,",
+				"          Column_6 as string,",
+				"          Column_7 as string,",
+				"          Column_8 as string,",
+				"          Column_9 as string,",
+				"          Column_10 as string,",
+				"          Column_11 as string,",
+				"          Column_12 as string,",
+				"          Column_13 as string,",
+				"          Column_14 as string,",
+				"          Column_15 as string,",
+				"          Column_16 as string,",
+				"          Column_17 as string,",
+				"          Column_18 as string,",
+				"          Column_19 as string,",
+				"          Column_20 as string,",
+				"          Column_21 as string,",
+				"          Column_22 as string,",
+				"          Column_23 as string,",
+				"          Column_24 as string,",
+				"          Column_25 as string,",
+				"          Column_26 as string,",
+				"          Column_27 as string,",
+				"          Column_28 as string,",
+				"          Column_29 as string,",
+				"          Column_30 as string,",
+				"          Column_31 as string,",
+				"          Column_32 as string,",
+				"          Column_33 as string",
+				"     ),",
+				"     partitionFileNames:['MasterDistrictDirectory.csv'],",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink1"
+			]
+		}
+	}
+}

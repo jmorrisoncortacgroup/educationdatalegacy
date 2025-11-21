@@ -1,0 +1,154 @@
+{
+	"name": "stagingGraduation14_21",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "gatescharter-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Graduation"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "Report_Card_Graduation_2014-15_to_Most_Recent_Year.csv",
+				"folderPath": "staging/Graduation",
+				"fileSystem": "gatescharter"
+			},
+			"columnDelimiter": ",",
+			"rowDelimiter": "\n",
+			"escapeChar": "\"",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "SchoolYear",
+				"type": "String"
+			},
+			{
+				"name": "OrganizationLevel",
+				"type": "String"
+			},
+			{
+				"name": "County",
+				"type": "String"
+			},
+			{
+				"name": "ESDName",
+				"type": "String"
+			},
+			{
+				"name": "ESDOrganizationId",
+				"type": "String"
+			},
+			{
+				"name": "DistrictCode",
+				"type": "String"
+			},
+			{
+				"name": "DistrictName",
+				"type": "String"
+			},
+			{
+				"name": "DistrictOrganizationId",
+				"type": "String"
+			},
+			{
+				"name": "SchoolCode",
+				"type": "String"
+			},
+			{
+				"name": "SchoolName",
+				"type": "String"
+			},
+			{
+				"name": "SchoolOrganizationId",
+				"type": "String"
+			},
+			{
+				"name": "StudentGroupType",
+				"type": "String"
+			},
+			{
+				"name": "StudentGroup",
+				"type": "String"
+			},
+			{
+				"name": "Suppression",
+				"type": "String"
+			},
+			{
+				"name": "Cohort",
+				"type": "String"
+			},
+			{
+				"name": "BegginingGrade9",
+				"type": "String"
+			},
+			{
+				"name": "TransferIn",
+				"type": "String"
+			},
+			{
+				"name": "Year1Dropout",
+				"type": "String"
+			},
+			{
+				"name": "Year2Dropout",
+				"type": "String"
+			},
+			{
+				"name": "Year3Dropout",
+				"type": "String"
+			},
+			{
+				"name": "Year4Dropout",
+				"type": "String"
+			},
+			{
+				"name": "Year5Dropout",
+				"type": "String"
+			},
+			{
+				"name": "Year6Dropout",
+				"type": "String"
+			},
+			{
+				"name": "Year7Dropout",
+				"type": "String"
+			},
+			{
+				"name": "TransferOut",
+				"type": "String"
+			},
+			{
+				"name": "FinalCohort",
+				"type": "String"
+			},
+			{
+				"name": "Graduate",
+				"type": "String"
+			},
+			{
+				"name": "Continuing",
+				"type": "String"
+			},
+			{
+				"name": "Dropout",
+				"type": "String"
+			},
+			{
+				"name": "GraduationRate",
+				"type": "String"
+			},
+			{
+				"name": "DataAsOf",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

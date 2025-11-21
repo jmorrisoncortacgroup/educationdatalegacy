@@ -1,0 +1,289 @@
+{
+	"name": "ImprovementFramework",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "gatescharter-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Improvement Framework"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "Washington_School_Improvement_Framework__WSIF__2022_Run.csv",
+				"folderPath": "staging/Improvement Framework",
+				"fileSystem": "gatescharter"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "ESD_Organization_Id",
+				"type": "String"
+			},
+			{
+				"name": "ESD_Name",
+				"type": "String"
+			},
+			{
+				"name": "District_Organization_Id",
+				"type": "String"
+			},
+			{
+				"name": "District_Code",
+				"type": "String"
+			},
+			{
+				"name": "District_Name",
+				"type": "String"
+			},
+			{
+				"name": "School_Code",
+				"type": "String"
+			},
+			{
+				"name": "School_Name",
+				"type": "String"
+			},
+			{
+				"name": "School_Organization_Id",
+				"type": "String"
+			},
+			{
+				"name": "School_Type",
+				"type": "String"
+			},
+			{
+				"name": "2022_TitleI",
+				"type": "String"
+			},
+			{
+				"name": "Student_Group",
+				"type": "String"
+			},
+			{
+				"name": "Proficiency_ELA_Numerator",
+				"type": "String"
+			},
+			{
+				"name": "Proficiency_ELA_Denominator",
+				"type": "String"
+			},
+			{
+				"name": "Proficiency_ELA_Rate",
+				"type": "String"
+			},
+			{
+				"name": "Proficiency_ELA_Decile",
+				"type": "String"
+			},
+			{
+				"name": "ELA_MetESSA_Participation",
+				"type": "String"
+			},
+			{
+				"name": "Proficiency_Math_Numerator",
+				"type": "String"
+			},
+			{
+				"name": "Proficiency_Math_Denominator",
+				"type": "String"
+			},
+			{
+				"name": "Proficiency_Math_Rate",
+				"type": "String"
+			},
+			{
+				"name": "Proficiency_Math_Decile",
+				"type": "String"
+			},
+			{
+				"name": "Math_MetESSA_Participation",
+				"type": "String"
+			},
+			{
+				"name": "Proficiency_Combined_Decile",
+				"type": "String"
+			},
+			{
+				"name": "Growth_ELA_NumberofStudents",
+				"type": "String"
+			},
+			{
+				"name": "Growth_ELA_Median_SGP",
+				"type": "String"
+			},
+			{
+				"name": "Growth_ELA_Decile",
+				"type": "String"
+			},
+			{
+				"name": "Growth_Math_NumberofStudents",
+				"type": "String"
+			},
+			{
+				"name": "Growth_Math_Median_SGP",
+				"type": "String"
+			},
+			{
+				"name": "Growth_Math_Decile",
+				"type": "String"
+			},
+			{
+				"name": "AL_ELA_NumberofStudents",
+				"type": "String"
+			},
+			{
+				"name": "AL_ELA_Avg_Level",
+				"type": "String"
+			},
+			{
+				"name": "AL_ELA_Decile",
+				"type": "String"
+			},
+			{
+				"name": "AL_Math_NumberofStudents",
+				"type": "String"
+			},
+			{
+				"name": "AL_Math_Avg_Level",
+				"type": "String"
+			},
+			{
+				"name": "AL_Math_Decile",
+				"type": "String"
+			},
+			{
+				"name": "Other_Academic_Combined_Decile",
+				"type": "String"
+			},
+			{
+				"name": "Grad_FourYear_Numerator",
+				"type": "String"
+			},
+			{
+				"name": "Grad_FourYear_Denominator",
+				"type": "String"
+			},
+			{
+				"name": "Grad_FourYear_Rate",
+				"type": "String"
+			},
+			{
+				"name": "Grad_FourYear_Decile",
+				"type": "String"
+			},
+			{
+				"name": "Grad_Extended_TotalIncrease",
+				"type": "String"
+			},
+			{
+				"name": "Grad_Extended_DecileIncrease",
+				"type": "String"
+			},
+			{
+				"name": "Grad_Combined_Decile",
+				"type": "String"
+			},
+			{
+				"name": "EL_Progress_Numerator",
+				"type": "String"
+			},
+			{
+				"name": "EL_Progress_Denominator",
+				"type": "String"
+			},
+			{
+				"name": "EL_Progress_Rate",
+				"type": "String"
+			},
+			{
+				"name": "EL_Progress_Decile",
+				"type": "String"
+			},
+			{
+				"name": "RegularAttendance_Numerator",
+				"type": "String"
+			},
+			{
+				"name": "RegularAttendance_Denominator",
+				"type": "String"
+			},
+			{
+				"name": "RegularAttendance_Rate",
+				"type": "String"
+			},
+			{
+				"name": "RegularAttendance_Decile",
+				"type": "String"
+			},
+			{
+				"name": "NinthGradeOnTrack_Numerator",
+				"type": "String"
+			},
+			{
+				"name": "NinthGradeOnTrack_Denominator",
+				"type": "String"
+			},
+			{
+				"name": "NinthGradeOnTrack_Rate",
+				"type": "String"
+			},
+			{
+				"name": "NinthGradeOnTrack_Decile",
+				"type": "String"
+			},
+			{
+				"name": "DualCredit_Numerator",
+				"type": "String"
+			},
+			{
+				"name": "DualCredit_Denominator",
+				"type": "String"
+			},
+			{
+				"name": "DualCredit_Rate",
+				"type": "String"
+			},
+			{
+				"name": "DualCredit_Decile",
+				"type": "String"
+			},
+			{
+				"name": "SQSS_Combined_Decile",
+				"type": "String"
+			},
+			{
+				"name": "2022_Score",
+				"type": "String"
+			},
+			{
+				"name": "2022_Support_Tier",
+				"type": "String"
+			},
+			{
+				"name": "2017_Support_Tier",
+				"type": "String"
+			},
+			{
+				"name": "2022_Cycle_Support",
+				"type": "String"
+			},
+			{
+				"name": "WSIF_Year",
+				"type": "String"
+			},
+			{
+				"name": "organizationid",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

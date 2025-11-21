@@ -1,0 +1,145 @@
+{
+	"name": "MasterSchoolFinal",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "gatescharter-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "MasterSchoolDirectory"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "MasterSchoolDirectoryFinal.csv",
+				"folderPath": "transform",
+				"fileSystem": "gatescharter"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "School Code",
+				"type": "String"
+			},
+			{
+				"name": "School Name",
+				"type": "String"
+			},
+			{
+				"name": "District Code",
+				"type": "String"
+			},
+			{
+				"name": "District Name",
+				"type": "String"
+			},
+			{
+				"name": "Region",
+				"type": "String"
+			},
+			{
+				"name": "Lowest Grade",
+				"type": "String"
+			},
+			{
+				"name": "Highest Grade",
+				"type": "String"
+			},
+			{
+				"name": "Grades Served at Scale",
+				"type": "String"
+			},
+			{
+				"name": "Grades Served (E,M,H)",
+				"type": "String"
+			},
+			{
+				"name": "Authorizer",
+				"type": "String"
+			},
+			{
+				"name": "Date Authorized",
+				"type": "String"
+			},
+			{
+				"name": "Date Opened",
+				"type": "String"
+			},
+			{
+				"name": "Authorized Seats",
+				"type": "String"
+			},
+			{
+				"name": "Status",
+				"type": "String"
+			},
+			{
+				"name": "Organizational level",
+				"type": "String"
+			},
+			{
+				"name": "ESD Code",
+				"type": "String"
+			},
+			{
+				"name": "ESD Name",
+				"type": "String"
+			},
+			{
+				"name": "City",
+				"type": "String"
+			},
+			{
+				"name": "State",
+				"type": "String"
+			},
+			{
+				"name": "ZipCode",
+				"type": "String"
+			},
+			{
+				"name": "Org Category List",
+				"type": "String"
+			},
+			{
+				"name": "AYP Code",
+				"type": "String"
+			},
+			{
+				"name": "Grade Category",
+				"type": "String"
+			},
+			{
+				"name": "Address",
+				"type": "String"
+			},
+			{
+				"name": "Address 2",
+				"type": "String"
+			},
+			{
+				"name": "Charter School?",
+				"type": "String"
+			},
+			{
+				"name": "Latitude",
+				"type": "String"
+			},
+			{
+				"name": "Longitude",
+				"type": "String"
+			},
+			{
+				"name": "County",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

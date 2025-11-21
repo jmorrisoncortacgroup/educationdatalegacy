@@ -1,0 +1,26 @@
+{
+	"name": "StagingHeadCount2024",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "gatescharter-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "P-223"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "BasicEducation",
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "P223_2024.xlsx",
+				"folderPath": "staging/P-223",
+				"fileSystem": "gatescharter"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": []
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

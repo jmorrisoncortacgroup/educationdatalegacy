@@ -1,0 +1,17 @@
+{
+	"name": "SQL script 2",
+	"properties": {
+		"content": {
+			"query": "/* 1) See any active cleanse requests (old or new) */\nSELECT request_id, status, total_elapsed_time/1000.0 AS seconds, [label], command\nFROM sys.dm_pdw_exec_requests\nWHERE [label] IN (N'AP_Cleanse_Insert', N'AP_Cleanse_CTAS')\n  AND status IN ('Running','Queued','Suspended')\nORDER BY submit_time DESC;\n\n-- cancel a single request\nCANCEL 'QID456031';\n\nSELECT request_id, status, total_elapsed_time/1000.0 AS seconds, [label], command\nFROM sys.dm_pdw_exec_requests\nWHERE status IN ('Running','Queued','Suspended')\nORDER BY submit_time DESC;\n\n\nDECLARE @req NVARCHAR(50) = N'QID459011';\nSELECT step_index, operation_type, distribution_type, status, total_elapsed_time/1000.0 AS sec\nFROM sys.dm_pdw_request_steps\nWHERE request_id = @req\nORDER BY step_index;\n\nselect distinct studentgroup from transform.AcademicPerformance\n\nselect distinct a.studentgroup, sg.studentgroup\n   FROM [staging].[AcademicPerformance] a\n    LEFT JOIN [dim].[StudentGroup] sg\n      ON a.[StudentGroup] = sg.[StudentGroupKey]",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "GatesDedicatedSql",
+				"poolName": "GatesDedicatedSql"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

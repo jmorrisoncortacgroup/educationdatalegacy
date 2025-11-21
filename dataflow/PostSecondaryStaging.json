@@ -1,0 +1,64 @@
+{
+	"name": "PostSecondaryStaging",
+	"properties": {
+		"folder": {
+			"name": "PostSecondary"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "stagingPostSecondary",
+						"type": "DatasetReference"
+					},
+					"name": "PostSecondary"
+				}
+			],
+			"sinks": [
+				{
+					"linkedService": {
+						"referenceName": "AzureSynapseAnalytics1",
+						"type": "LinkedServiceReference"
+					},
+					"name": "sink2"
+				}
+			],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          CohortYearTTL as short,",
+				"          DistrictType as string,",
+				"          DistrictTTL as string,",
+				"          SchoolTTL as string,",
+				"          DemographicType as string,",
+				"          DemographicGroup as string,",
+				"          DemographicValue as string,",
+				"          PSEnrollLevel as string,",
+				"          Pct as double,",
+				"          RedactedPct as string,",
+				"          cohortType as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> PostSecondary",
+				"PostSecondary sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'table',",
+				"     store: 'synapseanalytics',",
+				"     schemaName: 'staging',",
+				"     tableName: 'PostSecondary',",
+				"     insertable: true,",
+				"     updateable: false,",
+				"     deletable: false,",
+				"     upsertable: false,",
+				"     truncate: true,",
+				"     allowCopyCommand: true,",
+				"     staged: true,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sink2"
+			]
+		}
+	}
+}

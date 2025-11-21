@@ -1,0 +1,59 @@
+{
+	"name": "MapQuintile",
+	"properties": {
+		"folder": {
+			"name": "Map"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "MapQuintile",
+						"type": "DatasetReference"
+					},
+					"name": "MapQuintile"
+				}
+			],
+			"sinks": [
+				{
+					"linkedService": {
+						"referenceName": "AzureSynapseAnalytics1",
+						"type": "LinkedServiceReference"
+					},
+					"name": "Sink"
+				}
+			],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          TermName as string,",
+				"          Course as string,",
+				"          AchievementQuintile as string,",
+				"          Avg_TestRITScore as double,",
+				"          StudentCountByQuintile as integer,",
+				"          StudentCountByCourse as integer,",
+				"          SchoolName as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> MapQuintile",
+				"MapQuintile sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'table',",
+				"     store: 'synapseanalytics',",
+				"     schemaName: 'staging',",
+				"     tableName: 'MapQuintile',",
+				"     insertable: true,",
+				"     updateable: false,",
+				"     deletable: false,",
+				"     upsertable: false,",
+				"     allowCopyCommand: true,",
+				"     staged: true,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> Sink"
+			]
+		}
+	}
+}
