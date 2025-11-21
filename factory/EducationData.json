@@ -1,0 +1,9 @@
+{
+	"name": "EducationData",
+	"location": "westus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "c8bb19b4-d54e-4261-b746-3697a16e7809",
+		"tenantId": "107db71a-7e70-4846-9653-c3436122c656"
+	}
+}
