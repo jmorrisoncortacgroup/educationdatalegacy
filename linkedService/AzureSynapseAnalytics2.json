@@ -5,7 +5,7 @@
 		"type": "AzureSqlDW",
 		"typeProperties": {
 			"server": "tcp:gatescharter.sql.azuresynapse.net,1433",
-			"database": "@{linkedService().GatesDedicatedSql}",
+			"database": "gatesdedicatedsql",
 			"encrypt": "mandatory",
 			"trustServerCertificate": false,
 			"authenticationType": "SystemAssignedManagedIdentity"
