@@ -2,7 +2,7 @@
 	"name": "Report_Card_Assessment_Data_2025_School_Year_NEW_FoundationalGradeLevelKnowledge_Level_2and3and4",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "gatescharter-WorkspaceDefaultStorage",
+			"referenceName": "educationdata-WorkspaceDefaultStorage",
 			"type": "LinkedServiceReference"
 		},
 		"folder": {
@@ -14,8 +14,8 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": "Report_Card_Assessment_Data_2024-25_School_Year_NEW_Level2and3and4-FoundationalGradeLevelKnowledgeAndAbove.csv",
-				"folderPath": "staging/Academic Performance",
-				"fileSystem": "gatescharter"
+				"folderPath": "synapse/workspaces/educationdata/Academic Performance",
+				"fileSystem": "uplifteducationdata"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
