@@ -1,5 +1,6 @@
 {
 	"name": "EducationData",
+	"type": "Microsoft.Synapse/workspaces/linkedservices",
 	"properties": {
 		"annotations": [],
 		"type": "AzureSqlDatabase",
@@ -9,12 +10,13 @@
 			"encrypt": "mandatory",
 			"trustServerCertificate": false,
 			"hostNameInCertificate": "educationdata.database.windows.net",
-			"authenticationType": "SystemAssignedManagedIdentity"
+			"authenticationType": "SQL",
+			"userName": "Jen@UpliftAnalytics.onmicrosoft.com",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIlNZTkFQU0VAODczNjQwQTEtRDNGNS00MjIwLTk2ODktRkQ4RTA1MTBGMEI0X2M5YWFjOWM3LWJiNDEtNDQwOS1iNmU3LWVjMjY1ZTg0NzZiNSINCn0="
 		},
 		"connectVia": {
 			"referenceName": "AutoResolveIntegrationRuntime",
 			"type": "IntegrationRuntimeReference"
 		}
-	},
-	"type": "Microsoft.Synapse/workspaces/linkedservices"
+	}
 }
