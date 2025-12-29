@@ -1,0 +1,17 @@
+{
+	"name": "SQL script 4",
+	"properties": {
+		"content": {
+			"query": "SET ANSI_NULLS ON\nGO\n\nSET QUOTED_IDENTIFIER ON\nGO\n\nCREATE TABLE [AcademicPerformance]\n(\n\t[SchoolYear] [varchar](255) NULL,\n\t[OrganizationLevel] [varchar](255) NULL,\n\t[County] [varchar](255) NULL,\n\t[ESDName] [varchar](255) NULL,\n\t[ESDOrganizationID] [varchar](255) NULL,\n\t[DistrictCode] [varchar](255) NULL,\n\t[DistrictName] [varchar](255) NULL,\n\t[DistrictOrganizationId] [varchar](255) NULL,\n\t[SchoolCode] [varchar](255) NULL,\n\t[SchoolName] [varchar](255) NULL,\n\t[SchoolOrganizationid] [varchar](255) NULL,\n\t[CurrentSchoolType] [varchar](255) NULL,\n\t[StudentGroupType] [varchar](255) NULL,\n\t[StudentGroup] [varchar](255) NULL,\n\t[GradeLevel] [varchar](255) NULL,\n\t[TestAdministration] [varchar](255) NULL,\n\t[TestSubject] [varchar](255) NULL,\n\t[Suppression] [varchar](255) NULL,\n\t[Count of Students Expected to Test] [varchar](255) NULL,\n\t[CountMetStandard] [varchar](255) NULL,\n\t[CountofStudentsExpectedtoTest(including previously passed)] [varchar](255) NULL,\n\t[PercentMetStandard] [varchar](255) NULL,\n\t[PercentLevel1] [varchar](255) NULL,\n\t[PercentLevel2] [varchar](255) NULL,\n\t[PercentLevel3] [varchar](255) NULL,\n\t[PercentLevel4] [varchar](255) NULL,\n\t[DataAsOf] [varchar](255) NULL\n)\nGO",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "DataLake_EducationData",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
