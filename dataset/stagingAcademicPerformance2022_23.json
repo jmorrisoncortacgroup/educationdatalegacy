@@ -2,7 +2,7 @@
 	"name": "stagingAcademicPerformance2022_23",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "gatescharter-WorkspaceDefaultStorage",
+			"referenceName": "educationdata-WorkspaceDefaultStorage",
 			"type": "LinkedServiceReference"
 		},
 		"folder": {
@@ -14,8 +14,8 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": "Report_Card_Assessment_Data_2022-23_School_Year.csv",
-				"folderPath": "staging/Academic Performance",
-				"fileSystem": "gatescharter"
+				"folderPath": "synapse/workspaces/educationdata/Academic Performance",
+				"fileSystem": "uplifteducationdata"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
