@@ -1,0 +1,7 @@
+{
+	"name": "AzureSqlDatabaseEducationData",
+	"properties": {
+		"privateLinkResourceId": "/subscriptions/cd27b461-184b-4d20-921d-1eb085fad925/resourceGroups/UpliftAnalytics/providers/Microsoft.Sql/servers/educationdata",
+		"groupId": "sqlServer"
+	}
+}
