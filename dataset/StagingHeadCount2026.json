@@ -2,7 +2,7 @@
 	"name": "StagingHeadCount2026",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "educationdata-WorkspaceDefaultStorage",
+			"referenceName": "AzureDataLakeStorageGen2",
 			"type": "LinkedServiceReference"
 		},
 		"folder": {
