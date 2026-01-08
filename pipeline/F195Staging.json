@@ -19,13 +19,6 @@
 						"referenceName": "F195Staging",
 						"type": "DataFlowReference"
 					},
-					"staging": {
-						"linkedService": {
-							"referenceName": "gatescharter-WorkspaceDefaultStorage",
-							"type": "LinkedServiceReference"
-						},
-						"folderPath": "gatescharter/staging/F-195"
-					},
 					"compute": {
 						"coreCount": 8,
 						"computeType": "General"
