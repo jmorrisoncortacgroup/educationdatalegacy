@@ -15,15 +15,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"dataflow": {
-						"referenceName": "SpatialFileStaging",
-						"type": "DataFlowReference"
-					},
 					"staging": {
-						"linkedService": {
-							"referenceName": "gatescharter-WorkspaceDefaultStorage",
-							"type": "LinkedServiceReference"
-						},
 						"folderPath": "gatescharter/staging/SpecialFile"
 					},
 					"compute": {
