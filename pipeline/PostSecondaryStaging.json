@@ -19,13 +19,6 @@
 						"referenceName": "PostSecondaryStaging",
 						"type": "DataFlowReference"
 					},
-					"staging": {
-						"linkedService": {
-							"referenceName": "gatescharter-WorkspaceDefaultStorage",
-							"type": "LinkedServiceReference"
-						},
-						"folderPath": "gatescharter/staging/PostSecondary"
-					},
 					"compute": {
 						"coreCount": 8,
 						"computeType": "General"
