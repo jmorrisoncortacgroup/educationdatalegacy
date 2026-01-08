@@ -2,7 +2,7 @@
 	"name": "stagingF2024",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "gatescharter-WorkspaceDefaultStorage",
+			"referenceName": "educationdata-WorkspaceDefaultStorage",
 			"type": "LinkedServiceReference"
 		},
 		"folder": {
@@ -14,8 +14,8 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": "F195F_2023-2024 All Districts.csv",
-				"folderPath": "staging/F-195",
-				"fileSystem": "gatescharter"
+				"folderPath": "synapse/workspaces/educationdata/F-195",
+				"fileSystem": "uplifteducationdata"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
