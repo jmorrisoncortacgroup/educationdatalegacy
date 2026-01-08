@@ -2,7 +2,7 @@
 	"name": "CharterSchoolDirectory",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "gatescharter-WorkspaceDefaultStorage",
+			"referenceName": "educationdata-WorkspaceDefaultStorage",
 			"type": "LinkedServiceReference"
 		},
 		"folder": {
@@ -11,12 +11,11 @@
 		"annotations": [],
 		"type": "Excel",
 		"typeProperties": {
-			"sheetName": "Sheet1",
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": "Charter School Directory.xlsx",
-				"folderPath": "staging/WASchoolDirectory",
-				"fileSystem": "gatescharter"
+				"folderPath": "synapse/workspaces/educationdata/Master School Directory",
+				"fileSystem": "uplifteducationdata"
 			},
 			"firstRowAsHeader": true
 		},
