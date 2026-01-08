@@ -2,7 +2,7 @@
 	"name": "StagingP223TBIP2026",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "gatescharter-WorkspaceDefaultStorage",
+			"referenceName": "educationdata-WorkspaceDefaultStorage",
 			"type": "LinkedServiceReference"
 		},
 		"folder": {
@@ -15,8 +15,8 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": "2025-26_HeadCount.xlsx",
-				"folderPath": "staging/P-223",
-				"fileSystem": "gatescharter"
+				"folderPath": "synapse/workspaces/educationdata/P-223",
+				"fileSystem": "uplifteducationdata"
 			},
 			"firstRowAsHeader": true
 		},
