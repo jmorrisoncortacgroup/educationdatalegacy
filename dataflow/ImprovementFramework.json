@@ -9,7 +9,7 @@
 			"sources": [
 				{
 					"dataset": {
-						"referenceName": "ImprovementFramework2022",
+						"referenceName": "ImprovementFramework",
 						"type": "DatasetReference"
 					},
 					"name": "source1"
