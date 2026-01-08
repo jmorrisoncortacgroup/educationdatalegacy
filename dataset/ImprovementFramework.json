@@ -1,5 +1,5 @@
 {
-	"name": "ImprovementFramework2022",
+	"name": "ImprovementFramework",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "educationdata-WorkspaceDefaultStorage",
