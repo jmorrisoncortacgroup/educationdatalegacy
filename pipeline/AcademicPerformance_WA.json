@@ -41,7 +41,7 @@
 					"storedProcedureName": "[transform].[sp_AcademicPerformance]"
 				},
 				"linkedServiceName": {
-					"referenceName": "AzureSynapseAnalytics1",
+					"referenceName": "EducationData",
 					"type": "LinkedServiceReference"
 				}
 			},
@@ -68,7 +68,7 @@
 					"storedProcedureName": "[transform].[sp_AcademicPerformanceSchool]"
 				},
 				"linkedServiceName": {
-					"referenceName": "AzureSynapseAnalytics1",
+					"referenceName": "EducationData",
 					"type": "LinkedServiceReference"
 				}
 			},
@@ -95,7 +95,7 @@
 					"storedProcedureName": "[transform].[sp_AcademicPerformanceDistrict]"
 				},
 				"linkedServiceName": {
-					"referenceName": "AzureSynapseAnalytics1",
+					"referenceName": "EducationData",
 					"type": "LinkedServiceReference"
 				}
 			},
@@ -122,7 +122,7 @@
 					"storedProcedureName": "[scorecard].[sp_AcademicPerformanceCharterSchools]"
 				},
 				"linkedServiceName": {
-					"referenceName": "AzureSynapseAnalytics1",
+					"referenceName": "EducationData",
 					"type": "LinkedServiceReference"
 				}
 			},
@@ -149,7 +149,7 @@
 					"storedProcedureName": "[scorecard].[sp_AcademicPerformanceCharterDistrict]"
 				},
 				"linkedServiceName": {
-					"referenceName": "AzureSynapseAnalytics1",
+					"referenceName": "EducationData",
 					"type": "LinkedServiceReference"
 				}
 			},
@@ -176,7 +176,7 @@
 					"storedProcedureName": "[scorecard].[sp_AcademicPerformanceSchoolSector]"
 				},
 				"linkedServiceName": {
-					"referenceName": "AzureSynapseAnalytics1",
+					"referenceName": "EducationData",
 					"type": "LinkedServiceReference"
 				}
 			},
@@ -203,7 +203,7 @@
 					"storedProcedureName": "[transform].[sp_AcademicPerformanceState]"
 				},
 				"linkedServiceName": {
-					"referenceName": "AzureSynapseAnalytics1",
+					"referenceName": "EducationData",
 					"type": "LinkedServiceReference"
 				}
 			},
@@ -230,40 +230,13 @@
 					"storedProcedureName": "[scorecard].[sp_AcademicPerformanceSector]"
 				},
 				"linkedServiceName": {
-					"referenceName": "AzureSynapseAnalytics1",
+					"referenceName": "EducationData",
 					"type": "LinkedServiceReference"
 				}
 			},
 			{
-				"name": "waSectorESWAFinal",
-				"type": "SqlPoolStoredProcedure",
-				"dependsOn": [
-					{
-						"activity": "AP Scorecard CharterSchoolDistrict",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "0.12:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"sqlPool": {
-					"referenceName": "GatesDedicatedSql",
-					"type": "SqlPoolReference"
-				},
-				"typeProperties": {
-					"storedProcedureName": "[wa].[sp_AcademicPerformance_WASectorESWAFinal_Historical]"
-				}
-			},
-			{
-				"name": "AP Scorecard CharterSchoolDistrict",
-				"type": "SqlPoolStoredProcedure",
+				"name": "AP ScorecardCharterSchoolDistrict",
+				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
 						"activity": "AP Scorecard School Sector",
@@ -280,12 +253,39 @@
 					"secureInput": false
 				},
 				"userProperties": [],
-				"sqlPool": {
-					"referenceName": "GatesDedicatedSql",
-					"type": "SqlPoolReference"
-				},
 				"typeProperties": {
 					"storedProcedureName": "[scorecard].[sp_AcademicPerformanceCharterSchoolDistrict]"
+				},
+				"linkedServiceName": {
+					"referenceName": "EducationData",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "waSector ESWAFinal",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "AP ScorecardCharterSchoolDistrict",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[wa].[sp_AcademicPerformance_WASectorESWAFinal_Historical]"
+				},
+				"linkedServiceName": {
+					"referenceName": "EducationData",
+					"type": "LinkedServiceReference"
 				}
 			}
 		],
