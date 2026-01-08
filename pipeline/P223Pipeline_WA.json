@@ -105,7 +105,7 @@
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "DIM Grade Level",
+						"activity": "P223 Enrollment Trend",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -128,8 +128,35 @@
 				}
 			},
 			{
-				"name": "DIM Grade Level",
-				"type": "SqlPoolStoredProcedure",
+				"name": "P223 Enrollment Trend",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "DIM GradeLevel",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[transform].[sp_P223EnrollmentTrend]"
+				},
+				"linkedServiceName": {
+					"referenceName": "EducationData",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "DIM GradeLevel",
+				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
 						"activity": "transform SpecialEducation",
@@ -146,12 +173,12 @@
 					"secureInput": false
 				},
 				"userProperties": [],
-				"sqlPool": {
-					"referenceName": "GatesDedicatedSql",
-					"type": "SqlPoolReference"
-				},
 				"typeProperties": {
 					"storedProcedureName": "[dim].[sp_GradeLevel]"
+				},
+				"linkedServiceName": {
+					"referenceName": "EducationData",
+					"type": "LinkedServiceReference"
 				}
 			}
 		],
