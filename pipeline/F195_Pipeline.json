@@ -25,7 +25,7 @@
 					"storedProcedureName": "[transform].[sp_F195]"
 				},
 				"linkedServiceName": {
-					"referenceName": "AzureSynapseAnalytics1",
+					"referenceName": "EducationData",
 					"type": "LinkedServiceReference"
 				}
 			},
@@ -68,7 +68,7 @@
 					"storedProcedureName": "[scorecard].[sp_EnrollmentToTarget]"
 				},
 				"linkedServiceName": {
-					"referenceName": "AzureSynapseAnalytics1",
+					"referenceName": "EducationData",
 					"type": "LinkedServiceReference"
 				}
 			},
@@ -95,7 +95,7 @@
 					"storedProcedureName": "[Indicator].[sp_metricSchoolbySchoolView]"
 				},
 				"linkedServiceName": {
-					"referenceName": "AzureSynapseAnalytics1",
+					"referenceName": "EducationData",
 					"type": "LinkedServiceReference"
 				}
 			},
@@ -122,7 +122,7 @@
 					"storedProcedureName": "[Indicator].[sp_metricSectorView]"
 				},
 				"linkedServiceName": {
-					"referenceName": "AzureSynapseAnalytics1",
+					"referenceName": "EducationData",
 					"type": "LinkedServiceReference"
 				}
 			},
@@ -146,10 +146,10 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "[Indicator].[sp_metricEnrollmentTarget]"
+					"storedProcedureName": "[scorecard].[sp_EnrollmentToTarget]"
 				},
 				"linkedServiceName": {
-					"referenceName": "AzureSynapseAnalytics1",
+					"referenceName": "EducationData",
 					"type": "LinkedServiceReference"
 				}
 			},
@@ -176,7 +176,7 @@
 					"storedProcedureName": "[Indicator].[sp_metricEnrollmentTargetSector]"
 				},
 				"linkedServiceName": {
-					"referenceName": "AzureSynapseAnalytics1",
+					"referenceName": "EducationData",
 					"type": "LinkedServiceReference"
 				}
 			}
