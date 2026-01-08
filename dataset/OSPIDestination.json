@@ -1,12 +1,8 @@
 {
 	"name": "OSPIDestination",
 	"properties": {
-		"linkedServiceName": {
-			"referenceName": "gatescharter-WorkspaceDefaultStorage",
-			"type": "LinkedServiceReference"
-		},
 		"folder": {
-			"name": "Test Folder"
+			"name": "OSPI Connect"
 		},
 		"annotations": [],
 		"type": "DelimitedText",

@@ -2,7 +2,7 @@
 	"name": "stagingPersonnel2016",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "gatescharter-WorkspaceDefaultStorage",
+			"referenceName": "educationdata-WorkspaceDefaultStorage",
 			"type": "LinkedServiceReference"
 		},
 		"folder": {
@@ -14,8 +14,8 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": "2015-2016S275FinalForPublic.csv",
-				"folderPath": "staging/Personnel",
-				"fileSystem": "gatescharter"
+				"folderPath": "synapse/workspaces/educationdata/Personnel",
+				"fileSystem": "uplifteducationdata"
 			},
 			"columnDelimiter": ",",
 			"rowDelimiter": "\n",

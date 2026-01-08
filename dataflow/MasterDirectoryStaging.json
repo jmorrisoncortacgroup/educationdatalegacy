@@ -9,10 +9,6 @@
 		"typeProperties": {
 			"sources": [
 				{
-					"dataset": {
-						"referenceName": "MasterSchoolDirectorySink",
-						"type": "DatasetReference"
-					},
 					"name": "WASchoolDirectory"
 				},
 				{
@@ -101,8 +97,7 @@
 				"          County as string",
 				"     ),",
 				"     allowSchemaDrift: true,",
-				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> WASchoolDirectory",
+				"     validateSchema: false) ~> WASchoolDirectory",
 				"source(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> Charter",
@@ -142,7 +137,8 @@
 				"          Phone as string,",
 				"          OrgCategoryList as string,",
 				"          AYPCode as string,",
-				"          GradeCategory as string",
+				"          GradeCategory as string,",
+				"          TransitionToKindergarten as string",
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",

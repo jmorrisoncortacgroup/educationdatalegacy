@@ -2,7 +2,7 @@
 	"name": "stagingPersonnel2024",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "gatescharter-WorkspaceDefaultStorage",
+			"referenceName": "educationdata-WorkspaceDefaultStorage",
 			"type": "LinkedServiceReference"
 		},
 		"folder": {
@@ -14,8 +14,8 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": "2023-2024S-275PreliminaryForPublic.csv",
-				"folderPath": "staging/Personnel",
-				"fileSystem": "gatescharter"
+				"folderPath": "synapse/workspaces/educationdata/Personnel",
+				"fileSystem": "uplifteducationdata"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
