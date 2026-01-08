@@ -1,8 +1,8 @@
 {
-	"name": "ImprovementFramework",
+	"name": "ImprovementFramework2022",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "gatescharter-WorkspaceDefaultStorage",
+			"referenceName": "educationdata-WorkspaceDefaultStorage",
 			"type": "LinkedServiceReference"
 		},
 		"folder": {
@@ -14,8 +14,8 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": "Washington_School_Improvement_Framework__WSIF__2022_Run.csv",
-				"folderPath": "staging/Improvement Framework",
-				"fileSystem": "gatescharter"
+				"folderPath": "synapse/workspaces/educationdata/Improvement Framework",
+				"fileSystem": "uplifteducationdata"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
