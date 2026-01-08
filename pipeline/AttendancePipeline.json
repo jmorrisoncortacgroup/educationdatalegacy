@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Attendance Dataflow",
+				"name": "Attendance Staging Dataflow",
 				"type": "ExecuteDataFlow",
 				"dependsOn": [],
 				"policy": {
@@ -20,10 +20,6 @@
 						"type": "DataFlowReference"
 					},
 					"staging": {
-						"linkedService": {
-							"referenceName": "gatescharter-WorkspaceDefaultStorage",
-							"type": "LinkedServiceReference"
-						},
 						"folderPath": "gatescharter/staging/Attendance"
 					},
 					"compute": {
@@ -38,7 +34,7 @@
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "Attendance Dataflow",
+						"activity": "Attendance Staging Dataflow",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -56,7 +52,7 @@
 					"storedProcedureName": "[transform].[sp_Attendance]"
 				},
 				"linkedServiceName": {
-					"referenceName": "AzureSynapseAnalytics1",
+					"referenceName": "EducationData",
 					"type": "LinkedServiceReference"
 				}
 			},
@@ -83,7 +79,7 @@
 					"storedProcedureName": "[Indicator].[sp_metricSchoolbySchoolView]"
 				},
 				"linkedServiceName": {
-					"referenceName": "AzureSynapseAnalytics1",
+					"referenceName": "EducationData",
 					"type": "LinkedServiceReference"
 				}
 			},
@@ -110,7 +106,7 @@
 					"storedProcedureName": "[Indicator].[sp_metricSectorView]"
 				},
 				"linkedServiceName": {
-					"referenceName": "AzureSynapseAnalytics1",
+					"referenceName": "EducationData",
 					"type": "LinkedServiceReference"
 				}
 			}
