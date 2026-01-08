@@ -2,7 +2,7 @@
 	"name": "stagingEnrollment14_24",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "gatescharter-WorkspaceDefaultStorage",
+			"referenceName": "educationdata-WorkspaceDefaultStorage",
 			"type": "LinkedServiceReference"
 		},
 		"folder": {
@@ -14,8 +14,8 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": "Report_Card_Enrollment_from_2014-15_to_Current_Year_20240122.csv",
-				"folderPath": "staging/Enrollment",
-				"fileSystem": "gatescharter"
+				"folderPath": "synapse/workspaces/educationdata/Enrollment",
+				"fileSystem": "uplifteducationdata"
 			},
 			"columnDelimiter": ",",
 			"rowDelimiter": "\n",
