@@ -2,7 +2,7 @@
 	"name": "Attendance2023",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "gatescharter-WorkspaceDefaultStorage",
+			"referenceName": "educationdata-WorkspaceDefaultStorage",
 			"type": "LinkedServiceReference"
 		},
 		"folder": {
@@ -13,9 +13,9 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "Report_Card_SQSS_for_2022-23_20240506 (2).csv",
-				"folderPath": "staging/Attendance",
-				"fileSystem": "gatescharter"
+				"fileName": "Report_Card_SQSS_for_2022-23_20240506.csv",
+				"folderPath": "synapse/workspaces/educationdata/Attendance",
+				"fileSystem": "uplifteducationdata"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
