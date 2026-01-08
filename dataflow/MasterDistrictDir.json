@@ -15,6 +15,10 @@
 					"name": "WashingtonDistrictDir"
 				},
 				{
+					"dataset": {
+						"referenceName": "StateLevelDummy",
+						"type": "DatasetReference"
+					},
 					"name": "StateLevelDummy"
 				},
 				{
@@ -76,19 +80,20 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> WashingtonDistrictDir",
 				"source(output(",
-				"          {ESD Code} as string,",
-				"          {ESD Name} as string,",
-				"          {District Code} as string,",
-				"          {District Name} as string,",
+				"          ESDCode as string,",
+				"          ESDName as string,",
+				"          DistrictCode as string,",
+				"          DistrictName as string,",
 				"          Address as string,",
 				"          {Address 2} as string,",
 				"          City as string,",
 				"          State as string,",
-				"          {Zip code} as string,",
-				"          {Organization level} as string",
+				"          Zipcode as string,",
+				"          {Organization Level} as string",
 				"     ),",
 				"     allowSchemaDrift: true,",
-				"     validateSchema: false) ~> StateLevelDummy",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> StateLevelDummy",
 				"source(output(",
 				"          {School Code} as string,",
 				"          {School Name} as string,",
@@ -142,7 +147,7 @@
 				"          City,",
 				"          State,",
 				"          {Zip code},",
-				"          {Organization Level} = derivedColumn1@{Organization Level},",
+				"          {Organization Level},",
 				"          {Charter District?},",
 				"          {Charter District List}",
 				"     ),",
