@@ -48,12 +48,26 @@
 						"type": "DatasetReference"
 					},
 					"name": "F24"
+				},
+				{
+					"dataset": {
+						"referenceName": "stagingF2026",
+						"type": "DatasetReference"
+					},
+					"name": "F26"
+				},
+				{
+					"dataset": {
+						"referenceName": "stagingF2025",
+						"type": "DatasetReference"
+					},
+					"name": "F25"
 				}
 			],
 			"sinks": [
 				{
 					"linkedService": {
-						"referenceName": "AzureSynapseAnalytics1",
+						"referenceName": "EducationData",
 						"type": "LinkedServiceReference"
 					},
 					"name": "sink1"
@@ -113,6 +127,24 @@
 				},
 				{
 					"name": "derivedColumn6"
+				},
+				{
+					"name": "derivedColumn7"
+				},
+				{
+					"name": "select7"
+				},
+				{
+					"name": "derivedColumn8"
+				},
+				{
+					"name": "select8"
+				},
+				{
+					"name": "union6"
+				},
+				{
+					"name": "union7"
 				}
 			],
 			"scriptLines": [
@@ -188,6 +220,30 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> F24",
+				"source(output(",
+				"          {School Name} as string,",
+				"          CCDDD as string,",
+				"          ItemCode as string,",
+				"          {26-26} as double,",
+				"          {26-27} as double,",
+				"          {27-28} as double,",
+				"          {28-29} as double",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> F26",
+				"source(output(",
+				"          {School Name} as string,",
+				"          CCDDD as string,",
+				"          Item as string,",
+				"          {24-25} as double,",
+				"          {25-26} as double,",
+				"          {26-27} as double,",
+				"          {27-28} as double",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> F25",
 				"derivedColumn1 select(mapColumn(",
 				"          CCDDD = {District Code},",
 				"          Item,",
@@ -257,7 +313,7 @@
 				"union1, select3 union(byName: true)~> union2",
 				"union2, select4 union(byName: true)~> union3",
 				"union3, select5 union(byName: true)~> union4",
-				"union5 unpivot(output(",
+				"union7 unpivot(output(",
 				"          {Budget Year} as string,",
 				"          Budget as double",
 				"     ),",
@@ -279,10 +335,36 @@
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> select6",
 				"F24 derive({School Year} = '2023-24') ~> derivedColumn6",
+				"F25 derive({School Year} = '2024-25') ~> derivedColumn7",
+				"derivedColumn7 select(mapColumn(",
+				"          CCDDD,",
+				"          Item,",
+				"          {2024-25} = {24-25},",
+				"          {2025-26} = {25-26},",
+				"          {2026-27} = {26-27},",
+				"          {2027-28} = {27-28},",
+				"          {School Year}",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select7",
+				"F26 derive({School Year} = '2025-26') ~> derivedColumn8",
+				"derivedColumn8 select(mapColumn(",
+				"          CCDDD,",
+				"          Item = ItemCode,",
+				"          {2026-26} = {26-26},",
+				"          {2026-27} = {26-27},",
+				"          {2027-28} = {27-28},",
+				"          {2028-29} = {28-29},",
+				"          {School Year}",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select8",
+				"union5, select7 union(byName: true)~> union6",
+				"union6, select8 union(byName: true)~> union7",
 				"unpivot1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     format: 'table',",
-				"     store: 'synapseanalytics',",
+				"     store: 'sqlserver',",
 				"     schemaName: 'staging',",
 				"     tableName: 'F195',",
 				"     insertable: true,",
@@ -290,12 +372,9 @@
 				"     deletable: false,",
 				"     upsertable: false,",
 				"     truncate: true,",
-				"     allowCopyCommand: true,",
-				"     staged: true,",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
 				"     errorHandlingOption: 'stopOnFirstError',",
-				"     partitionBy('hash', 1),",
 				"     preCommands: [],",
 				"     postCommands: []) ~> sink1"
 			]
