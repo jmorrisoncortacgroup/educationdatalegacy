@@ -2,7 +2,7 @@
 	"name": "stagingDataSource",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "gatescharter-WorkspaceDefaultStorage",
+			"referenceName": "educationdata-WorkspaceDefaultStorage",
 			"type": "LinkedServiceReference"
 		},
 		"folder": {
@@ -14,8 +14,8 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": "Data Source Dimension.csv",
-				"folderPath": "Raw/Mapping",
-				"fileSystem": "gatescharter"
+				"folderPath": "synapse/workspaces/educationdata/Dimension Mapping",
+				"fileSystem": "uplifteducationdata"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
