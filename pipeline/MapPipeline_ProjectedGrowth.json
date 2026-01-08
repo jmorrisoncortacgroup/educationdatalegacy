@@ -21,10 +21,10 @@
 					},
 					"staging": {
 						"linkedService": {
-							"referenceName": "AzureBlobStorage1",
+							"referenceName": "educationdata-WorkspaceDefaultStorage",
 							"type": "LinkedServiceReference"
 						},
-						"folderPath": "gatescharter/staging/Map"
+						"folderPath": ""
 					},
 					"compute": {
 						"coreCount": 8,
@@ -56,7 +56,7 @@
 					"storedProcedureName": "[Indicator].[sp_metricSchoolbySchoolView]"
 				},
 				"linkedServiceName": {
-					"referenceName": "AzureSynapseAnalytics1",
+					"referenceName": "EducationData",
 					"type": "LinkedServiceReference"
 				}
 			},
@@ -83,7 +83,7 @@
 					"storedProcedureName": "[Indicator].[sp_metricSectorView]"
 				},
 				"linkedServiceName": {
-					"referenceName": "AzureSynapseAnalytics1",
+					"referenceName": "EducationData",
 					"type": "LinkedServiceReference"
 				}
 			},
@@ -110,7 +110,7 @@
 					"storedProcedureName": "[transform].[sp_map]"
 				},
 				"linkedServiceName": {
-					"referenceName": "AzureSynapseAnalytics1",
+					"referenceName": "EducationData",
 					"type": "LinkedServiceReference"
 				}
 			}
