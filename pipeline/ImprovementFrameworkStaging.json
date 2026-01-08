@@ -15,6 +15,10 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
+					"dataflow": {
+						"referenceName": "ImprovementFramework",
+						"type": "DataFlowReference"
+					},
 					"staging": {
 						"folderPath": "gatescharter/staging/Improvement Framework"
 					},
