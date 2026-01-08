@@ -2,7 +2,7 @@
 	"name": "WASchoolsDirectory",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "gatescharter-WorkspaceDefaultStorage",
+			"referenceName": "educationdata-WorkspaceDefaultStorage",
 			"type": "LinkedServiceReference"
 		},
 		"folder": {
@@ -13,9 +13,9 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "Washington_School_Directory_20230207.csv",
-				"folderPath": "staging/WASchoolDirectory",
-				"fileSystem": "gatescharter"
+				"fileName": "Washington_School_Directory_20251229.csv",
+				"folderPath": "synapse/workspaces/educationdata/Master School Directory",
+				"fileSystem": "uplifteducationdata"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\"",
@@ -97,6 +97,10 @@
 			},
 			{
 				"name": "GradeCategory",
+				"type": "String"
+			},
+			{
+				"name": "TransitionToKindergarten",
 				"type": "String"
 			}
 		]
