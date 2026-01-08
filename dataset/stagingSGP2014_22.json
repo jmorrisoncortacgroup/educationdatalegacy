@@ -2,7 +2,7 @@
 	"name": "stagingSGP2014_22",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "gatescharter-WorkspaceDefaultStorage",
+			"referenceName": "educationdata-WorkspaceDefaultStorage",
 			"type": "LinkedServiceReference"
 		},
 		"folder": {
@@ -14,8 +14,8 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": "Report_Card_Growth_from_2014-15_to_Current_Year.csv",
-				"folderPath": "staging/SGP",
-				"fileSystem": "gatescharter"
+				"folderPath": "synapse/workspaces/educationdata/SGP",
+				"fileSystem": "uplifteducationdata"
 			},
 			"columnDelimiter": ",",
 			"rowDelimiter": "\n",

@@ -2,7 +2,7 @@
 	"name": "StagingSGP2023",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "gatescharter-WorkspaceDefaultStorage",
+			"referenceName": "educationdata-WorkspaceDefaultStorage",
 			"type": "LinkedServiceReference"
 		},
 		"folder": {
@@ -14,8 +14,8 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": "Report_Card_Growth_for_2022-23_20231228.csv",
-				"folderPath": "staging/SGP",
-				"fileSystem": "gatescharter"
+				"folderPath": "synapse/workspaces/educationdata/SGP",
+				"fileSystem": "uplifteducationdata"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
