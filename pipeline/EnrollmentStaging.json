@@ -15,8 +15,9 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"staging": {
-						"folderPath": "gatescharter/staging/Enrollment"
+					"dataflow": {
+						"referenceName": "EnrollmentStaging",
+						"type": "DataFlowReference"
 					},
 					"compute": {
 						"coreCount": 8,
