@@ -16,15 +16,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"dataflow": {
-						"referenceName": "GatesInternalManual",
-						"type": "DataFlowReference"
-					},
 					"staging": {
-						"linkedService": {
-							"referenceName": "gatescharter-WorkspaceDefaultStorage",
-							"type": "LinkedServiceReference"
-						},
 						"folderPath": "gatescharter/staging/Gates Internal Manual data"
 					},
 					"compute": {

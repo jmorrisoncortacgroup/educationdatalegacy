@@ -15,15 +15,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"dataflow": {
-						"referenceName": "Annual Collection",
-						"type": "DataFlowReference"
-					},
 					"staging": {
-						"linkedService": {
-							"referenceName": "gatescharter-WorkspaceDefaultStorage",
-							"type": "LinkedServiceReference"
-						},
 						"folderPath": "gatescharter/staging/WA Charter Commission Data"
 					},
 					"compute": {
