@@ -19,13 +19,6 @@
 						"referenceName": "P223Staging",
 						"type": "DataFlowReference"
 					},
-					"staging": {
-						"linkedService": {
-							"referenceName": "gatescharter-WorkspaceDefaultStorage",
-							"type": "LinkedServiceReference"
-						},
-						"folderPath": "gatescharter/staging/P-223"
-					},
 					"compute": {
 						"coreCount": 8,
 						"computeType": "General"
