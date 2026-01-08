@@ -182,7 +182,7 @@
 					"storedProcedureName": "[Indicator].[sp_metricSchoolbySchoolView]"
 				},
 				"linkedServiceName": {
-					"referenceName": "AzureSynapseAnalytics1",
+					"referenceName": "EducationData",
 					"type": "LinkedServiceReference"
 				}
 			},
