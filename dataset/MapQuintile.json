@@ -2,7 +2,7 @@
 	"name": "MapQuintile",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "gatescharter-WorkspaceDefaultStorage",
+			"referenceName": "educationdata-WorkspaceDefaultStorage",
 			"type": "LinkedServiceReference"
 		},
 		"folder": {
@@ -14,8 +14,8 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": "MAP Sector and School Metrics Quintiles 2024-25.csv",
-				"folderPath": "staging/Map",
-				"fileSystem": "gatescharter"
+				"folderPath": "synapse/workspaces/educationdata/MAP",
+				"fileSystem": "uplifteducationdata"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
