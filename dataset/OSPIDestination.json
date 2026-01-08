@@ -1,6 +1,10 @@
 {
 	"name": "OSPIDestination",
 	"properties": {
+		"linkedServiceName": {
+			"referenceName": "educationdata-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
 		"folder": {
 			"name": "OSPI Connect"
 		},
@@ -10,8 +14,8 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": "Enrollment_DTSC",
-				"folderPath": "staging/DTSC",
-				"fileSystem": "gatescharter"
+				"folderPath": "synapse/workspaces/educationdata/Graduation",
+				"fileSystem": "uplifteducationdata"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
