@@ -11,6 +11,7 @@
 		"annotations": [],
 		"type": "Excel",
 		"typeProperties": {
+			"sheetName": "Table 1",
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": "2025-26_HeadCount.xlsx",
