@@ -1,0 +1,57 @@
+{
+	"name": "stagingF2026",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "educationdata-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "F-195"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "2025-2026 F-195F All Districts.csv",
+				"folderPath": "synapse/workspaces/educationdata/F-195",
+				"fileSystem": "uplifteducationdata"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "School Name",
+				"type": "String"
+			},
+			{
+				"name": "CCDDD",
+				"type": "String"
+			},
+			{
+				"name": "ItemCode",
+				"type": "String"
+			},
+			{
+				"name": "26-26",
+				"type": "String"
+			},
+			{
+				"name": "26-27",
+				"type": "String"
+			},
+			{
+				"name": "27-28",
+				"type": "String"
+			},
+			{
+				"name": "28-29",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}
