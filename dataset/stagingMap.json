@@ -2,7 +2,7 @@
 	"name": "stagingMap",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "gatescharter-WorkspaceDefaultStorage",
+			"referenceName": "educationdata-WorkspaceDefaultStorage",
 			"type": "LinkedServiceReference"
 		},
 		"folder": {
@@ -15,8 +15,8 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": "MAPMetProjectGrowth_2024-25.xlsx",
-				"folderPath": "staging/Map",
-				"fileSystem": "gatescharter"
+				"folderPath": "synapse/workspaces/educationdata/MAP",
+				"fileSystem": "uplifteducationdata"
 			},
 			"firstRowAsHeader": true
 		},
