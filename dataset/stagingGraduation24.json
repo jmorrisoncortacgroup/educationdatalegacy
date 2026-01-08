@@ -2,7 +2,7 @@
 	"name": "stagingGraduation24",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "gatescharter-WorkspaceDefaultStorage",
+			"referenceName": "educationdata-WorkspaceDefaultStorage",
 			"type": "LinkedServiceReference"
 		},
 		"folder": {
@@ -14,8 +14,8 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": "Report_Card_Graduation_2023-24_20250528.csv",
-				"folderPath": "staging/Graduation",
-				"fileSystem": "gatescharter"
+				"folderPath": "synapse/workspaces/educationdata/Graduation",
+				"fileSystem": "uplifteducationdata"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
