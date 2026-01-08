@@ -13,7 +13,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "P223_2023.xlsx",
+				"fileName": "P223_2024.xlsx",
 				"folderPath": "synapse/workspaces/educationdata/P-223",
 				"fileSystem": "uplifteducationdata"
 			},
