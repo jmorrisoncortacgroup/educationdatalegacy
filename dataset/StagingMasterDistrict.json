@@ -2,7 +2,7 @@
 	"name": "StagingMasterDistrict",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "gatescharter-WorkspaceDefaultStorage",
+			"referenceName": "educationdata-WorkspaceDefaultStorage",
 			"type": "LinkedServiceReference"
 		},
 		"folder": {
@@ -13,9 +13,9 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "MasterDistrictDirectory.csv",
-				"folderPath": "Staging",
-				"fileSystem": "gatescharter"
+				"fileName": "Washington_District_Directory_20251229.csv",
+				"folderPath": "synapse/workspaces/educationdata/Master District Directory",
+				"fileSystem": "uplifteducationdata"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
