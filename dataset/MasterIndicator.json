@@ -2,7 +2,7 @@
 	"name": "MasterIndicator",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "gatescharter-WorkspaceDefaultStorage",
+			"referenceName": "educationdata-WorkspaceDefaultStorage",
 			"type": "LinkedServiceReference"
 		},
 		"folder": {
@@ -14,9 +14,9 @@
 			"sheetName": "Indicator Master",
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "Indicator Master_V2.1.4.xlsx",
-				"folderPath": "staging/Master Indicator",
-				"fileSystem": "gatescharter"
+				"fileName": "Indicator Master_V2.1.6.xlsx",
+				"folderPath": "synapse/workspaces/educationdata/Master Indicator",
+				"fileSystem": "uplifteducationdata"
 			},
 			"firstRowAsHeader": true
 		},
