@@ -18,7 +18,7 @@
 			"sinks": [
 				{
 					"linkedService": {
-						"referenceName": "AzureSynapseAnalytics1",
+						"referenceName": "EducationData",
 						"type": "LinkedServiceReference"
 					},
 					"name": "sink2"
@@ -45,7 +45,7 @@
 				"PostSecondary sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     format: 'table',",
-				"     store: 'synapseanalytics',",
+				"     store: 'sqlserver',",
 				"     schemaName: 'staging',",
 				"     tableName: 'PostSecondary',",
 				"     insertable: true,",
@@ -53,8 +53,6 @@
 				"     deletable: false,",
 				"     upsertable: false,",
 				"     truncate: true,",
-				"     allowCopyCommand: true,",
-				"     staged: true,",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
 				"     errorHandlingOption: 'stopOnFirstError') ~> sink2"
