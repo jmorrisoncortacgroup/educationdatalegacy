@@ -2,7 +2,7 @@
 	"name": "MasterSchoolGeo",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "gatescharter-WorkspaceDefaultStorage",
+			"referenceName": "educationdata-WorkspaceDefaultStorage",
 			"type": "LinkedServiceReference"
 		},
 		"folder": {
@@ -14,8 +14,8 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": "MasterSchoolDirectoryGeo.csv",
-				"folderPath": "staging",
-				"fileSystem": "gatescharter"
+				"folderPath": "synapse/workspaces/educationdata/Master School Directory",
+				"fileSystem": "uplifteducationdata"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
