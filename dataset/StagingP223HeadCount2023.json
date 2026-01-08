@@ -11,6 +11,7 @@
 		"annotations": [],
 		"type": "Excel",
 		"typeProperties": {
+			"sheetName": "BasicEducation",
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": "P223_2023.xlsx",
