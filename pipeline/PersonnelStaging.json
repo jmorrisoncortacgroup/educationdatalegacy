@@ -19,13 +19,6 @@
 						"referenceName": "PersonnelStaging",
 						"type": "DataFlowReference"
 					},
-					"staging": {
-						"linkedService": {
-							"referenceName": "gatescharter-WorkspaceDefaultStorage",
-							"type": "LinkedServiceReference"
-						},
-						"folderPath": "gatescharter/staging/Personnel"
-					},
 					"compute": {
 						"coreCount": 8,
 						"computeType": "General"
