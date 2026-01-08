@@ -2,7 +2,7 @@
 	"name": "ImprovementFramework2017_2019",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "gatescharter-WorkspaceDefaultStorage",
+			"referenceName": "educationdata-WorkspaceDefaultStorage",
 			"type": "LinkedServiceReference"
 		},
 		"folder": {
@@ -14,8 +14,8 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": "Washington_School_Improvement_Framework__WSIF__Stacked_2017_-_2019_Runs.csv",
-				"folderPath": "staging/Improvement Framework",
-				"fileSystem": "gatescharter"
+				"folderPath": "synapse/workspaces/educationdata/Improvement Framework",
+				"fileSystem": "uplifteducationdata"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
