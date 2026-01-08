@@ -2,7 +2,7 @@
 	"name": "stagingEnrollment2025",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "gatescharter-WorkspaceDefaultStorage",
+			"referenceName": "educationdata-WorkspaceDefaultStorage",
 			"type": "LinkedServiceReference"
 		},
 		"folder": {
@@ -14,8 +14,8 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": "Report_Card_Enrollment_2024-25_School_Year_-_Preliminary_20250207.csv",
-				"folderPath": "staging/Enrollment",
-				"fileSystem": "gatescharter"
+				"folderPath": "synapse/workspaces/educationdata/Enrollment",
+				"fileSystem": "uplifteducationdata"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
