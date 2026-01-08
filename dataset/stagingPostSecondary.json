@@ -2,7 +2,7 @@
 	"name": "stagingPostSecondary",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "gatescharter-WorkspaceDefaultStorage",
+			"referenceName": "educationdata-WorkspaceDefaultStorage",
 			"type": "LinkedServiceReference"
 		},
 		"folder": {
@@ -14,8 +14,8 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": "High_School_Graduate_Outcomes_-_First_Year_Enrollment_20240614.csv",
-				"folderPath": "staging/PostSecondary",
-				"fileSystem": "gatescharter"
+				"folderPath": "synapse/workspaces/educationdata/Post Secondary",
+				"fileSystem": "uplifteducationdata"
 			},
 			"columnDelimiter": ",",
 			"rowDelimiter": "\n",
