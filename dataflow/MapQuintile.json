@@ -18,7 +18,7 @@
 			"sinks": [
 				{
 					"linkedService": {
-						"referenceName": "AzureSynapseAnalytics1",
+						"referenceName": "EducationData",
 						"type": "LinkedServiceReference"
 					},
 					"name": "Sink"
@@ -41,15 +41,13 @@
 				"MapQuintile sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     format: 'table',",
-				"     store: 'synapseanalytics',",
+				"     store: 'sqlserver',",
 				"     schemaName: 'staging',",
 				"     tableName: 'MapQuintile',",
 				"     insertable: true,",
 				"     updateable: false,",
 				"     deletable: false,",
 				"     upsertable: false,",
-				"     allowCopyCommand: true,",
-				"     staged: true,",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
 				"     errorHandlingOption: 'stopOnFirstError') ~> Sink"

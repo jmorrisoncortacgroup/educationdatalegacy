@@ -39,7 +39,7 @@
 			"sinks": [
 				{
 					"linkedService": {
-						"referenceName": "AzureSynapseAnalytics1",
+						"referenceName": "EducationData",
 						"type": "LinkedServiceReference"
 					},
 					"name": "sink1"
@@ -573,16 +573,13 @@
 				"union1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     format: 'table',",
-				"     store: 'synapseanalytics',",
+				"     store: 'sqlserver',",
 				"     schemaName: 'staging',",
 				"     tableName: 'ImprovementFramework',",
 				"     insertable: true,",
 				"     updateable: false,",
 				"     deletable: false,",
 				"     upsertable: false,",
-				"     recreate: true,",
-				"     allowCopyCommand: true,",
-				"     staged: true,",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
 				"     errorHandlingOption: 'stopOnFirstError') ~> sink1"
