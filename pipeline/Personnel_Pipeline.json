@@ -41,7 +41,7 @@
 					"storedProcedureName": "[transform].[sp_Personnel]"
 				},
 				"linkedServiceName": {
-					"referenceName": "AzureSynapseAnalytics1",
+					"referenceName": "EducationData",
 					"type": "LinkedServiceReference"
 				}
 			},
@@ -68,7 +68,7 @@
 					"storedProcedureName": "[Indicator].[sp_Personnel]"
 				},
 				"linkedServiceName": {
-					"referenceName": "AzureSynapseAnalytics1",
+					"referenceName": "EducationData",
 					"type": "LinkedServiceReference"
 				}
 			},
@@ -95,7 +95,7 @@
 					"storedProcedureName": "[Indicator].[sp_metricPersonnel]"
 				},
 				"linkedServiceName": {
-					"referenceName": "AzureSynapseAnalytics1",
+					"referenceName": "EducationData",
 					"type": "LinkedServiceReference"
 				}
 			},
@@ -122,7 +122,7 @@
 					"storedProcedureName": "[Indicator].[sp_metricSchoolbySchoolView]"
 				},
 				"linkedServiceName": {
-					"referenceName": "AzureSynapseAnalytics1",
+					"referenceName": "EducationData",
 					"type": "LinkedServiceReference"
 				}
 			},
@@ -149,7 +149,7 @@
 					"storedProcedureName": "[Indicator].[sp_metricSectorView]"
 				},
 				"linkedServiceName": {
-					"referenceName": "AzureSynapseAnalytics1",
+					"referenceName": "EducationData",
 					"type": "LinkedServiceReference"
 				}
 			},
@@ -176,7 +176,7 @@
 					"storedProcedureName": "[Indicator].[sp_metricPersonnelSector]"
 				},
 				"linkedServiceName": {
-					"referenceName": "AzureSynapseAnalytics1",
+					"referenceName": "EducationData",
 					"type": "LinkedServiceReference"
 				}
 			}
