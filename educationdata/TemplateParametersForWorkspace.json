@@ -1,0 +1,39 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"workspaceName": {
+			"value": "educationdata"
+		},
+		"AzureDataLakeStorageGen2_accountKey": {
+			"value": ""
+		},
+		"EducationData_password": {
+			"value": ""
+		},
+		"educationdata-WorkspaceDefaultSqlServer_connectionString": {
+			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:educationdata.database.windows.net,1433;Initial Catalog=@{linkedService().DBName}"
+		},
+		"AzureDataLakeStorageGen2_properties_typeProperties_url": {
+			"value": "https://uplifteducationdata.dfs.core.windows.net/"
+		},
+		"EducationData_properties_typeProperties_server": {
+			"value": "educationdata.database.windows.net"
+		},
+		"EducationData_properties_typeProperties_database": {
+			"value": "EducationDataResources"
+		},
+		"EducationData_properties_typeProperties_userName": {
+			"value": "uplift_alteryx"
+		},
+		"ExternalSchoolHTTP_properties_typeProperties_url": {
+			"value": "https://www.k12.wa.us/policy-funding/school-apportionment/safs-report-api"
+		},
+		"HttpServer1_properties_typeProperties_url": {
+			"value": "https://data.wa.gov/resource/"
+		},
+		"educationdata-WorkspaceDefaultStorage_properties_typeProperties_url": {
+			"value": "https://uplifteducationdata.dfs.core.windows.net"
+		}
+	}
+}
