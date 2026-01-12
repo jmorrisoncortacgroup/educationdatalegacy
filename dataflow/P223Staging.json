@@ -788,6 +788,7 @@
 				"like({School Name}, '% Commencement Bay%'),'Impact: Commencement Bay Elementary',     \r",
 				"like({School Name}, '%Olympus%'),'Summit Olympus',     \r",
 				"like({School Name}, '%Impact Publ%'),'Impact: Puget Sound Elementary', \r",
+				"like({School Name}, '%Puget%'),'Impact: Puget Sound Elementary', \r",
 				"like({School Name}, '%Pinnacles%'),'Pinnacles Prep',   \r",
 				"like({School Name}, '%Black%'),'Impact: Black River Elementary',  \r",
 				"like({School Name}, '%Rooted%'),'Rooted School Vancouver',       \r",
