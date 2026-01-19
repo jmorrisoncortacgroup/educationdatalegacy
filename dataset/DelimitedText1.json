@@ -1,0 +1,27 @@
+{
+	"name": "DelimitedText1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "educationdata-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Attendance"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "Report_Card_SQSS_for_2024-25_20260119.csv",
+				"folderPath": "synapse/workspaces/educationdata/Attendance",
+				"fileSystem": "uplifteducationdata"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
