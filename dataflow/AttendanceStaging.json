@@ -12,7 +12,7 @@
 						"referenceName": "Attendance2023",
 						"type": "DatasetReference"
 					},
-					"name": "ReportCard"
+					"name": "Attendance2023"
 				},
 				{
 					"dataset": {
@@ -20,6 +20,13 @@
 						"type": "DatasetReference"
 					},
 					"name": "Attendance2024"
+				},
+				{
+					"dataset": {
+						"referenceName": "Attendance2025",
+						"type": "DatasetReference"
+					},
+					"name": "Attendance2025"
 				}
 			],
 			"sinks": [
@@ -40,6 +47,12 @@
 				},
 				{
 					"name": "select2"
+				},
+				{
+					"name": "select3"
+				},
+				{
+					"name": "union2"
 				}
 			],
 			"scriptLines": [
@@ -79,7 +92,7 @@
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> ReportCard",
+				"     ignoreNoFilesFound: false) ~> Attendance2023",
 				"source(output(",
 				"          SchoolYear as string,",
 				"          OrganizationName as string,",
@@ -119,7 +132,47 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> Attendance2024",
-				"ReportCard select(mapColumn(",
+				"source(output(",
+				"          SchoolYear as string,",
+				"          OrganizationId as integer,",
+				"          OrganizationName as string,",
+				"          OrganizationLevel as string,",
+				"          County as string,",
+				"          ESDName as string,",
+				"          DistrictCode as short,",
+				"          DistrictName as string,",
+				"          DistrictOrganizationId as string,",
+				"          SchoolCode as string,",
+				"          SchoolName as string,",
+				"          SchoolOrganizationId as string,",
+				"          CurrentSchoolType as string,",
+				"          StudentGroupType as string,",
+				"          StudentGroup as string,",
+				"          GradeLevel as string,",
+				"          Measure as string,",
+				"          DAT_Reason as string,",
+				"          Label as string,",
+				"          Percent as double,",
+				"          Numerator as short,",
+				"          Denominator as short,",
+				"          APCourseNumber as string,",
+				"          IBCourseNumber as string,",
+				"          CIHSCourseNumber as string,",
+				"          CambridgeCourseNumber as string,",
+				"          CTECourseNumber as string,",
+				"          RunningStartCourseNumber as string,",
+				"          APCoursePercent as double,",
+				"          IBCoursePercent as double,",
+				"          CIHSCoursePercent as double,",
+				"          CambridgeCoursePercent as double,",
+				"          CTECoursePercent as double,",
+				"          RunningStartCoursePercent as double,",
+				"          DataAsOf as timestamp",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> Attendance2025",
+				"Attendance2023 select(mapColumn(",
 				"          SchoolYear,",
 				"          OrganizationLevel,",
 				"          County,",
@@ -164,7 +217,30 @@
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> select2",
-				"union1 sink(allowSchemaDrift: true,",
+				"Attendance2025 select(mapColumn(",
+				"          SchoolYear,",
+				"          OrganizationLevel,",
+				"          County,",
+				"          DistrictCode,",
+				"          DistrictName,",
+				"          DistrictOrganizationId,",
+				"          SchoolCode,",
+				"          SchoolName,",
+				"          SchoolOrganizationId,",
+				"          CurrentSchoolType,",
+				"          StudentGroupType,",
+				"          StudentGroup,",
+				"          GradeLevel,",
+				"          Measure,",
+				"          DAT_Reason,",
+				"          Numerator,",
+				"          Denominator,",
+				"          DataAsOf",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select3",
+				"union1, select3 union(byName: true)~> union2",
+				"union2 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     format: 'table',",
 				"     store: 'sqlserver',",
