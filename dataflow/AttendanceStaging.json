@@ -53,6 +53,9 @@
 				},
 				{
 					"name": "union2"
+				},
+				{
+					"name": "SchoolYear"
 				}
 			],
 			"scriptLines": [
@@ -239,7 +242,8 @@
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> select3",
-				"union1, select3 union(byName: true)~> union2",
+				"union1, SchoolYear union(byName: true)~> union2",
+				"select3 derive(SchoolYear = '2024-25') ~> SchoolYear",
 				"union2 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     format: 'table',",
