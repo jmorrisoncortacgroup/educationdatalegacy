@@ -114,33 +114,9 @@
 			"properties": {
 				"activities": [
 					{
-						"name": "AP Staging",
-						"type": "ExecutePipeline",
-						"dependsOn": [],
-						"policy": {
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "AcademicPerformanceStaging",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {}
-						}
-					},
-					{
 						"name": "AP transform",
 						"type": "SqlServerStoredProcedure",
-						"dependsOn": [
-							{
-								"activity": "AP Staging",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
+						"dependsOn": [],
 						"policy": {
 							"timeout": "0.12:00:00",
 							"retry": 0,
@@ -411,7 +387,6 @@
 				"lastPublishTime": "2025-10-15T02:38:16Z"
 			},
 			"dependsOn": [
-				"[concat(variables('workspaceId'), '/pipelines/AcademicPerformanceStaging')]",
 				"[concat(variables('workspaceId'), '/linkedServices/EducationData')]"
 			]
 		},
