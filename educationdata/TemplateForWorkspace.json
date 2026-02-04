@@ -8060,6 +8060,223 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('workspaceName'), '/stagingEnrollment2026')]",
+			"type": "Microsoft.Synapse/workspaces/datasets",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "educationdata-WorkspaceDefaultStorage",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Enrollment"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "Report_Card_Enrollment_2025-26_School_Year_-_Preliminary_20260203.csv",
+						"folderPath": "synapse/workspaces/educationdata/Enrollment",
+						"fileSystem": "uplifteducationdata"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "SchoolYear",
+						"type": "String"
+					},
+					{
+						"name": "OrganizationLevel",
+						"type": "String"
+					},
+					{
+						"name": "County",
+						"type": "String"
+					},
+					{
+						"name": "ESDName",
+						"type": "String"
+					},
+					{
+						"name": "ESDOrganizationID",
+						"type": "String"
+					},
+					{
+						"name": "DistrictCode",
+						"type": "String"
+					},
+					{
+						"name": "DistrictName",
+						"type": "String"
+					},
+					{
+						"name": "DistrictOrganizationId",
+						"type": "String"
+					},
+					{
+						"name": "SchoolCode",
+						"type": "String"
+					},
+					{
+						"name": "SchoolName",
+						"type": "String"
+					},
+					{
+						"name": "SchoolOrganizationID",
+						"type": "String"
+					},
+					{
+						"name": "CurrentSchoolType",
+						"type": "String"
+					},
+					{
+						"name": "GradeLevel",
+						"type": "String"
+					},
+					{
+						"name": "All Students",
+						"type": "String"
+					},
+					{
+						"name": "Female",
+						"type": "String"
+					},
+					{
+						"name": "Gender X",
+						"type": "String"
+					},
+					{
+						"name": "Male",
+						"type": "String"
+					},
+					{
+						"name": "American Indian/Alaskan Native",
+						"type": "String"
+					},
+					{
+						"name": "Asian",
+						"type": "String"
+					},
+					{
+						"name": "Black/African American",
+						"type": "String"
+					},
+					{
+						"name": "Hispanic/Latino of any race(s)",
+						"type": "String"
+					},
+					{
+						"name": "Native Hawaiian/Pacific Islander",
+						"type": "String"
+					},
+					{
+						"name": "Two or More Races",
+						"type": "String"
+					},
+					{
+						"name": "White",
+						"type": "String"
+					},
+					{
+						"name": "English Language Learners",
+						"type": "String"
+					},
+					{
+						"name": "Non-English Language Learners",
+						"type": "String"
+					},
+					{
+						"name": "Foster Care",
+						"type": "String"
+					},
+					{
+						"name": "Non-Foster Care",
+						"type": "String"
+					},
+					{
+						"name": "Highly Capable",
+						"type": "String"
+					},
+					{
+						"name": "Non-Highly Capable",
+						"type": "String"
+					},
+					{
+						"name": "Homeless",
+						"type": "String"
+					},
+					{
+						"name": "Non-Homeless",
+						"type": "String"
+					},
+					{
+						"name": "Low Income",
+						"type": "String"
+					},
+					{
+						"name": "Non-Low Income",
+						"type": "String"
+					},
+					{
+						"name": "Migrant",
+						"type": "String"
+					},
+					{
+						"name": "Non-Migrant",
+						"type": "String"
+					},
+					{
+						"name": "Military Parent",
+						"type": "String"
+					},
+					{
+						"name": "Non-Military Parent",
+						"type": "String"
+					},
+					{
+						"name": "Mobile",
+						"type": "String"
+					},
+					{
+						"name": "Non-Mobile",
+						"type": "String"
+					},
+					{
+						"name": "Section 504",
+						"type": "String"
+					},
+					{
+						"name": "Non-Section 504",
+						"type": "String"
+					},
+					{
+						"name": "Students with Disabilities",
+						"type": "String"
+					},
+					{
+						"name": "Students without Disabilities",
+						"type": "String"
+					},
+					{
+						"name": "DAT",
+						"type": "String"
+					},
+					{
+						"name": "DataAsOf",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/linkedServices/educationdata-WorkspaceDefaultStorage')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('workspaceName'), '/stagingF2019')]",
 			"type": "Microsoft.Synapse/workspaces/datasets",
 			"apiVersion": "2019-06-01-preview",
@@ -14089,9 +14306,9 @@
 						"     ignoreNullPivots: false) ~> unpivot1",
 						"union4, select6 union(byName: true)~> union5",
 						"derivedColumn6 select(mapColumn(",
-						"          {School Year},",
-						"          CCDDD,",
+						"          CCDDD = {District Code},",
 						"          Item,",
+						"          {School Year},",
 						"          {2023-24},",
 						"          {2024-25},",
 						"          {2025-26},",
@@ -14099,28 +14316,31 @@
 						"     ),",
 						"     skipDuplicateMapInputs: true,",
 						"     skipDuplicateMapOutputs: true) ~> select6",
-						"F24 derive({School Year} = '2023-24') ~> derivedColumn6",
-						"F25 derive({School Year} = '2024-25') ~> derivedColumn7",
+						"F24 derive({School Year} = '2023-24',",
+						"          {District Code} = case(length(CCDDD) <5, '0' + CCDDD, CCDDD)) ~> derivedColumn6",
+						"F25 derive({School Year} = '2024-25',",
+						"          {District Code} = case(length(CCDDD) <5, '0' + CCDDD, CCDDD)) ~> derivedColumn7",
 						"derivedColumn7 select(mapColumn(",
-						"          CCDDD,",
+						"          CCDDD = {District Code},",
 						"          Item,",
+						"          {School Year},",
 						"          {2024-25} = {24-25},",
 						"          {2025-26} = {25-26},",
 						"          {2026-27} = {26-27},",
-						"          {2027-28} = {27-28},",
-						"          {School Year}",
+						"          {2027-28} = {27-28}",
 						"     ),",
 						"     skipDuplicateMapInputs: true,",
 						"     skipDuplicateMapOutputs: true) ~> select7",
-						"F26 derive({School Year} = '2025-26') ~> derivedColumn8",
+						"F26 derive({School Year} = '2025-26',",
+						"          {District Code} = case(length(CCDDD) <5, '0' + CCDDD, CCDDD)) ~> derivedColumn8",
 						"derivedColumn8 select(mapColumn(",
-						"          CCDDD,",
+						"          CCDDD = {District Code},",
 						"          Item = ItemCode,",
+						"          {School Year},",
 						"          {2025-26} = {26-26},",
 						"          {2026-27} = {26-27},",
 						"          {2027-28} = {27-28},",
-						"          {2028-29} = {28-29},",
-						"          {School Year}",
+						"          {2028-29} = {28-29}",
 						"     ),",
 						"     skipDuplicateMapInputs: true,",
 						"     skipDuplicateMapOutputs: true) ~> select8",
@@ -18944,223 +19164,6 @@
 			},
 			"dependsOn": [
 				"[concat(variables('workspaceId'), '/managedVirtualNetworks/default')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('workspaceName'), '/stagingEnrollment2026')]",
-			"type": "Microsoft.Synapse/workspaces/datasets",
-			"apiVersion": "2019-06-01-preview",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "educationdata-WorkspaceDefaultStorage",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "Enrollment"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileName": "Report_Card_Enrollment_2025-26_School_Year_-_Preliminary_20260203.csv",
-						"folderPath": "synapse/workspaces/educationdata/Enrollment",
-						"fileSystem": "uplifteducationdata"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "SchoolYear",
-						"type": "String"
-					},
-					{
-						"name": "OrganizationLevel",
-						"type": "String"
-					},
-					{
-						"name": "County",
-						"type": "String"
-					},
-					{
-						"name": "ESDName",
-						"type": "String"
-					},
-					{
-						"name": "ESDOrganizationID",
-						"type": "String"
-					},
-					{
-						"name": "DistrictCode",
-						"type": "String"
-					},
-					{
-						"name": "DistrictName",
-						"type": "String"
-					},
-					{
-						"name": "DistrictOrganizationId",
-						"type": "String"
-					},
-					{
-						"name": "SchoolCode",
-						"type": "String"
-					},
-					{
-						"name": "SchoolName",
-						"type": "String"
-					},
-					{
-						"name": "SchoolOrganizationID",
-						"type": "String"
-					},
-					{
-						"name": "CurrentSchoolType",
-						"type": "String"
-					},
-					{
-						"name": "GradeLevel",
-						"type": "String"
-					},
-					{
-						"name": "All Students",
-						"type": "String"
-					},
-					{
-						"name": "Female",
-						"type": "String"
-					},
-					{
-						"name": "Gender X",
-						"type": "String"
-					},
-					{
-						"name": "Male",
-						"type": "String"
-					},
-					{
-						"name": "American Indian/Alaskan Native",
-						"type": "String"
-					},
-					{
-						"name": "Asian",
-						"type": "String"
-					},
-					{
-						"name": "Black/African American",
-						"type": "String"
-					},
-					{
-						"name": "Hispanic/Latino of any race(s)",
-						"type": "String"
-					},
-					{
-						"name": "Native Hawaiian/Pacific Islander",
-						"type": "String"
-					},
-					{
-						"name": "Two or More Races",
-						"type": "String"
-					},
-					{
-						"name": "White",
-						"type": "String"
-					},
-					{
-						"name": "English Language Learners",
-						"type": "String"
-					},
-					{
-						"name": "Non-English Language Learners",
-						"type": "String"
-					},
-					{
-						"name": "Foster Care",
-						"type": "String"
-					},
-					{
-						"name": "Non-Foster Care",
-						"type": "String"
-					},
-					{
-						"name": "Highly Capable",
-						"type": "String"
-					},
-					{
-						"name": "Non-Highly Capable",
-						"type": "String"
-					},
-					{
-						"name": "Homeless",
-						"type": "String"
-					},
-					{
-						"name": "Non-Homeless",
-						"type": "String"
-					},
-					{
-						"name": "Low Income",
-						"type": "String"
-					},
-					{
-						"name": "Non-Low Income",
-						"type": "String"
-					},
-					{
-						"name": "Migrant",
-						"type": "String"
-					},
-					{
-						"name": "Non-Migrant",
-						"type": "String"
-					},
-					{
-						"name": "Military Parent",
-						"type": "String"
-					},
-					{
-						"name": "Non-Military Parent",
-						"type": "String"
-					},
-					{
-						"name": "Mobile",
-						"type": "String"
-					},
-					{
-						"name": "Non-Mobile",
-						"type": "String"
-					},
-					{
-						"name": "Section 504",
-						"type": "String"
-					},
-					{
-						"name": "Non-Section 504",
-						"type": "String"
-					},
-					{
-						"name": "Students with Disabilities",
-						"type": "String"
-					},
-					{
-						"name": "Students without Disabilities",
-						"type": "String"
-					},
-					{
-						"name": "DAT",
-						"type": "String"
-					},
-					{
-						"name": "DataAsOf",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": [
-				"[concat(variables('workspaceId'), '/linkedServices/educationdata-WorkspaceDefaultStorage')]"
 			]
 		}
 	]
