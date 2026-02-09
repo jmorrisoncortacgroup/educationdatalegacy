@@ -653,8 +653,8 @@
 								"parameters": {},
 								"datasetParameters": {
 									"Enrollment14to24": {},
-									"Enrollment25": {},
-									"Enrollment26": {},
+									"Enrollment20242025": {},
+									"Enrollment20252026": {},
 									"sink1": {}
 								}
 							},
@@ -7868,6 +7868,7 @@
 						"fileSystem": "uplifteducationdata"
 					},
 					"columnDelimiter": ",",
+					"rowDelimiter": "\n",
 					"escapeChar": "\\",
 					"firstRowAsHeader": true,
 					"quoteChar": "\""
@@ -13774,14 +13775,14 @@
 								"referenceName": "stagingEnrollment2025",
 								"type": "DatasetReference"
 							},
-							"name": "Enrollment25"
+							"name": "Enrollment20242025"
 						},
 						{
 							"dataset": {
 								"referenceName": "stagingEnrollment2026",
 								"type": "DatasetReference"
 							},
-							"name": "Enrollment26"
+							"name": "Enrollment20252026"
 						}
 					],
 					"sinks": [
@@ -13801,13 +13802,13 @@
 							"name": "select1"
 						},
 						{
+							"name": "union2"
+						},
+						{
 							"name": "select2"
 						},
 						{
 							"name": "select3"
-						},
-						{
-							"name": "union2"
 						}
 					],
 					"scriptLines": [
@@ -13910,7 +13911,7 @@
 						"     ),",
 						"     allowSchemaDrift: true,",
 						"     validateSchema: false,",
-						"     ignoreNoFilesFound: false) ~> Enrollment25",
+						"     ignoreNoFilesFound: false) ~> Enrollment20242025",
 						"source(output(",
 						"          SchoolYear as string,",
 						"          OrganizationLevel as string,",
@@ -13943,7 +13944,7 @@
 						"          {Highly Capable} as integer,",
 						"          {Non-Highly Capable} as integer,",
 						"          Homeless as integer,",
-						"          {Non-Homeless} as short,",
+						"          {Non-Homeless} as integer,",
 						"          {Low Income} as integer,",
 						"          {Non-Low Income} as integer,",
 						"          Migrant as integer,",
@@ -13961,7 +13962,7 @@
 						"     ),",
 						"     allowSchemaDrift: true,",
 						"     validateSchema: false,",
-						"     ignoreNoFilesFound: false) ~> Enrollment26",
+						"     ignoreNoFilesFound: false) ~> Enrollment20252026",
 						"select1, select2 union(byName: true)~> union1",
 						"Enrollment14to24 select(mapColumn(",
 						"          SchoolYear,",
@@ -14012,7 +14013,8 @@
 						"     ),",
 						"     skipDuplicateMapInputs: true,",
 						"     skipDuplicateMapOutputs: true) ~> select1",
-						"Enrollment25 select(mapColumn(",
+						"union1, select3 union(byName: true)~> union2",
+						"Enrollment20242025 select(mapColumn(",
 						"          SchoolYear,",
 						"          OrganizationLevel,",
 						"          County,",
@@ -14061,7 +14063,7 @@
 						"     ),",
 						"     skipDuplicateMapInputs: true,",
 						"     skipDuplicateMapOutputs: true) ~> select2",
-						"Enrollment26 select(mapColumn(",
+						"Enrollment20252026 select(mapColumn(",
 						"          SchoolYear,",
 						"          OrganizationLevel,",
 						"          County,",
@@ -14110,7 +14112,6 @@
 						"     ),",
 						"     skipDuplicateMapInputs: true,",
 						"     skipDuplicateMapOutputs: true) ~> select3",
-						"union1, select3 union(byName: true)~> union2",
 						"union2 sink(allowSchemaDrift: true,",
 						"     validateSchema: false,",
 						"     format: 'table',",
