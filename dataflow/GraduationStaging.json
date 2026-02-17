@@ -34,6 +34,13 @@
 						"type": "DatasetReference"
 					},
 					"name": "Graduation24"
+				},
+				{
+					"dataset": {
+						"referenceName": "stagingGraduation25",
+						"type": "DatasetReference"
+					},
+					"name": "Graduation25"
 				}
 			],
 			"sinks": [
@@ -60,6 +67,15 @@
 				},
 				{
 					"name": "select4"
+				},
+				{
+					"name": "select5"
+				},
+				{
+					"name": "union2"
+				},
+				{
+					"name": "union3"
 				}
 			],
 			"scriptLines": [
@@ -207,6 +223,42 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> Graduation24",
+				"source(output(",
+				"          SchoolYear as string,",
+				"          OrganizationLevel as string,",
+				"          County as string,",
+				"          ESDName as string,",
+				"          ESDOrganizationId as string,",
+				"          DistrictCode as string,",
+				"          DistrictName as string,",
+				"          DistrictOrganizationId as string,",
+				"          SchoolCode as string,",
+				"          SchoolName as string,",
+				"          SchoolOrganizationId as string,",
+				"          StudentGroupType as string,",
+				"          StudentGroup as string,",
+				"          DAT as string,",
+				"          Cohort as string,",
+				"          BeginningGrade9 as string,",
+				"          TransferIn as string,",
+				"          Year1Dropout as string,",
+				"          Year2Dropout as string,",
+				"          Year3Dropout as string,",
+				"          Year4Dropout as string,",
+				"          Year5Dropout as string,",
+				"          Year6Dropout as string,",
+				"          Year7Dropout as string,",
+				"          TransferOut as string,",
+				"          FinalCohort as string,",
+				"          Graduate as string,",
+				"          continuing as string,",
+				"          dropout as string,",
+				"          GraduationRate as string,",
+				"          DataAsOf as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> Graduation25",
 				"Graduation20142022 select(mapColumn(",
 				"          SchoolYear,",
 				"          OrganizationLevel,",
@@ -300,7 +352,32 @@
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> select4",
-				"union1 sink(allowSchemaDrift: true,",
+				"Graduation25 select(mapColumn(",
+				"          SchoolYear,",
+				"          OrganizationLevel,",
+				"          DistrictCode,",
+				"          DistrictName,",
+				"          SchoolCode,",
+				"          SchoolName,",
+				"          SchoolOrganizationId,",
+				"          StudentGroupType,",
+				"          StudentGroup,",
+				"          Cohort,",
+				"          BeginningGrade9,",
+				"          TransferIn,",
+				"          TransferOut,",
+				"          {Final Cohort} = FinalCohort,",
+				"          Graduate,",
+				"          Continuing = continuing,",
+				"          Dropout = dropout,",
+				"          GraduationRate,",
+				"          DataAsOf",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select5",
+				"union1, select4 union(byName: true)~> union2",
+				"union2, select5 union(byName: true)~> union3",
+				"union3 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     format: 'table',",
 				"     store: 'sqlserver',",
@@ -310,6 +387,7 @@
 				"     updateable: false,",
 				"     deletable: false,",
 				"     upsertable: false,",
+				"     truncate: true,",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
 				"     errorHandlingOption: 'stopOnFirstError') ~> sink1"
