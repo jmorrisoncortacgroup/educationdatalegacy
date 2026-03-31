@@ -2863,7 +2863,8 @@
 				"lastPublishTime": "2024-10-07T19:32:11Z"
 			},
 			"dependsOn": [
-				"[concat(variables('workspaceId'), '/dataflows/P223Staging')]"
+				"[concat(variables('workspaceId'), '/dataflows/P223Staging')]",
+				"[concat(variables('workspaceId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]"
 			]
 		},
 		{
