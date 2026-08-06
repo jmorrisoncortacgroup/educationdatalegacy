@@ -19,9 +19,6 @@
 						"referenceName": "MasterIndicator",
 						"type": "DataFlowReference"
 					},
-					"staging": {
-						"folderPath": "gatescharter/staging/Master Indicator Info"
-					},
 					"compute": {
 						"coreCount": 8,
 						"computeType": "General"
@@ -88,7 +85,7 @@
 			"name": "Master Indicator"
 		},
 		"annotations": [],
-		"lastPublishTime": "2025-05-29T21:15:02Z"
+		"lastPublishTime": "2026-01-09T00:12:33Z"
 	},
 	"type": "Microsoft.Synapse/workspaces/pipelines"
 }

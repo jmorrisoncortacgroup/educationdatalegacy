@@ -19,9 +19,6 @@
 						"referenceName": "AttendanceStaging",
 						"type": "DataFlowReference"
 					},
-					"staging": {
-						"folderPath": "gatescharter/staging/Attendance"
-					},
 					"compute": {
 						"coreCount": 8,
 						"computeType": "General"
@@ -115,7 +112,7 @@
 			"name": "Attendance"
 		},
 		"annotations": [],
-		"lastPublishTime": "2025-05-29T20:45:12Z"
+		"lastPublishTime": "2026-01-09T00:11:59Z"
 	},
 	"type": "Microsoft.Synapse/workspaces/pipelines"
 }

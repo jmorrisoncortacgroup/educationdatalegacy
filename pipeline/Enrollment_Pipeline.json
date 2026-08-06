@@ -311,7 +311,7 @@
 			"name": "Enrollment"
 		},
 		"annotations": [],
-		"lastPublishTime": "2025-05-29T20:56:26Z"
+		"lastPublishTime": "2026-01-09T00:12:58Z"
 	},
 	"type": "Microsoft.Synapse/workspaces/pipelines"
 }
