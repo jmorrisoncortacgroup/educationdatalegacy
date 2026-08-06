@@ -101,7 +101,7 @@
 					"name": "Academic Performance"
 				},
 				"annotations": [],
-				"lastPublishTime": "2025-10-14T19:38:55Z"
+				"lastPublishTime": "2026-01-09T00:11:56Z"
 			},
 			"dependsOn": [
 				"[concat(variables('workspaceId'), '/dataflows/AcademicPerformanceStaging')]"
@@ -384,7 +384,7 @@
 					"name": "Academic Performance"
 				},
 				"annotations": [],
-				"lastPublishTime": "2025-10-15T02:38:16Z"
+				"lastPublishTime": "2026-01-24T00:07:31Z"
 			},
 			"dependsOn": [
 				"[concat(variables('workspaceId'), '/linkedServices/EducationData')]"
@@ -517,7 +517,7 @@
 					"name": "Attendance"
 				},
 				"annotations": [],
-				"lastPublishTime": "2025-05-29T20:45:12Z"
+				"lastPublishTime": "2026-01-09T00:11:59Z"
 			},
 			"dependsOn": [
 				"[concat(variables('workspaceId'), '/dataflows/AttendanceStaging')]",
@@ -622,7 +622,7 @@
 					"name": "CharterSchoolDirectory"
 				},
 				"annotations": [],
-				"lastPublishTime": "2025-05-29T21:14:59Z"
+				"lastPublishTime": "2026-01-09T00:12:02Z"
 			},
 			"dependsOn": [
 				"[concat(variables('workspaceId'), '/dataflows/CharterSchoolDirectory')]"
@@ -671,7 +671,8 @@
 				"folder": {
 					"name": "CharterSchoolDirectory"
 				},
-				"annotations": []
+				"annotations": [],
+				"lastPublishTime": "2026-03-29T20:59:59Z"
 			},
 			"dependsOn": [
 				"[concat(variables('workspaceId'), '/dataflows/CharterSchoolDistrictRelationships')]"
@@ -723,7 +724,7 @@
 					"name": "Enrollment"
 				},
 				"annotations": [],
-				"lastPublishTime": "2025-02-09T00:01:34Z"
+				"lastPublishTime": "2026-01-09T00:12:08Z"
 			},
 			"dependsOn": [
 				"[concat(variables('workspaceId'), '/dataflows/EnrollmentStaging')]"
@@ -1048,7 +1049,7 @@
 					"name": "Enrollment"
 				},
 				"annotations": [],
-				"lastPublishTime": "2025-05-29T20:56:26Z"
+				"lastPublishTime": "2026-01-09T00:12:58Z"
 			},
 			"dependsOn": [
 				"[concat(variables('workspaceId'), '/pipelines/EnrollmentStaging')]",
@@ -1106,7 +1107,7 @@
 					"name": "F-195"
 				},
 				"annotations": [],
-				"lastPublishTime": "2024-03-27T01:35:50Z"
+				"lastPublishTime": "2026-01-09T00:12:14Z"
 			},
 			"dependsOn": [
 				"[concat(variables('workspaceId'), '/dataflows/F195Staging')]"
@@ -1305,7 +1306,7 @@
 					"name": "F-195"
 				},
 				"annotations": [],
-				"lastPublishTime": "2025-05-29T21:02:24Z"
+				"lastPublishTime": "2026-01-09T00:13:02Z"
 			},
 			"dependsOn": [
 				"[concat(variables('workspaceId'), '/linkedServices/EducationData')]",
@@ -1360,7 +1361,7 @@
 					"name": "Graduation"
 				},
 				"annotations": [],
-				"lastPublishTime": "2024-06-25T23:18:09Z"
+				"lastPublishTime": "2026-01-09T00:12:17Z"
 			},
 			"dependsOn": [
 				"[concat(variables('workspaceId'), '/dataflows/GraduationStaging')]"
@@ -1720,7 +1721,7 @@
 					"name": "Graduation"
 				},
 				"annotations": [],
-				"lastPublishTime": "2025-05-28T23:31:52Z"
+				"lastPublishTime": "2026-01-09T00:13:07Z"
 			},
 			"dependsOn": [
 				"[concat(variables('workspaceId'), '/pipelines/GraduationStaging')]",
@@ -1893,7 +1894,7 @@
 					"name": "Improvement Framework"
 				},
 				"annotations": [],
-				"lastPublishTime": "2025-05-29T21:04:05Z"
+				"lastPublishTime": "2026-01-09T00:13:11Z"
 			},
 			"dependsOn": [
 				"[concat(variables('workspaceId'), '/pipelines/ImprovementFrameworkStaging')]",
@@ -1947,7 +1948,7 @@
 					"name": "Improvement Framework"
 				},
 				"annotations": [],
-				"lastPublishTime": "2024-03-29T01:24:23Z"
+				"lastPublishTime": "2026-01-09T00:12:23Z"
 			},
 			"dependsOn": [
 				"[concat(variables('workspaceId'), '/dataflows/ImprovementFramework')]"
@@ -2078,7 +2079,7 @@
 					"name": "Map"
 				},
 				"annotations": [],
-				"lastPublishTime": "2025-07-09T01:48:19Z"
+				"lastPublishTime": "2026-01-09T00:12:26Z"
 			},
 			"dependsOn": [
 				"[concat(variables('workspaceId'), '/linkedServices/EducationData')]",
@@ -2129,7 +2130,7 @@
 					"name": "Map"
 				},
 				"annotations": [],
-				"lastPublishTime": "2025-07-03T21:36:10Z"
+				"lastPublishTime": "2026-01-09T00:12:30Z"
 			},
 			"dependsOn": [
 				"[concat(variables('workspaceId'), '/dataflows/MapQuintile')]"
@@ -2233,7 +2234,7 @@
 					"name": "Master Indicator"
 				},
 				"annotations": [],
-				"lastPublishTime": "2025-05-29T21:15:02Z"
+				"lastPublishTime": "2026-01-09T00:12:33Z"
 			},
 			"dependsOn": [
 				"[concat(variables('workspaceId'), '/dataflows/MasterIndicator')]",
@@ -2595,7 +2596,7 @@
 					"name": "P-223"
 				},
 				"annotations": [],
-				"lastPublishTime": "2025-11-12T22:05:40Z"
+				"lastPublishTime": "2026-01-09T00:13:16Z"
 			},
 			"dependsOn": [
 				"[concat(variables('workspaceId'), '/pipelines/P223Staging')]",
@@ -2796,7 +2797,7 @@
 					"name": "P-223"
 				},
 				"annotations": [],
-				"lastPublishTime": "2025-11-13T00:22:13Z"
+				"lastPublishTime": "2026-01-09T00:13:19Z"
 			},
 			"dependsOn": [
 				"[concat(variables('workspaceId'), '/pipelines/P223Staging')]",
@@ -2860,7 +2861,7 @@
 					"name": "P-223"
 				},
 				"annotations": [],
-				"lastPublishTime": "2024-10-07T19:32:11Z"
+				"lastPublishTime": "2026-01-09T00:12:37Z"
 			},
 			"dependsOn": [
 				"[concat(variables('workspaceId'), '/dataflows/P223Staging')]"
@@ -2922,7 +2923,7 @@
 					"name": "Personnel"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-05-10T19:21:36Z"
+				"lastPublishTime": "2026-01-09T00:12:39Z"
 			},
 			"dependsOn": [
 				"[concat(variables('workspaceId'), '/dataflows/PersonnelStaging')]"
@@ -3148,7 +3149,7 @@
 					"name": "Personnel"
 				},
 				"annotations": [],
-				"lastPublishTime": "2025-07-09T18:19:02Z"
+				"lastPublishTime": "2026-02-26T01:13:36Z"
 			},
 			"dependsOn": [
 				"[concat(variables('workspaceId'), '/pipelines/PersonnelStaging')]",
@@ -3199,7 +3200,7 @@
 					"name": "Post Secondary"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-05-10T19:21:33Z"
+				"lastPublishTime": "2026-01-09T00:12:44Z"
 			},
 			"dependsOn": [
 				"[concat(variables('workspaceId'), '/dataflows/PostSecondaryStaging')]"
@@ -3398,7 +3399,7 @@
 					"name": "Post Secondary"
 				},
 				"annotations": [],
-				"lastPublishTime": "2025-05-29T21:14:46Z"
+				"lastPublishTime": "2026-01-09T00:13:27Z"
 			},
 			"dependsOn": [
 				"[concat(variables('workspaceId'), '/pipelines/PostSecondaryStaging')]",
@@ -3452,7 +3453,7 @@
 					"name": "SGP"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-05-10T19:21:38Z"
+				"lastPublishTime": "2026-01-09T00:12:50Z"
 			},
 			"dependsOn": [
 				"[concat(variables('workspaceId'), '/dataflows/SGPStaging')]"
@@ -3684,7 +3685,7 @@
 					"name": "SGP"
 				},
 				"annotations": [],
-				"lastPublishTime": "2025-10-29T00:14:08Z"
+				"lastPublishTime": "2026-01-09T00:13:30Z"
 			},
 			"dependsOn": [
 				"[concat(variables('workspaceId'), '/pipelines/SGPStaging')]",
@@ -4484,6 +4485,299 @@
 					},
 					{
 						"name": "WSIF Year",
+						"type": "String"
+					},
+					{
+						"name": "organizationid",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/linkedServices/educationdata-WorkspaceDefaultStorage')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/ImprovementFramework2022')]",
+			"type": "Microsoft.Synapse/workspaces/datasets",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "educationdata-WorkspaceDefaultStorage",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Improvement Framework"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "Washington_School_Improvement_Framework__WSIF__2022_Run.csv",
+						"folderPath": "synapse/workspaces/educationdata/Improvement Framework",
+						"fileSystem": "uplifteducationdata"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "ESD_Organization_Id",
+						"type": "String"
+					},
+					{
+						"name": "ESD_Name",
+						"type": "String"
+					},
+					{
+						"name": "District_Organization_Id",
+						"type": "String"
+					},
+					{
+						"name": "District_Code",
+						"type": "String"
+					},
+					{
+						"name": "District_Name",
+						"type": "String"
+					},
+					{
+						"name": "School_Code",
+						"type": "String"
+					},
+					{
+						"name": "School_Name",
+						"type": "String"
+					},
+					{
+						"name": "School_Organization_Id",
+						"type": "String"
+					},
+					{
+						"name": "School_Type",
+						"type": "String"
+					},
+					{
+						"name": "2022_TitleI",
+						"type": "String"
+					},
+					{
+						"name": "Student_Group",
+						"type": "String"
+					},
+					{
+						"name": "Proficiency_ELA_Numerator",
+						"type": "String"
+					},
+					{
+						"name": "Proficiency_ELA_Denominator",
+						"type": "String"
+					},
+					{
+						"name": "Proficiency_ELA_Rate",
+						"type": "String"
+					},
+					{
+						"name": "Proficiency_ELA_Decile",
+						"type": "String"
+					},
+					{
+						"name": "ELA_MetESSA_Participation",
+						"type": "String"
+					},
+					{
+						"name": "Proficiency_Math_Numerator",
+						"type": "String"
+					},
+					{
+						"name": "Proficiency_Math_Denominator",
+						"type": "String"
+					},
+					{
+						"name": "Proficiency_Math_Rate",
+						"type": "String"
+					},
+					{
+						"name": "Proficiency_Math_Decile",
+						"type": "String"
+					},
+					{
+						"name": "Math_MetESSA_Participation",
+						"type": "String"
+					},
+					{
+						"name": "Proficiency_Combined_Decile",
+						"type": "String"
+					},
+					{
+						"name": "Growth_ELA_NumberofStudents",
+						"type": "String"
+					},
+					{
+						"name": "Growth_ELA_Median_SGP",
+						"type": "String"
+					},
+					{
+						"name": "Growth_ELA_Decile",
+						"type": "String"
+					},
+					{
+						"name": "Growth_Math_NumberofStudents",
+						"type": "String"
+					},
+					{
+						"name": "Growth_Math_Median_SGP",
+						"type": "String"
+					},
+					{
+						"name": "Growth_Math_Decile",
+						"type": "String"
+					},
+					{
+						"name": "AL_ELA_NumberofStudents",
+						"type": "String"
+					},
+					{
+						"name": "AL_ELA_Avg_Level",
+						"type": "String"
+					},
+					{
+						"name": "AL_ELA_Decile",
+						"type": "String"
+					},
+					{
+						"name": "AL_Math_NumberofStudents",
+						"type": "String"
+					},
+					{
+						"name": "AL_Math_Avg_Level",
+						"type": "String"
+					},
+					{
+						"name": "AL_Math_Decile",
+						"type": "String"
+					},
+					{
+						"name": "Other_Academic_Combined_Decile",
+						"type": "String"
+					},
+					{
+						"name": "Grad_FourYear_Numerator",
+						"type": "String"
+					},
+					{
+						"name": "Grad_FourYear_Denominator",
+						"type": "String"
+					},
+					{
+						"name": "Grad_FourYear_Rate",
+						"type": "String"
+					},
+					{
+						"name": "Grad_FourYear_Decile",
+						"type": "String"
+					},
+					{
+						"name": "Grad_Extended_TotalIncrease",
+						"type": "String"
+					},
+					{
+						"name": "Grad_Extended_DecileIncrease",
+						"type": "String"
+					},
+					{
+						"name": "Grad_Combined_Decile",
+						"type": "String"
+					},
+					{
+						"name": "EL_Progress_Numerator",
+						"type": "String"
+					},
+					{
+						"name": "EL_Progress_Denominator",
+						"type": "String"
+					},
+					{
+						"name": "EL_Progress_Rate",
+						"type": "String"
+					},
+					{
+						"name": "EL_Progress_Decile",
+						"type": "String"
+					},
+					{
+						"name": "RegularAttendance_Numerator",
+						"type": "String"
+					},
+					{
+						"name": "RegularAttendance_Denominator",
+						"type": "String"
+					},
+					{
+						"name": "RegularAttendance_Rate",
+						"type": "String"
+					},
+					{
+						"name": "RegularAttendance_Decile",
+						"type": "String"
+					},
+					{
+						"name": "NinthGradeOnTrack_Numerator",
+						"type": "String"
+					},
+					{
+						"name": "NinthGradeOnTrack_Denominator",
+						"type": "String"
+					},
+					{
+						"name": "NinthGradeOnTrack_Rate",
+						"type": "String"
+					},
+					{
+						"name": "NinthGradeOnTrack_Decile",
+						"type": "String"
+					},
+					{
+						"name": "DualCredit_Numerator",
+						"type": "String"
+					},
+					{
+						"name": "DualCredit_Denominator",
+						"type": "String"
+					},
+					{
+						"name": "DualCredit_Rate",
+						"type": "String"
+					},
+					{
+						"name": "DualCredit_Decile",
+						"type": "String"
+					},
+					{
+						"name": "SQSS_Combined_Decile",
+						"type": "String"
+					},
+					{
+						"name": "2022_Score",
+						"type": "String"
+					},
+					{
+						"name": "2022_Support_Tier",
+						"type": "String"
+					},
+					{
+						"name": "2017_Support_Tier",
+						"type": "String"
+					},
+					{
+						"name": "2022_Cycle_Support",
+						"type": "String"
+					},
+					{
+						"name": "WSIF_Year",
 						"type": "String"
 					},
 					{
